@@ -1,24 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PetShop.Web.Models;
-using System.Diagnostics;
-
-namespace PetShop.Web.Controllers
+﻿namespace PetShop.Web.Controllers
 {
+    using System.Diagnostics;
+    
+    using Microsoft.AspNetCore.Mvc;
+    
+    using ViewModels.Home;
+
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

@@ -15,4 +15,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PetShop.Common\PetShop.Common.csproj" />
+    <ProjectReference Include="..\PetShop.Data\PetShop.Data.csproj" />
+    <ProjectReference Include="..\PetShop.Web.ViewModels\PetShop.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
