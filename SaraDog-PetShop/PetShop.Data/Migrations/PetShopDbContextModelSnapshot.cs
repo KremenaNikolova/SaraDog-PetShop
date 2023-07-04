@@ -252,17 +252,12 @@ namespace PetShop.Data.Migrations
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ItemId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
 
                     b.ToTable("Categories");
                 });
@@ -391,13 +386,6 @@ namespace PetShop.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PetShop.Data.Models.Category", b =>
-                {
-                    b.HasOne("PetShop.Data.Models.Item", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("ItemId");
-                });
-
             modelBuilder.Entity("PetShop.Data.Models.Item", b =>
                 {
                     b.HasOne("PetShop.Data.Models.ApplicationUser", "Buyer")
@@ -428,8 +416,6 @@ namespace PetShop.Data.Migrations
 
             modelBuilder.Entity("PetShop.Data.Models.Item", b =>
                 {
-                    b.Navigation("Categories");
-
                     b.Navigation("UserItems");
                 });
 #pragma warning restore 612, 618

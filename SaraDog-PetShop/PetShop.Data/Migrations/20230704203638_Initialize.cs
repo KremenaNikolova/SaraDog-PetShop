@@ -50,6 +50,20 @@ namespace PetShop.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -156,21 +170,6 @@ namespace PetShop.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    ItemId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
@@ -268,11 +267,6 @@ namespace PetShop.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_ItemId",
-                table: "Categories",
-                column: "ItemId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Items_BuyerId",
                 table: "Items",
                 column: "BuyerId");
@@ -286,25 +280,10 @@ namespace PetShop.Data.Migrations
                 name: "IX_UserItems_ItemId",
                 table: "UserItems",
                 column: "ItemId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Categories_Items_ItemId",
-                table: "Categories",
-                column: "ItemId",
-                principalTable: "Items",
-                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Items_AspNetUsers_BuyerId",
-                table: "Items");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Categories_Items_ItemId",
-                table: "Categories");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -327,10 +306,10 @@ namespace PetShop.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Items");
 
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
