@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PetShop.Common\PetShop.Common.csproj" />
+  </ItemGroup>
+
 </Project>
