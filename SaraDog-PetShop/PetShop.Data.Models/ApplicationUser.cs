@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PetShop.Data.Models
+﻿namespace PetShop.Data.Models
 {
-    internal class User
+    using Microsoft.AspNetCore.Identity;
+
+    public class ApplicationUser : IdentityUser<Guid>
     {
+        public string? Address { get; set; }
+
+        public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
     }
 }

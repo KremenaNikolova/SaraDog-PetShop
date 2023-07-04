@@ -10,8 +10,8 @@
             public const int DescriptionMinLength = 10;
             public const int DescriptionMaxLength = 150;
 
-            public const double PriceMinValue = 0;
-            public const double PriceMaxValue = 500;
+            public const string PriceMinValue = "0";
+            public const string PriceMaxValue = "500";
 
             public const double RatingMinValue = 0;
             public const double RatingMaxValue = 5;

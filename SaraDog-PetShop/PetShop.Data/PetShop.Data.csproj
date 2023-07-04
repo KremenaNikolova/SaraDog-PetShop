@@ -17,6 +17,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PetShop.Common\PetShop.Common.csproj" />
+    <ProjectReference Include="..\PetShop.Data.Models\PetShop.Data.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

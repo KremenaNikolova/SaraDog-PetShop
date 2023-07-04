@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using static PetShop.Common.ValidationConstants.ItemValidationConstants;
 
     public class Item
@@ -15,13 +16,15 @@
 
         [Required]
         [MaxLength(ImageMaxLength)]
-        public string Image { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
         public decimal Price { get; set; }
+
+        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
 
         public double Rating { get; set; }
 
@@ -31,9 +34,17 @@
         [Required]
         public virtual Category Category { get; set; } = null!;
 
+        public Guid? BuyerId { get; set; }
+
+        public virtual ApplicationUser? Buyer { get; set; }
+
+        public bool? IsDeleted { get; set; }
+
+        public bool? IsVisible { get; set; }
+
         public virtual ICollection<Category> Categories { get; set; } = new HashSet<Category>();
 
-        public virtual ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
+        public virtual ICollection<ApplicationUserItem> UserItems { get; set; } = new HashSet<ApplicationUserItem>();
 
 
     }
