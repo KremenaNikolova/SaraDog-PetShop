@@ -16,7 +16,7 @@
 
         [Required]
         [MaxLength(ImageMaxLength)]
-        public string ImageUrl { get; set; } = null!;
+        public string TitleImage { get; set; } = null!;
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
@@ -26,7 +26,7 @@
 
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
 
-        public double Rating { get; set; }
+        public double? Rating { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
@@ -34,15 +34,13 @@
         [Required]
         public virtual Category Category { get; set; } = null!;
 
-        public Guid? BuyerId { get; set; }
-
-        public virtual ApplicationUser? Buyer { get; set; }
-
         public bool? IsDeleted { get; set; }
 
         public bool? IsVisible { get; set; }
 
         public virtual ICollection<ApplicationUserItem> UserItems { get; set; } = new HashSet<ApplicationUserItem>();
+
+        public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
 
 
     }
