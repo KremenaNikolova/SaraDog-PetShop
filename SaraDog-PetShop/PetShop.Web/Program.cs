@@ -4,6 +4,8 @@ namespace PetShop.Web
 
     using Data;
     using PetShop.Data.Models;
+    using PetShop.Web.Infrastructure.Extensions;
+    using PetShop.Services.Data.Interfaces;
 
     public class Program
     {
@@ -25,6 +27,8 @@ namespace PetShop.Web
                 options.Password.RequiredLength = builder.Configuration.GetValue<int>("Idetity:Password:RequiredLength");
             })
                 .AddEntityFrameworkStores<PetShopDbContext>();
+
+            builder.Services.AddApplicationServices(typeof(IShopService));
 
             builder.Services.AddControllersWithViews();
 
