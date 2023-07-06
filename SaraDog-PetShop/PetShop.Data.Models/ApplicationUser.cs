@@ -4,8 +4,12 @@
 
     public class ApplicationUser : IdentityUser<Guid>
     {
+        public ApplicationUser()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
         public string? Address { get; set; }
 
-        public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
     }
 }

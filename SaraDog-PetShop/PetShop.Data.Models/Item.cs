@@ -26,7 +26,7 @@
 
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
 
-        public double? Rating { get; set; }
+        public decimal? Rating { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
