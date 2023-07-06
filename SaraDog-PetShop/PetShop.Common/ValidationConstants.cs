@@ -5,10 +5,10 @@
         public static class ItemValidationConstants
         {
             public const int TitleMinLength = 5;
-            public const int TitleMaxLength = 20;
+            public const int TitleMaxLength = 30;
 
             public const int DescriptionMinLength = 10;
-            public const int DescriptionMaxLength = 150;
+            public const int DescriptionMaxLength = 500;
 
             public const string PriceMinValue = "0";
             public const string PriceMaxValue = "500";
@@ -23,7 +23,7 @@
         public static class CategoryValidationConstants
         {
             public const int NameMinLength = 5;
-            public const int NameMaxLength = 20;
+            public const int NameMaxLength = 50;
         }
 
         public static class CommentValidationConstants
