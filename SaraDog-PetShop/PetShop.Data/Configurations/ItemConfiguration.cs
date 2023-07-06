@@ -2,7 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-    
+
     using PetShop.Data.Models;
     using System.Reflection;
 
@@ -11,14 +11,18 @@
         public void Configure(EntityTypeBuilder<Item> builder)
         {
             builder
-                .HasOne(i=>i.Category)
-                .WithMany(i=>i.Items)
-                .HasForeignKey(i=>i.CategoryId)
+                .HasOne(i => i.Category)
+                .WithMany(i => i.Items)
+                .HasForeignKey(i => i.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Property(i => i.Price)
-                .HasPrecision(18, 4);
+                .HasPrecision(18, 2);
+
+            builder
+                .Property(i => i.Rating)
+                .HasPrecision(18, 2);
 
             builder
                 .HasData(this.GenerateItems());
@@ -27,7 +31,6 @@
         private Item[] GenerateItems()
         {
             ICollection<Item> items = new HashSet<Item>();
-            string? imagesPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             string imagesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
 
