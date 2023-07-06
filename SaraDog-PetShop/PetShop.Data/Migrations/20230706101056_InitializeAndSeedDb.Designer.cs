@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetShop.Web.Data;
 
@@ -11,9 +12,10 @@ using PetShop.Web.Data;
 namespace PetShop.Data.Migrations
 {
     [DbContext(typeof(PetShopDbContext))]
-    partial class PetShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230706101056_InitializeAndSeedDb")]
+    partial class InitializeAndSeedDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,6 +347,9 @@ namespace PetShop.Data.Migrations
                     b.Property<DateTime>("AddedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("ApplicationUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -379,6 +384,8 @@ namespace PetShop.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationUserId");
+
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Items");
@@ -387,19 +394,19 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8833),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8336),
                             CategoryId = 1,
                             Description = "Жълто худи с мотиви на минион, в размер М, подходящо по-студените зимни дни.",
                             IsDeleted = false,
                             IsVisible = true,
                             Price = 25.50m,
                             Title = "Худи- Минион",
-                            TitleImage = "~/Images/Ball.jpg"
+                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\MinionDress.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8844),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8351),
                             CategoryId = 1,
                             Description = "Зелено худи с мотиви на мече и ушички на качулката, в размер М, подходящо по-студените зимни дни.",
                             IsDeleted = false,
@@ -411,7 +418,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8848),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8355),
                             CategoryId = 1,
                             Description = "Дебела синя блузка с мотиви на мечета и розови листа, в размер М.",
                             IsDeleted = false,
@@ -423,7 +430,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8851),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8358),
                             CategoryId = 1,
                             Description = "Лилаво изчистено худи с джобче, в размер М.",
                             IsDeleted = false,
@@ -435,7 +442,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 5,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8856),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8364),
                             CategoryId = 1,
                             Description = "Дебела розова блузка, наподобяваща сладка пижамка, в размер М, подходяща по-студените зимни дни.",
                             IsDeleted = false,
@@ -447,7 +454,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 6,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8859),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8367),
                             CategoryId = 3,
                             Description = "Плюшено сладоледче, с бибитка при натискане и въженце на върха.",
                             IsDeleted = false,
@@ -459,7 +466,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 7,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8862),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8369),
                             CategoryId = 3,
                             Description = "Голем плючещен октопод, който може да се обръща и променя цвета си.",
                             IsDeleted = false,
@@ -471,7 +478,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 8,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8863),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8371),
                             CategoryId = 3,
                             Description = "Жълт плюшен черхъл, на сини райета, с бибитка при натискане, за да може кучето вида си има свой собствен и да остави вашите на мира.",
                             IsDeleted = false,
@@ -483,7 +490,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 9,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8867),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8407),
                             CategoryId = 6,
                             Description = "Хигиенни подложки с лепенки.",
                             IsDeleted = false,
@@ -495,7 +502,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 10,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8870),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8409),
                             CategoryId = 7,
                             Description = "Двустранен гребен за сресване на вашият любимец с по-буйна козина.",
                             IsDeleted = false,
@@ -507,7 +514,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 11,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8873),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8412),
                             CategoryId = 7,
                             Description = "Гребен специално предназначен за домашни любимци, които са със къса козина. Идеален за периода на смяна на козината.",
                             IsDeleted = false,
@@ -519,7 +526,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 12,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8875),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8415),
                             CategoryId = 5,
                             Description = "Удобен матрак, в голям размер, удобен за местене. Изключително практичен при пътуване с вашият любимец, тъй като не заема много място. Има цип, с който може да се вади донапрена отвътре и да се сменя или пере.",
                             IsDeleted = false,
@@ -531,7 +538,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 13,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8878),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8418),
                             CategoryId = 4,
                             Description = "Мека и удобна чанта с дръжки за пренасяне на вашият любимец, с ципче за по-лесно поставяне на животното в нея. Подходяща за по-дребни породи до 4кг.",
                             IsDeleted = false,
@@ -543,7 +550,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 14,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8880),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8420),
                             CategoryId = 4,
                             Description = "Розова пластмасова клетка, подходяща за домашни любимци до 6кг.",
                             IsDeleted = false,
@@ -555,7 +562,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 15,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8908),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8423),
                             CategoryId = 8,
                             Description = "Керамична купичка за вода 300мл",
                             IsDeleted = false,
@@ -567,7 +574,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 16,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8911),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8424),
                             CategoryId = 8,
                             Description = "Керамична купичка за храна 250мл",
                             IsDeleted = false,
@@ -579,7 +586,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 17,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8913),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8427),
                             CategoryId = 2,
                             Description = "Регулируем нагръдник за дребни породи до 4кг, подходящ за по-топлите летни дни.",
                             IsDeleted = false,
@@ -591,7 +598,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 18,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8916),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8429),
                             CategoryId = 2,
                             Description = "Дебел, подплатен розов нагръдник за дребни породи до 3кг, подходящ за по-студените и прохладни дни.",
                             IsDeleted = false,
@@ -603,7 +610,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 19,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8919),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8433),
                             CategoryId = 2,
                             Description = "Кафяв, кожеш нашийник с прикачено звънче, предназначен за по-дребни породи.",
                             IsDeleted = false,
@@ -615,7 +622,7 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 20,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 54, 50, 744, DateTimeKind.Utc).AddTicks(8921),
+                            AddedOn = new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8437),
                             CategoryId = 3,
                             Description = "Плетена топка с въженца от двете страни",
                             IsDeleted = false,
@@ -705,6 +712,10 @@ namespace PetShop.Data.Migrations
 
             modelBuilder.Entity("PetShop.Data.Models.Item", b =>
                 {
+                    b.HasOne("PetShop.Data.Models.ApplicationUser", null)
+                        .WithMany("Items")
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("PetShop.Data.Models.Category", "Category")
                         .WithMany("Items")
                         .HasForeignKey("CategoryId")
@@ -712,6 +723,11 @@ namespace PetShop.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("PetShop.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("PetShop.Data.Models.Category", b =>
