@@ -6,11 +6,11 @@
     using PetShop.Web.Data;
     using PetShop.Web.ViewModels.Home;
 
-    public class ShopService : IShopService
+    public class ItemService : IItemService
     {
         private readonly PetShopDbContext dbContext;
 
-        public ShopService(PetShopDbContext dbContext)
+        public ItemService(PetShopDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
