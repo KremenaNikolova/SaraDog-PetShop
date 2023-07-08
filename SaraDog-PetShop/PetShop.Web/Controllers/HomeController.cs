@@ -3,19 +3,24 @@
     using System.Diagnostics;
     
     using Microsoft.AspNetCore.Mvc;
-    
+
+    using PetShop.Services.Data.Interfaces;
     using ViewModels.Home;
 
     public class HomeController : Controller
     {
+        private readonly IShopService shopService;
 
-        public HomeController()
+        public HomeController(IShopService shopService)
         {
+            this.shopService = shopService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var allItems = await shopService.GetAllItemsAsync();
+
+            return View(allItems);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
