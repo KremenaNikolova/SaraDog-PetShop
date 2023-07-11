@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.16.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PetShop.Common\PetShop.Common.csproj" />
     <ProjectReference Include="..\PetShop.Data.Models\PetShop.Data.Models.csproj" />
     <ProjectReference Include="..\PetShop.Data\PetShop.Data.csproj" />

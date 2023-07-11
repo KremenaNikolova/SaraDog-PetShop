@@ -6,5 +6,7 @@
     public interface ICategoryService
     {
         Task<ICollection<ItemCategoryViewModel>> AllCteagoriesAsync();
+
+        Task<bool> IsCategoryExistAsync(int id);
     }
 }

@@ -31,5 +31,14 @@
 
             return allCategories;
         }
+
+        public async Task<bool> IsCategoryExistAsync(int id)
+        {
+            var isIdExist = await dbContext
+                .Categories
+                .AnyAsync(c => c.Id == id);
+
+            return isIdExist;
+        }
     }
 }

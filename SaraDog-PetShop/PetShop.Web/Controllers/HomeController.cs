@@ -9,18 +9,33 @@
 
     public class HomeController : Controller
     {
-        private readonly IShopService shopService;
+        private readonly IItemService itemService;
+        private readonly IImageService imageService;
 
-        public HomeController(IShopService shopService)
+        public HomeController(IItemService shopService, IImageService imageService)
         {
-            this.shopService = shopService;
+            this.itemService = shopService;
+            this.imageService = imageService;
+
         }
 
         public async Task<IActionResult> Index()
         {
-            var allItems = await shopService.GetAllItemsAsync();
+            var allItems = await itemService.GetAllItemsAsync();
 
             return View(allItems);
+        }
+
+        public async Task<IActionResult> GetImage(string imageName)
+        {
+            var imageStream = await imageService.GetImageStreamAsync(imageName);
+
+            if (imageStream == null)
+            {
+                return NotFound();
+            }
+
+            return File(imageStream, "image/jpeg");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

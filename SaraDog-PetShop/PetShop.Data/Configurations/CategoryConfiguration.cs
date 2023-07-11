@@ -22,7 +22,7 @@
             {
                 Id = 1,
                 Name = "Дрехи",
-                IsDeleted = false
+                Image = "DressCategory.jpg"
             };
             categories.Add(category);
 
@@ -30,7 +30,7 @@
             {
                 Id = 2,
                 Name = "Нашийници, Нагръдници и Поводи",
-                IsDeleted = false
+                Image = "CollarCategory.jpg"
             };
             categories.Add(category);
 
@@ -38,7 +38,7 @@
             {
                 Id = 3,
                 Name = "Играчки",
-                IsDeleted = false
+                Image = "ToyCategory.jpg"
             };
             categories.Add(category);
 
@@ -46,7 +46,7 @@
             {
                 Id = 4,
                 Name = "Транспортни клетки",
-                IsDeleted = false
+                Image = "TravellingCategory.jpg"
             };
             categories.Add(category);
 
@@ -54,7 +54,7 @@
             {
                 Id = 5,
                 Name = "Легла",
-                IsDeleted = false
+                Image = "SleepingPad.jpg"
             };
             categories.Add(category);
 
@@ -62,15 +62,16 @@
             {
                 Id = 6,
                 Name = "Пелени и подложки",
-                IsDeleted = false
+                Image = "HygienicPad.jpg"
             };
             categories.Add(category);
+
 
             category = new Category()
             {
                 Id = 7,
                 Name = "Грижа за козината",
-                IsDeleted = false
+                Image = "ShortGroomingCloserCategory.jpg"
             };
             categories.Add(category);
 
@@ -78,7 +79,7 @@
             {
                 Id = 8,
                 Name = "Купички за храна и вода",
-                IsDeleted = false
+                Image = "DressCategory.jpg"
             };
             categories.Add(category);
 

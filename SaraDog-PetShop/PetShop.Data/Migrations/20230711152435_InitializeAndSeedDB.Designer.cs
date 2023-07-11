@@ -12,8 +12,8 @@ using PetShop.Web.Data;
 namespace PetShop.Data.Migrations
 {
     [DbContext(typeof(PetShopDbContext))]
-    [Migration("20230706102010_ChanginPictureUrl")]
-    partial class ChanginPictureUrl
+    [Migration("20230711152435_InitializeAndSeedDB")]
+    partial class InitializeAndSeedDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -251,8 +251,10 @@ namespace PetShop.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -267,73 +269,51 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            IsDeleted = false,
+                            Image = "DressCategory.jpg",
                             Name = "Дрехи"
                         },
                         new
                         {
                             Id = 2,
-                            IsDeleted = false,
+                            Image = "CollarCategory.jpg",
                             Name = "Нашийници, Нагръдници и Поводи"
                         },
                         new
                         {
                             Id = 3,
-                            IsDeleted = false,
+                            Image = "ToyCategory.jpg",
                             Name = "Играчки"
                         },
                         new
                         {
                             Id = 4,
-                            IsDeleted = false,
+                            Image = "TravellingCategory.jpg",
                             Name = "Транспортни клетки"
                         },
                         new
                         {
                             Id = 5,
-                            IsDeleted = false,
+                            Image = "SleepingPad.jpg",
                             Name = "Легла"
                         },
                         new
                         {
                             Id = 6,
-                            IsDeleted = false,
+                            Image = "HygienicPad.jpg",
                             Name = "Пелени и подложки"
                         },
                         new
                         {
                             Id = 7,
-                            IsDeleted = false,
+                            Image = "ShortGroomingCloserCategory.jpg",
                             Name = "Грижа за козината"
                         },
                         new
                         {
                             Id = 8,
-                            IsDeleted = false,
+                            Image = "DressCategory.jpg",
                             Name = "Купички за храна и вода"
                         });
-                });
-
-            modelBuilder.Entity("PetShop.Data.Models.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ItemId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("PetShop.Data.Models.Item", b =>
@@ -347,9 +327,6 @@ namespace PetShop.Data.Migrations
                     b.Property<DateTime>("AddedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("ApplicationUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -357,12 +334,6 @@ namespace PetShop.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsVisible")
-                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
                         .HasPrecision(18, 2)
@@ -384,8 +355,6 @@ namespace PetShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Items");
@@ -394,242 +363,202 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1420),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4122),
                             CategoryId = 1,
                             Description = "Жълто худи с мотиви на минион, в размер М, подходящо по-студените зимни дни.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 25.50m,
                             Title = "Худи- Минион",
-                            TitleImage = "~/Images/Ball.jpg"
+                            TitleImage = "MinionDress.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1438),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4136),
                             CategoryId = 1,
                             Description = "Зелено худи с мотиви на мече и ушички на качулката, в размер М, подходящо по-студените зимни дни.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 35.90m,
                             Title = "Худи - Зелено мече",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\GreenHoodie2.jpg"
+                            TitleImage = "GreenHoodie2.jpg"
                         },
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1444),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4137),
                             CategoryId = 1,
                             Description = "Дебела синя блузка с мотиви на мечета и розови листа, в размер М.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 20.30m,
                             Title = "Блуза - Синя есен",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\BlueDress3.jpg"
+                            TitleImage = "BlueDress3.jpg"
                         },
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1447),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4140),
                             CategoryId = 1,
                             Description = "Лилаво изчистено худи с джобче, в размер М.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 19.90m,
                             Title = "Худи - Люлак",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\PurpleHoodie.jpg"
+                            TitleImage = "PurpleHoodie.jpg"
                         },
                         new
                         {
                             Id = 5,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1454),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4143),
                             CategoryId = 1,
                             Description = "Дебела розова блузка, наподобяваща сладка пижамка, в размер М, подходяща по-студените зимни дни.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 20.30m,
                             Title = "Блуза - Розова пижама",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\PinkDress2.jpg"
+                            TitleImage = "PinkDress2.jpg"
                         },
                         new
                         {
                             Id = 6,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1457),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4144),
                             CategoryId = 3,
                             Description = "Плюшено сладоледче, с бибитка при натискане и въженце на върха.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 10.10m,
                             Title = "Сладолед",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\IceCream.jpg"
+                            TitleImage = "IceCream.jpg"
                         },
                         new
                         {
                             Id = 7,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1459),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4145),
                             CategoryId = 3,
                             Description = "Голем плючещен октопод, който може да се обръща и променя цвета си.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 8.80m,
                             Title = "Октопод",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\Octopus2.jpg"
+                            TitleImage = "Octopus2.jpg"
                         },
                         new
                         {
                             Id = 8,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1462),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4147),
                             CategoryId = 3,
                             Description = "Жълт плюшен черхъл, на сини райета, с бибитка при натискане, за да може кучето вида си има свой собствен и да остави вашите на мира.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 9.50m,
                             Title = "Чехъл",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\Sleeper.jpg"
+                            TitleImage = "Sleeper.jpg"
                         },
                         new
                         {
                             Id = 9,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1466),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4149),
                             CategoryId = 6,
                             Description = "Хигиенни подложки с лепенки.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 16.90m,
                             Title = "Хигиенни подложки",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\HygienicPad.jpg"
+                            TitleImage = "HygienicPad.jpg"
                         },
                         new
                         {
                             Id = 10,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1468),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4151),
                             CategoryId = 7,
                             Description = "Двустранен гребен за сресване на вашият любимец с по-буйна козина.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 14.50m,
                             Title = "Гребен за дълга козина",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\LongGroomingSide.jpg"
+                            TitleImage = "LongGroomingSide.jpg"
                         },
                         new
                         {
                             Id = 11,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1470),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4152),
                             CategoryId = 7,
                             Description = "Гребен специално предназначен за домашни любимци, които са със къса козина. Идеален за периода на смяна на козината.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 34.15m,
                             Title = "Гребен за къса козина",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\ShortGrooming.jpg"
+                            TitleImage = "ShortGrooming.jpg"
                         },
                         new
                         {
                             Id = 12,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1472),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4153),
                             CategoryId = 5,
                             Description = "Удобен матрак, в голям размер, удобен за местене. Изключително практичен при пътуване с вашият любимец, тъй като не заема много място. Има цип, с който може да се вади донапрена отвътре и да се сменя или пере.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 55.00m,
                             Title = "Матрак - WonderWoman",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\SleepingPad.jpg"
+                            TitleImage = "SleepingPad.jpg"
                         },
                         new
                         {
                             Id = 13,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1474),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4154),
                             CategoryId = 4,
                             Description = "Мека и удобна чанта с дръжки за пренасяне на вашият любимец, с ципче за по-лесно поставяне на животното в нея. Подходяща за по-дребни породи до 4кг.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 32.90m,
                             Title = "Чанта - England Land",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\TravelingBag2.jpg"
+                            TitleImage = "TravelingBag2.jpg"
                         },
                         new
                         {
                             Id = 14,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1479),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4155),
                             CategoryId = 4,
                             Description = "Розова пластмасова клетка, подходяща за домашни любимци до 6кг.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 20.90m,
                             Title = "Клетка - Розова сладост",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\TravelingCageTop.jpg"
+                            TitleImage = "TravelingCageTop.jpg"
                         },
                         new
                         {
                             Id = 15,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1481),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4156),
                             CategoryId = 8,
                             Description = "Керамична купичка за вода 300мл",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 8.50m,
                             Title = "Купа за вода",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\WaterBowl.jpg"
+                            TitleImage = "WaterBowl.jpg"
                         },
                         new
                         {
                             Id = 16,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1484),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4157),
                             CategoryId = 8,
                             Description = "Керамична купичка за храна 250мл",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 7.50m,
                             Title = "Купа за храна",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\FoodBowlTop.jpg"
+                            TitleImage = "FoodBowlTop.jpg"
                         },
                         new
                         {
                             Id = 17,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1544),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4159),
                             CategoryId = 2,
                             Description = "Регулируем нагръдник за дребни породи до 4кг, подходящ за по-топлите летни дни.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 19.90m,
                             Title = "Нагръдник - Лентички",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\МеагерBreastplate2.jpg"
+                            TitleImage = "MeagerBreastplate2.jpg"
                         },
                         new
                         {
                             Id = 18,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1547),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4160),
                             CategoryId = 2,
                             Description = "Дебел, подплатен розов нагръдник за дребни породи до 3кг, подходящ за по-студените и прохладни дни.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 14.30m,
                             Title = "Нагръдник - Розова лудост",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\BreastplateTop2.jpg"
+                            TitleImage = "BreastplateTop2.jpg"
                         },
                         new
                         {
                             Id = 19,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1551),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4163),
                             CategoryId = 2,
                             Description = "Кафяв, кожеш нашийник с прикачено звънче, предназначен за по-дребни породи.",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 5.90m,
                             Title = "Нашийник - Звънкащо котенце",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\Collar2.jpg"
+                            TitleImage = "Collar2.jpg"
                         },
                         new
                         {
                             Id = 20,
-                            AddedOn = new DateTime(2023, 7, 6, 10, 20, 10, 393, DateTimeKind.Utc).AddTicks(1554),
+                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4164),
                             CategoryId = 3,
                             Description = "Плетена топка с въженца от двете страни",
-                            IsDeleted = false,
-                            IsVisible = true,
                             Price = 12.00m,
                             Title = "Топка-Въже",
-                            TitleImage = "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\BallSara2.jpg"
+                            TitleImage = "BallSara2.jpg"
                         });
                 });
 
@@ -703,19 +632,8 @@ namespace PetShop.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PetShop.Data.Models.Image", b =>
-                {
-                    b.HasOne("PetShop.Data.Models.Item", null)
-                        .WithMany("Images")
-                        .HasForeignKey("ItemId");
-                });
-
             modelBuilder.Entity("PetShop.Data.Models.Item", b =>
                 {
-                    b.HasOne("PetShop.Data.Models.ApplicationUser", null)
-                        .WithMany("Items")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("PetShop.Data.Models.Category", "Category")
                         .WithMany("Items")
                         .HasForeignKey("CategoryId")
@@ -725,11 +643,6 @@ namespace PetShop.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("PetShop.Data.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Items");
-                });
-
             modelBuilder.Entity("PetShop.Data.Models.Category", b =>
                 {
                     b.Navigation("Items");
@@ -737,8 +650,6 @@ namespace PetShop.Data.Migrations
 
             modelBuilder.Entity("PetShop.Data.Models.Item", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("UserItems");
                 });
 #pragma warning restore 612, 618

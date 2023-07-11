@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetShop.Data.Migrations
 {
-    public partial class InitializeAndSeedDb : Migration
+    public partial class InitializeAndSeedDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,7 @@ namespace PetShop.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                    Image = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -181,44 +181,17 @@ namespace PetShop.Data.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     AddedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Rating = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    IsVisible = table.Column<bool>(type: "bit", nullable: true),
-                    ApplicationUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Items_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Items_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Data = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ItemId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_Items_ItemId",
-                        column: x => x.ItemId,
-                        principalTable: "Items",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -247,44 +220,44 @@ namespace PetShop.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "IsDeleted", "Name" },
+                columns: new[] { "Id", "Image", "Name" },
                 values: new object[,]
                 {
-                    { 1, false, "Дрехи" },
-                    { 2, false, "Нашийници, Нагръдници и Поводи" },
-                    { 3, false, "Играчки" },
-                    { 4, false, "Транспортни клетки" },
-                    { 5, false, "Легла" },
-                    { 6, false, "Пелени и подложки" },
-                    { 7, false, "Грижа за козината" },
-                    { 8, false, "Купички за храна и вода" }
+                    { 1, "DressCategory.jpg", "Дрехи" },
+                    { 2, "CollarCategory.jpg", "Нашийници, Нагръдници и Поводи" },
+                    { 3, "ToyCategory.jpg", "Играчки" },
+                    { 4, "TravellingCategory.jpg", "Транспортни клетки" },
+                    { 5, "SleepingPad.jpg", "Легла" },
+                    { 6, "HygienicPad.jpg", "Пелени и подложки" },
+                    { 7, "ShortGroomingCloserCategory.jpg", "Грижа за козината" },
+                    { 8, "DressCategory.jpg", "Купички за храна и вода" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Items",
-                columns: new[] { "Id", "AddedOn", "ApplicationUserId", "CategoryId", "Description", "IsDeleted", "IsVisible", "Price", "Rating", "Title", "TitleImage" },
+                columns: new[] { "Id", "AddedOn", "CategoryId", "Description", "Price", "Rating", "Title", "TitleImage" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8336), null, 1, "Жълто худи с мотиви на минион, в размер М, подходящо по-студените зимни дни.", false, true, 25.50m, null, "Худи- Минион", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\MinionDress.jpg" },
-                    { 2, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8351), null, 1, "Зелено худи с мотиви на мече и ушички на качулката, в размер М, подходящо по-студените зимни дни.", false, true, 35.90m, null, "Худи - Зелено мече", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\GreenHoodie2.jpg" },
-                    { 3, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8355), null, 1, "Дебела синя блузка с мотиви на мечета и розови листа, в размер М.", false, true, 20.30m, null, "Блуза - Синя есен", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\BlueDress3.jpg" },
-                    { 4, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8358), null, 1, "Лилаво изчистено худи с джобче, в размер М.", false, true, 19.90m, null, "Худи - Люлак", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\PurpleHoodie.jpg" },
-                    { 5, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8364), null, 1, "Дебела розова блузка, наподобяваща сладка пижамка, в размер М, подходяща по-студените зимни дни.", false, true, 20.30m, null, "Блуза - Розова пижама", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\PinkDress2.jpg" },
-                    { 6, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8367), null, 3, "Плюшено сладоледче, с бибитка при натискане и въженце на върха.", false, true, 10.10m, null, "Сладолед", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\IceCream.jpg" },
-                    { 7, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8369), null, 3, "Голем плючещен октопод, който може да се обръща и променя цвета си.", false, true, 8.80m, null, "Октопод", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\Octopus2.jpg" },
-                    { 8, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8371), null, 3, "Жълт плюшен черхъл, на сини райета, с бибитка при натискане, за да може кучето вида си има свой собствен и да остави вашите на мира.", false, true, 9.50m, null, "Чехъл", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\Sleeper.jpg" },
-                    { 9, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8407), null, 6, "Хигиенни подложки с лепенки.", false, true, 16.90m, null, "Хигиенни подложки", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\HygienicPad.jpg" },
-                    { 10, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8409), null, 7, "Двустранен гребен за сресване на вашият любимец с по-буйна козина.", false, true, 14.50m, null, "Гребен за дълга козина", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\LongGroomingSide.jpg" },
-                    { 11, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8412), null, 7, "Гребен специално предназначен за домашни любимци, които са със къса козина. Идеален за периода на смяна на козината.", false, true, 34.15m, null, "Гребен за къса козина", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\ShortGrooming.jpg" },
-                    { 12, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8415), null, 5, "Удобен матрак, в голям размер, удобен за местене. Изключително практичен при пътуване с вашият любимец, тъй като не заема много място. Има цип, с който може да се вади донапрена отвътре и да се сменя или пере.", false, true, 55.00m, null, "Матрак - WonderWoman", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\SleepingPad.jpg" },
-                    { 13, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8418), null, 4, "Мека и удобна чанта с дръжки за пренасяне на вашият любимец, с ципче за по-лесно поставяне на животното в нея. Подходяща за по-дребни породи до 4кг.", false, true, 32.90m, null, "Чанта - England Land", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\TravelingBag2.jpg" },
-                    { 14, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8420), null, 4, "Розова пластмасова клетка, подходяща за домашни любимци до 6кг.", false, true, 20.90m, null, "Клетка - Розова сладост", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\TravelingCageTop.jpg" },
-                    { 15, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8423), null, 8, "Керамична купичка за вода 300мл", false, true, 8.50m, null, "Купа за вода", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\WaterBowl.jpg" },
-                    { 16, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8424), null, 8, "Керамична купичка за храна 250мл", false, true, 7.50m, null, "Купа за храна", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\FoodBowlTop.jpg" },
-                    { 17, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8427), null, 2, "Регулируем нагръдник за дребни породи до 4кг, подходящ за по-топлите летни дни.", false, true, 19.90m, null, "Нагръдник - Лентички", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\МеагерBreastplate2.jpg" },
-                    { 18, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8429), null, 2, "Дебел, подплатен розов нагръдник за дребни породи до 3кг, подходящ за по-студените и прохладни дни.", false, true, 14.30m, null, "Нагръдник - Розова лудост", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\BreastplateTop2.jpg" },
-                    { 19, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8433), null, 2, "Кафяв, кожеш нашийник с прикачено звънче, предназначен за по-дребни породи.", false, true, 5.90m, null, "Нашийник - Звънкащо котенце", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\Collar2.jpg" },
-                    { 20, new DateTime(2023, 7, 6, 10, 10, 56, 536, DateTimeKind.Utc).AddTicks(8437), null, 3, "Плетена топка с въженца от двете страни", false, true, 12.00m, null, "Топка-Въже", "C:\\Users\\aradi\\OneDrive\\SaraDog-PetShop\\SaraDog-PetShop\\PetShop.Web\\wwwroot\\Images\\BallSara2.jpg" }
+                    { 1, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4122), 1, "Жълто худи с мотиви на минион, в размер М, подходящо по-студените зимни дни.", 25.50m, null, "Худи- Минион", "MinionDress.jpg" },
+                    { 2, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4136), 1, "Зелено худи с мотиви на мече и ушички на качулката, в размер М, подходящо по-студените зимни дни.", 35.90m, null, "Худи - Зелено мече", "GreenHoodie2.jpg" },
+                    { 3, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4137), 1, "Дебела синя блузка с мотиви на мечета и розови листа, в размер М.", 20.30m, null, "Блуза - Синя есен", "BlueDress3.jpg" },
+                    { 4, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4140), 1, "Лилаво изчистено худи с джобче, в размер М.", 19.90m, null, "Худи - Люлак", "PurpleHoodie.jpg" },
+                    { 5, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4143), 1, "Дебела розова блузка, наподобяваща сладка пижамка, в размер М, подходяща по-студените зимни дни.", 20.30m, null, "Блуза - Розова пижама", "PinkDress2.jpg" },
+                    { 6, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4144), 3, "Плюшено сладоледче, с бибитка при натискане и въженце на върха.", 10.10m, null, "Сладолед", "IceCream.jpg" },
+                    { 7, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4145), 3, "Голем плючещен октопод, който може да се обръща и променя цвета си.", 8.80m, null, "Октопод", "Octopus2.jpg" },
+                    { 8, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4147), 3, "Жълт плюшен черхъл, на сини райета, с бибитка при натискане, за да може кучето вида си има свой собствен и да остави вашите на мира.", 9.50m, null, "Чехъл", "Sleeper.jpg" },
+                    { 9, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4149), 6, "Хигиенни подложки с лепенки.", 16.90m, null, "Хигиенни подложки", "HygienicPad.jpg" },
+                    { 10, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4151), 7, "Двустранен гребен за сресване на вашият любимец с по-буйна козина.", 14.50m, null, "Гребен за дълга козина", "LongGroomingSide.jpg" },
+                    { 11, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4152), 7, "Гребен специално предназначен за домашни любимци, които са със къса козина. Идеален за периода на смяна на козината.", 34.15m, null, "Гребен за къса козина", "ShortGrooming.jpg" },
+                    { 12, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4153), 5, "Удобен матрак, в голям размер, удобен за местене. Изключително практичен при пътуване с вашият любимец, тъй като не заема много място. Има цип, с който може да се вади донапрена отвътре и да се сменя или пере.", 55.00m, null, "Матрак - WonderWoman", "SleepingPad.jpg" },
+                    { 13, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4154), 4, "Мека и удобна чанта с дръжки за пренасяне на вашият любимец, с ципче за по-лесно поставяне на животното в нея. Подходяща за по-дребни породи до 4кг.", 32.90m, null, "Чанта - England Land", "TravelingBag2.jpg" },
+                    { 14, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4155), 4, "Розова пластмасова клетка, подходяща за домашни любимци до 6кг.", 20.90m, null, "Клетка - Розова сладост", "TravelingCageTop.jpg" },
+                    { 15, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4156), 8, "Керамична купичка за вода 300мл", 8.50m, null, "Купа за вода", "WaterBowl.jpg" },
+                    { 16, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4157), 8, "Керамична купичка за храна 250мл", 7.50m, null, "Купа за храна", "FoodBowlTop.jpg" },
+                    { 17, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4159), 2, "Регулируем нагръдник за дребни породи до 4кг, подходящ за по-топлите летни дни.", 19.90m, null, "Нагръдник - Лентички", "MeagerBreastplate2.jpg" },
+                    { 18, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4160), 2, "Дебел, подплатен розов нагръдник за дребни породи до 3кг, подходящ за по-студените и прохладни дни.", 14.30m, null, "Нагръдник - Розова лудост", "BreastplateTop2.jpg" },
+                    { 19, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4163), 2, "Кафяв, кожеш нашийник с прикачено звънче, предназначен за по-дребни породи.", 5.90m, null, "Нашийник - Звънкащо котенце", "Collar2.jpg" },
+                    { 20, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4164), 3, "Плетена топка с въженца от двете страни", 12.00m, null, "Топка-Въже", "BallSara2.jpg" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -327,16 +300,6 @@ namespace PetShop.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_ItemId",
-                table: "Images",
-                column: "ItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Items_ApplicationUserId",
-                table: "Items",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Items_CategoryId",
                 table: "Items",
                 column: "CategoryId");
@@ -365,19 +328,16 @@ namespace PetShop.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Images");
-
-            migrationBuilder.DropTable(
                 name: "UserItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Items");
 
             migrationBuilder.DropTable(
                 name: "Categories");

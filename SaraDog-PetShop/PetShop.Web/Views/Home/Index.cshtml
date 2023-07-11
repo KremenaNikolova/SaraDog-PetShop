@@ -10,18 +10,13 @@
 <div class="text-center row">
     @foreach (var item in Model)
     {
-        string[] separedPath = item.Image.Split('\\').ToArray();
-        string pictureName = separedPath.Last();
-
-        <div class="card col-4" style="width: 20rem; ">
+        <div class="card col-4" style="width: 20rem;">
             <img class="card-img-top" style="width: 18rem;"
-                 src="~/Images/@pictureName">
+                 src="@Url.Action("GetImage", "Home", new { imageName = item.Image })">
             <div class="card-body">
-
                 <h5 class="card-title mt-1">@item.Title</h5>
                 <p class="mb-0">Цена: @item.Price</p>
             </div>
-
         </div>
     }
 </div>

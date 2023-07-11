@@ -1,11 +1,11 @@
-﻿namespace PetShop.Web.ViewModels.Shop
+﻿namespace PetShop.Web.ViewModels.Item
 {
     using System.ComponentModel.DataAnnotations;
-    
+
     using Microsoft.AspNetCore.Http;
 
     using PetShop.Web.ViewModels.Category;
-    
+
     using static PetShop.Common.ValidationConstants.ItemValidationConstants;
     using static PetShop.Common.ErrorMessages.TitleErrorMessages;
 
@@ -26,8 +26,10 @@
         public decimal Price { get; set; }
 
         [Required]
-        [Display (Name = "Основна Снимка")]
-        public IFormFile UploadPicture { get; set; } = null!;
+        [Display(Name = "Основна Снимка")]
+        public string UploadPicture { get; set; } = null!;
+
+        public IFormFile? ImageFile { get; set; }
 
         public int CategoryId { get; set; }
 
