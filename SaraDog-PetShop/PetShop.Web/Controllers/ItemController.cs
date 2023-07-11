@@ -49,7 +49,9 @@ namespace PetShop.Web.Controllers
                 }
             }
 
-            if (!ModelState.IsValid)
+            ModelState.Remove("UploadPicture");
+
+            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(itemModel.UploadPicture))
             {
                 itemModel.Categories = await this.categoryService.AllCteagoriesAsync();
 

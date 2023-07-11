@@ -51,7 +51,7 @@
             {
                 Title = itemModel.Title,
                 Description = itemModel.Description,
-                TitleImage = itemModel.ImageFile.FileName,
+                TitleImage = itemModel.UploadPicture,
                 Price = itemModel.Price,
                 CategoryId = itemModel.CategoryId
             };
