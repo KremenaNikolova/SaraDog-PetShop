@@ -28,7 +28,7 @@ namespace PetShop.Web
             })
                 .AddEntityFrameworkStores<PetShopDbContext>();
 
-            builder.Services.AddApplicationServices(typeof(IShopService));
+            builder.Services.AddApplicationServices(typeof(IItemService));
 
             builder.Services.AddControllersWithViews();
 

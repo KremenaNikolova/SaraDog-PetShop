@@ -24,12 +24,9 @@
         {
             public const int NameMinLength = 5;
             public const int NameMaxLength = 50;
+
+            public const int ImageMaxLength = 2048;
         }
 
-        public static class CommentValidationConstants
-        {
-            public const int DescriptionMinLength = 10;
-            public const int DescriptionMaxLength = 500;
-        }
     }
 }

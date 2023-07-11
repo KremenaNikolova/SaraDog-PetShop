@@ -10,5 +10,6 @@
 
             public const string InvalidPrice = "Цената трябва да е между {1} и {2} лева.";
         }
+
     }
 }

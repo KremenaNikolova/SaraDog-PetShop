@@ -34,13 +34,7 @@
         [Required]
         public virtual Category Category { get; set; } = null!;
 
-        public bool? IsDeleted { get; set; }
-
-        public bool? IsVisible { get; set; }
-
         public virtual ICollection<ApplicationUserItem> UserItems { get; set; } = new HashSet<ApplicationUserItem>();
-
-        public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
 
 
     }
