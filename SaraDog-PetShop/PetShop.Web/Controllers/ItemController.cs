@@ -69,7 +69,7 @@ namespace PetShop.Web.Controllers
                 return this.View(itemModel);
             }
 
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

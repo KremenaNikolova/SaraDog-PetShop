@@ -6,21 +6,24 @@
     using Microsoft.AspNetCore.Http;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Data;
+    using Microsoft.Extensions.Configuration;
 
     public class ImageService : IImageService
     {
         private readonly PetShopDbContext dbContext;
+        private readonly IConfiguration configuration;
 
-        public ImageService(PetShopDbContext dbContext)
+        public ImageService(PetShopDbContext dbContext, IConfiguration configuration)
         {
             this.dbContext = dbContext;
+            this.configuration = configuration;
         }
 
         public async Task<Tuple<int, string>> SaveImage(IFormFile imageFile)
         {
             try
             {
-                var connectionString = "DefaultEndpointsProtocol=https;AccountName=saradog;AccountKey=9JSqZVFGQ4bGWxMTRfvlyHj1v/lh8gb+LZ1um3+7JwPuNA9ZUWs95UEUFikJPHYUCEDEjkJGZEFC+ASt8yUdoQ==;EndpointSuffix=core.windows.net";
+                var connectionString = configuration.GetConnectionString("AzureConnection");
                 var containerName = "saradogimages";
 
                 var blobServiceClient = new BlobServiceClient(connectionString);
@@ -58,7 +61,7 @@
         {
             try
             {
-                var connectionString = "DefaultEndpointsProtocol=https;AccountName=saradog;AccountKey=9JSqZVFGQ4bGWxMTRfvlyHj1v/lh8gb+LZ1um3+7JwPuNA9ZUWs95UEUFikJPHYUCEDEjkJGZEFC+ASt8yUdoQ==;EndpointSuffix=core.windows.net";
+                var connectionString = configuration.GetConnectionString("AzureConnection");
                 var containerName = "saradogimages";
 
                 var blobServiceClient = new BlobServiceClient(connectionString);
