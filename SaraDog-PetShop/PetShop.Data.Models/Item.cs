@@ -7,6 +7,11 @@
 
     public class Item
     {
+        public Item()
+        {
+            isActive = true;
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -27,6 +32,8 @@
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
 
         public decimal? Rating { get; set; }
+
+        public bool isActive { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }

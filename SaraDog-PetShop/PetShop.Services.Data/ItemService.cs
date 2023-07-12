@@ -100,6 +100,7 @@
             };
 
             IEnumerable<ItemSearchViewModel> searchedItems = await itemsQuery
+                .Where(i=>i.isActive)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
                 .Take(queryModel.ItemsPerPage)
                 .Select(i => new ItemSearchViewModel()
