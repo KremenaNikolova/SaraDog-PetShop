@@ -21,7 +21,10 @@
 
         public async Task<IActionResult> Index()
         {
-            return RedirectToAction("All", "Item");
+            var landingImage = await imageService
+                .GetLandingPageImageAsync();
+
+            return View(landingImage);
         }
 
         public async Task<IActionResult> GetImage(string imageName)

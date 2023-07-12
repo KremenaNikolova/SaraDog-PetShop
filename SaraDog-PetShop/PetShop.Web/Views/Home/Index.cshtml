@@ -1,22 +1,25 @@
-﻿@*@model IEnumerable<IndexViewModel>
-
+﻿@model LandingPageModel
 @{
-    ViewBag.Title = "Всички Продукти";
+    ViewBag.Title = "Welcome to SaraDog Petshop! Happy Shopping!";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
-<hr />
-
-<div class="text-center row">
-    @foreach (var item in Model)
-    {
-        <div class="card col-4" style="width: 20rem;">
-            <img class="card-img-top" style="width: 18rem;"
-                 src="@Url.Action("GetImage", "Home", new { imageName = item.Image })">
-            <div class="card-body">
-                <h5 class="card-title mt-1">@item.Title</h5>
-                <p class="mb-0">Цена: @item.Price</p>
-            </div>
+<div class="landing-page-container">
+    <div class="landing-page-overlay"></div>
+    <div class="landing-page">
+        <img src="@Url.Action("GetImage", "Home", new { imageName = Model.LandingImage })" class="background-image" alt="Landing Image">
+        <div class="content">
+            <h1>Welcome to SaraDog Petshop!</h1>
+            <h1>Happy Shopping!</h1>
+            @if (!this.User.Identity?.IsAuthenticated ?? false)
+            {
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a class="btn btn-primary m-lg-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </div>
+            }
+            <br />
+            <br />
+            <a href="@Url.Action("All", "Item")" class="btn btn-warning btn-outline-dark btn-lg">Products</a>
         </div>
-    }
-</div>*@
+    </div>
+</div>

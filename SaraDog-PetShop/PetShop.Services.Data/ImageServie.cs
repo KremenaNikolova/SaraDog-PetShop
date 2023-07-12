@@ -7,6 +7,7 @@
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Data;
     using Microsoft.Extensions.Configuration;
+    using PetShop.Web.ViewModels.Home;
 
     public class ImageService : IImageService
     {
@@ -77,6 +78,16 @@
             {
                 throw new InvalidOperationException("Възникна неочаквана грешка при взимането на картинката!");
             }
+        }
+
+        public async Task<LandingPageModel> GetLandingPageImageAsync()
+        {
+            var landingImageModel = new LandingPageModel()
+            {
+                LandingImage = "CroppedWorkout.jpg"
+            };
+
+            return landingImageModel;
         }
 
     }
