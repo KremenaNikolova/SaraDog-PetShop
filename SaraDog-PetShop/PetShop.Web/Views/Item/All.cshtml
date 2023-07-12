@@ -1,7 +1,7 @@
 ﻿@model AllItemsQueryModel
 
 @{
-    ViewBag.Title = "Всички прокути";
+    ViewBag.Title = "All Products";
 }
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
@@ -27,10 +27,10 @@
             <div class="form-group">
                 <label asp-for="ItemSorting"></label>
                 <select asp-for="ItemSorting" class="form-control">
-                    <option value="0">Продукти (най-нови)</option>
-                    <option value="1">Продукти (най-стари)</option>
-                    <option value="2">Цена (възходяща)</option>
-                    <option value="3">Цена (нисходяща)</option>
+                    <option value="0">Products (Newest)</option>
+                    <option value="1">Products (Oldest)</option>
+                    <option value="2">Price (Ascending)</option>
+                    <option value="3">Price (Descending)</option>
                 </select>
             </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label asp-for="ItemsPerPage"></label>
                 <select asp-for="ItemsPerPage" class="form-control">
-                    <option value="">Продукти на страница</option>
+                    <option value="">Products per page</option>
                     <option value="3">3</option>
                     <option value="6">6</option>
                     <option value="9">9</option>
@@ -89,12 +89,12 @@ string.Empty)"
 </div>
 @if (!Model.Items.Any())
 {
-    <h2 class="text-center">No houses found by the given criteria!</h2>
+    <h2 class="text-center">No products found by the given criteria!</h2>
 }
 <div class="row">
-    @foreach (var house in Model.Items)
+    @foreach (var item in Model.Items)
     {
-        <partial name="_ItemPartial" model="@house" />
+        <partial name="_ItemPartial" model="@item" />
     }
 </div>
 

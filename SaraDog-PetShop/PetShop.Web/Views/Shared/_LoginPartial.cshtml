@@ -9,13 +9,13 @@
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей @User.Identity?.Name!</a>
         </li>*@
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Favorites">Любими продкти</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Favorites">Favorites</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Cart">Количка</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Cart">Cart</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="EditProfile">Профил</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="EditProfile">Profile</a>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

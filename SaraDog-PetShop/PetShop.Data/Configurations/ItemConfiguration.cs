@@ -37,9 +37,9 @@
             item = new Item()
             {
                 Id = 1,
-                Title = "Худи- Минион",
+                Title = "Hoodie - Minions",
                 TitleImage = "MinionDress.jpg",
-                Description = "Жълто худи с мотиви на минион, в размер М, подходящо по-студените зимни дни.",
+                Description = "Yellow hoodie with minion motifs, size M, suitable for colder winter days.",
                 Price = 25.50M,
                 CategoryId = 1
             };
@@ -48,9 +48,9 @@
             item = new Item()
             {
                 Id = 2,
-                Title = "Худи - Зелено мече",
+                Title = "Hoodie - Green bear",
                 TitleImage = "GreenHoodie2.jpg",
-                Description = "Зелено худи с мотиви на мече и ушички на качулката, в размер М, подходящо по-студените зимни дни.",
+                Description = "Green hoodie with bear motifs and eyelets on the hood, size M, suitable for colder winter days.",
                 Price = 35.90M,
                 CategoryId = 1
             };
@@ -59,9 +59,9 @@
             item = new Item()
             {
                 Id = 3,
-                Title = "Блуза - Синя есен",
+                Title = "Top - Blue autumn",
                 TitleImage = "BlueDress3.jpg",
-                Description = "Дебела синя блузка с мотиви на мечета и розови листа, в размер М.",
+                Description = "Thick blue blouse with bears and rose leaf motifs, size M.",
                 Price = 20.30M,
                 CategoryId = 1
             };
@@ -70,9 +70,9 @@
             item = new Item()
             {
                 Id = 4,
-                Title = "Худи - Люлак",
+                Title = "Hoodie - Lilac",
                 TitleImage = "PurpleHoodie.jpg",
-                Description = "Лилаво изчистено худи с джобче, в размер М.",
+                Description = "Purple clean hoodie with pocket, size M.",
                 Price = 19.90M,
                 CategoryId = 1
             };
@@ -81,9 +81,9 @@
             item = new Item()
             {
                 Id = 5,
-                Title = "Блуза - Розова пижама",
+                Title = "Top - Pink pajamas",
                 TitleImage = "PinkDress2.jpg",
-                Description = "Дебела розова блузка, наподобяваща сладка пижамка, в размер М, подходяща по-студените зимни дни.",
+                Description = "A thick pink blouse that looks like a cute pajama, size M, perfect for colder winter days.",
                 Price = 20.30M,
                 CategoryId = 1
             };
@@ -92,9 +92,9 @@
             item = new Item()
             {
                 Id = 6,
-                Title = "Сладолед",
+                Title = "Ice cream",
                 TitleImage = "IceCream.jpg",
-                Description = "Плюшено сладоледче, с бибитка при натискане и въженце на върха.",
+                Description = "Plush ice cream, with a push button and a rope on the top.",
                 Price = 10.10M,
                 CategoryId = 3
             };
@@ -103,9 +103,9 @@
             item = new Item()
             {
                 Id = 7,
-                Title = "Октопод",
+                Title = "Octopus",
                 TitleImage = "Octopus2.jpg",
-                Description = "Голем плючещен октопод, който може да се обръща и променя цвета си.",
+                Description = "A large flat octopus that can turn and change color.",
                 Price = 8.80M,
                 CategoryId = 3
             };
@@ -114,9 +114,9 @@
             item = new Item()
             {
                 Id = 8,
-                Title = "Чехъл",
+                Title = "Sleeper",
                 TitleImage = "Sleeper.jpg",
-                Description = "Жълт плюшен черхъл, на сини райета, с бибитка при натискане, за да може кучето вида си има свой собствен и да остави вашите на мира.",
+                Description = "A yellow plush slipper with blue stripes and a snap button so your dog can have his own look and leave yours alone.",
                 Price = 9.50M,
                 CategoryId = 3
             };
@@ -125,9 +125,9 @@
             item = new Item()
             {
                 Id = 9,
-                Title = "Хигиенни подложки",
+                Title = "Toilet Pads",
                 TitleImage = "HygienicPad.jpg",
-                Description = "Хигиенни подложки с лепенки.",
+                Description = "Sanitary napkins with patches.",
                 Price = 16.90M,
                 CategoryId = 6
             };
@@ -136,9 +136,9 @@
             item = new Item()
             {
                 Id = 10,
-                Title = "Гребен за дълга козина",
+                Title = "Comb for Long Fur",
                 TitleImage = "LongGroomingSide.jpg",
-                Description = "Двустранен гребен за сресване на вашият любимец с по-буйна козина.",
+                Description = "Double-sided comb for combing your pet with thicker fur.",
                 Price = 14.50M,
                 CategoryId = 7
             };
@@ -147,9 +147,9 @@
             item = new Item()
             {
                 Id = 11,
-                Title = "Гребен за къса козина",
+                Title = "Comb for Short Fur",
                 TitleImage = "ShortGrooming.jpg",
-                Description = "Гребен специално предназначен за домашни любимци, които са със къса козина. Идеален за периода на смяна на козината.",
+                Description = "A comb specially designed for pets with short fur. Ideal for the shedding period.",
                 Price = 34.15M,
                 CategoryId = 7
             };
@@ -158,9 +158,9 @@
             item = new Item()
             {
                 Id = 12,
-                Title = "Матрак - WonderWoman",
+                Title = "SleepingPad - WonderWoman",
                 TitleImage = "SleepingPad.jpg",
-                Description = "Удобен матрак, в голям размер, удобен за местене. Изключително практичен при пътуване с вашият любимец, тъй като не заема много място. Има цип, с който може да се вади донапрена отвътре и да се сменя или пере.",
+                Description = "Comfortable mattress, in a large size, easy to move. Extremely practical when traveling with your pet, as it does not take up much space. There is a zipper that can be used to remove the extra fabric from the inside and change it or wash it.",
                 Price = 55.00M,
                 CategoryId = 5
             };
@@ -169,9 +169,9 @@
             item = new Item()
             {
                 Id = 13,
-                Title = "Чанта - England Land",
+                Title = "Bag - England Land",
                 TitleImage = "TravelingBag2.jpg",
-                Description = "Мека и удобна чанта с дръжки за пренасяне на вашият любимец, с ципче за по-лесно поставяне на животното в нея. Подходяща за по-дребни породи до 4кг.",
+                Description = "Soft and comfortable bag with handles for carrying your pet, with a zipper for easier placement of the animal in it. Suitable for smaller breeds up to 4kg.",
                 Price = 32.90M,
                 CategoryId = 4
             };
@@ -180,9 +180,9 @@
             item = new Item()
             {
                 Id = 14,
-                Title = "Клетка - Розова сладост",
+                Title = "Cage - Pink sweetness",
                 TitleImage = "TravelingCageTop.jpg",
-                Description = "Розова пластмасова клетка, подходяща за домашни любимци до 6кг.",
+                Description = "Pink plastic cage, suitable for pets up to 6 kg.",
                 Price = 20.90M,
                 CategoryId = 4
             };
@@ -191,9 +191,9 @@
             item = new Item()
             {
                 Id = 15,
-                Title = "Купа за вода",
+                Title = "Water Bowl",
                 TitleImage = "WaterBowl.jpg",
-                Description = "Керамична купичка за вода 300мл",
+                Description = "Ceramic water bowl 300ml",
                 Price = 8.50M,
                 CategoryId = 8
             };
@@ -202,9 +202,9 @@
             item = new Item()
             {
                 Id = 16,
-                Title = "Купа за храна",
+                Title = "Food Bowl",
                 TitleImage = "FoodBowlTop.jpg",
-                Description = "Керамична купичка за храна 250мл",
+                Description = "Ceramic food bowl 250ml",
                 Price = 7.50M,
                 CategoryId = 8
             };
@@ -213,9 +213,9 @@
             item = new Item()
             {
                 Id = 17,
-                Title = "Нагръдник - Лентички",
+                Title = "Breastplate - Casual Lines",
                 TitleImage = "MeagerBreastplate2.jpg",
-                Description = "Регулируем нагръдник за дребни породи до 4кг, подходящ за по-топлите летни дни.",
+                Description = "Adjustable chest for small breeds up to 4kg, suitable for warmer summer days.",
                 Price = 19.90M,
                 CategoryId = 2
             };
@@ -224,9 +224,9 @@
             item = new Item()
             {
                 Id = 18,
-                Title = "Нагръдник - Розова лудост",
+                Title = "Breastplate - Pink madness",
                 TitleImage = "BreastplateTop2.jpg",
-                Description = "Дебел, подплатен розов нагръдник за дребни породи до 3кг, подходящ за по-студените и прохладни дни.",
+                Description = "Thick, padded pink bib for small breeds up to 3kg, suitable for colder and cooler days.",
                 Price = 14.30M,
                 CategoryId = 2
             };
@@ -235,9 +235,9 @@
             item = new Item()
             {
                 Id = 19,
-                Title = "Нашийник - Звънкащо котенце",
+                Title = "Collar - Bell Kitty",
                 TitleImage = "Collar2.jpg",
-                Description = "Кафяв, кожеш нашийник с прикачено звънче, предназначен за по-дребни породи.",
+                Description = "Brown leather collar with attached bell designed for smaller breeds.",
                 Price = 5.90M,
                 CategoryId = 2
             };
@@ -246,9 +246,9 @@
             item = new Item()
             {
                 Id = 20,
-                Title = "Топка-Въже",
+                Title = "Ball - Rope",
                 TitleImage = "BallSara2.jpg",
-                Description = "Плетена топка с въженца от двете страни",
+                Description = "Knitted ball with ropes on both sides.",
                 Price = 12.00M,
                 CategoryId = 3
             };

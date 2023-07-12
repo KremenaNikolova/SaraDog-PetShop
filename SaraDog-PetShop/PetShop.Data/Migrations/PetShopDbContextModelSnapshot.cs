@@ -268,49 +268,49 @@ namespace PetShop.Data.Migrations
                         {
                             Id = 1,
                             Image = "DressCategory.jpg",
-                            Name = "Дрехи"
+                            Name = "Clothing"
                         },
                         new
                         {
                             Id = 2,
                             Image = "CollarCategory.jpg",
-                            Name = "Нашийници, Нагръдници и Поводи"
+                            Name = "Leads and Collars"
                         },
                         new
                         {
                             Id = 3,
                             Image = "ToyCategory.jpg",
-                            Name = "Играчки"
+                            Name = "Toys"
                         },
                         new
                         {
                             Id = 4,
                             Image = "TravellingCategory.jpg",
-                            Name = "Транспортни клетки"
+                            Name = "Travelling Crates and Bags"
                         },
                         new
                         {
                             Id = 5,
                             Image = "SleepingPad.jpg",
-                            Name = "Легла"
+                            Name = "Beds and Sleeping"
                         },
                         new
                         {
                             Id = 6,
                             Image = "HygienicPad.jpg",
-                            Name = "Пелени и подложки"
+                            Name = "Hygienic Pads"
                         },
                         new
                         {
                             Id = 7,
                             Image = "ShortGroomingCloserCategory.jpg",
-                            Name = "Грижа за козината"
+                            Name = "Grooming"
                         },
                         new
                         {
                             Id = 8,
                             Image = "DressCategory.jpg",
-                            Name = "Купички за храна и вода"
+                            Name = "Food and Water Bowls"
                         });
                 });
 
@@ -361,201 +361,201 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4122),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8206),
                             CategoryId = 1,
-                            Description = "Жълто худи с мотиви на минион, в размер М, подходящо по-студените зимни дни.",
+                            Description = "Yellow hoodie with minion motifs, size M, suitable for colder winter days.",
                             Price = 25.50m,
-                            Title = "Худи- Минион",
+                            Title = "Hoodie - Minions",
                             TitleImage = "MinionDress.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4136),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8215),
                             CategoryId = 1,
-                            Description = "Зелено худи с мотиви на мече и ушички на качулката, в размер М, подходящо по-студените зимни дни.",
+                            Description = "Green hoodie with bear motifs and eyelets on the hood, size M, suitable for colder winter days.",
                             Price = 35.90m,
-                            Title = "Худи - Зелено мече",
+                            Title = "Hoodie - Green bear",
                             TitleImage = "GreenHoodie2.jpg"
                         },
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4137),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8217),
                             CategoryId = 1,
-                            Description = "Дебела синя блузка с мотиви на мечета и розови листа, в размер М.",
+                            Description = "Thick blue blouse with bears and rose leaf motifs, size M.",
                             Price = 20.30m,
-                            Title = "Блуза - Синя есен",
+                            Title = "Top - Blue autumn",
                             TitleImage = "BlueDress3.jpg"
                         },
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4140),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8218),
                             CategoryId = 1,
-                            Description = "Лилаво изчистено худи с джобче, в размер М.",
+                            Description = "Purple clean hoodie with pocket, size M.",
                             Price = 19.90m,
-                            Title = "Худи - Люлак",
+                            Title = "Hoodie - Lilac",
                             TitleImage = "PurpleHoodie.jpg"
                         },
                         new
                         {
                             Id = 5,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4143),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8222),
                             CategoryId = 1,
-                            Description = "Дебела розова блузка, наподобяваща сладка пижамка, в размер М, подходяща по-студените зимни дни.",
+                            Description = "A thick pink blouse that looks like a cute pajama, size M, perfect for colder winter days.",
                             Price = 20.30m,
-                            Title = "Блуза - Розова пижама",
+                            Title = "Top - Pink pajamas",
                             TitleImage = "PinkDress2.jpg"
                         },
                         new
                         {
                             Id = 6,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4144),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8223),
                             CategoryId = 3,
-                            Description = "Плюшено сладоледче, с бибитка при натискане и въженце на върха.",
+                            Description = "Plush ice cream, with a push button and a rope on the top.",
                             Price = 10.10m,
-                            Title = "Сладолед",
+                            Title = "Ice cream",
                             TitleImage = "IceCream.jpg"
                         },
                         new
                         {
                             Id = 7,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4145),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8224),
                             CategoryId = 3,
-                            Description = "Голем плючещен октопод, който може да се обръща и променя цвета си.",
+                            Description = "A large flat octopus that can turn and change color.",
                             Price = 8.80m,
-                            Title = "Октопод",
+                            Title = "Octopus",
                             TitleImage = "Octopus2.jpg"
                         },
                         new
                         {
                             Id = 8,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4147),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8225),
                             CategoryId = 3,
-                            Description = "Жълт плюшен черхъл, на сини райета, с бибитка при натискане, за да може кучето вида си има свой собствен и да остави вашите на мира.",
+                            Description = "A yellow plush slipper with blue stripes and a snap button so your dog can have his own look and leave yours alone.",
                             Price = 9.50m,
-                            Title = "Чехъл",
+                            Title = "Sleeper",
                             TitleImage = "Sleeper.jpg"
                         },
                         new
                         {
                             Id = 9,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4149),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8228),
                             CategoryId = 6,
-                            Description = "Хигиенни подложки с лепенки.",
+                            Description = "Sanitary napkins with patches.",
                             Price = 16.90m,
-                            Title = "Хигиенни подложки",
+                            Title = "Toilet Pads",
                             TitleImage = "HygienicPad.jpg"
                         },
                         new
                         {
                             Id = 10,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4151),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8229),
                             CategoryId = 7,
-                            Description = "Двустранен гребен за сресване на вашият любимец с по-буйна козина.",
+                            Description = "Double-sided comb for combing your pet with thicker fur.",
                             Price = 14.50m,
-                            Title = "Гребен за дълга козина",
+                            Title = "Comb for Long Fur",
                             TitleImage = "LongGroomingSide.jpg"
                         },
                         new
                         {
                             Id = 11,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4152),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8230),
                             CategoryId = 7,
-                            Description = "Гребен специално предназначен за домашни любимци, които са със къса козина. Идеален за периода на смяна на козината.",
+                            Description = "A comb specially designed for pets with short fur. Ideal for the shedding period.",
                             Price = 34.15m,
-                            Title = "Гребен за къса козина",
+                            Title = "Comb for Short Fur",
                             TitleImage = "ShortGrooming.jpg"
                         },
                         new
                         {
                             Id = 12,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4153),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8231),
                             CategoryId = 5,
-                            Description = "Удобен матрак, в голям размер, удобен за местене. Изключително практичен при пътуване с вашият любимец, тъй като не заема много място. Има цип, с който може да се вади донапрена отвътре и да се сменя или пере.",
+                            Description = "Comfortable mattress, in a large size, easy to move. Extremely practical when traveling with your pet, as it does not take up much space. There is a zipper that can be used to remove the extra fabric from the inside and change it or wash it.",
                             Price = 55.00m,
-                            Title = "Матрак - WonderWoman",
+                            Title = "SleepingPad - WonderWoman",
                             TitleImage = "SleepingPad.jpg"
                         },
                         new
                         {
                             Id = 13,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4154),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8233),
                             CategoryId = 4,
-                            Description = "Мека и удобна чанта с дръжки за пренасяне на вашият любимец, с ципче за по-лесно поставяне на животното в нея. Подходяща за по-дребни породи до 4кг.",
+                            Description = "Soft and comfortable bag with handles for carrying your pet, with a zipper for easier placement of the animal in it. Suitable for smaller breeds up to 4kg.",
                             Price = 32.90m,
-                            Title = "Чанта - England Land",
+                            Title = "Bag - England Land",
                             TitleImage = "TravelingBag2.jpg"
                         },
                         new
                         {
                             Id = 14,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4155),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8234),
                             CategoryId = 4,
-                            Description = "Розова пластмасова клетка, подходяща за домашни любимци до 6кг.",
+                            Description = "Pink plastic cage, suitable for pets up to 6 kg.",
                             Price = 20.90m,
-                            Title = "Клетка - Розова сладост",
+                            Title = "Cage - Pink sweetness",
                             TitleImage = "TravelingCageTop.jpg"
                         },
                         new
                         {
                             Id = 15,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4156),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8235),
                             CategoryId = 8,
-                            Description = "Керамична купичка за вода 300мл",
+                            Description = "Ceramic water bowl 300ml",
                             Price = 8.50m,
-                            Title = "Купа за вода",
+                            Title = "Water Bowl",
                             TitleImage = "WaterBowl.jpg"
                         },
                         new
                         {
                             Id = 16,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4157),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8236),
                             CategoryId = 8,
-                            Description = "Керамична купичка за храна 250мл",
+                            Description = "Ceramic food bowl 250ml",
                             Price = 7.50m,
-                            Title = "Купа за храна",
+                            Title = "Food Bowl",
                             TitleImage = "FoodBowlTop.jpg"
                         },
                         new
                         {
                             Id = 17,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4159),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8238),
                             CategoryId = 2,
-                            Description = "Регулируем нагръдник за дребни породи до 4кг, подходящ за по-топлите летни дни.",
+                            Description = "Adjustable chest for small breeds up to 4kg, suitable for warmer summer days.",
                             Price = 19.90m,
-                            Title = "Нагръдник - Лентички",
+                            Title = "Breastplate - Casual Lines",
                             TitleImage = "MeagerBreastplate2.jpg"
                         },
                         new
                         {
                             Id = 18,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4160),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8239),
                             CategoryId = 2,
-                            Description = "Дебел, подплатен розов нагръдник за дребни породи до 3кг, подходящ за по-студените и прохладни дни.",
+                            Description = "Thick, padded pink bib for small breeds up to 3kg, suitable for colder and cooler days.",
                             Price = 14.30m,
-                            Title = "Нагръдник - Розова лудост",
+                            Title = "Breastplate - Pink madness",
                             TitleImage = "BreastplateTop2.jpg"
                         },
                         new
                         {
                             Id = 19,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4163),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8241),
                             CategoryId = 2,
-                            Description = "Кафяв, кожеш нашийник с прикачено звънче, предназначен за по-дребни породи.",
+                            Description = "Brown leather collar with attached bell designed for smaller breeds.",
                             Price = 5.90m,
-                            Title = "Нашийник - Звънкащо котенце",
+                            Title = "Collar - Bell Kitty",
                             TitleImage = "Collar2.jpg"
                         },
                         new
                         {
                             Id = 20,
-                            AddedOn = new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4164),
+                            AddedOn = new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8242),
                             CategoryId = 3,
-                            Description = "Плетена топка с въженца от двете страни",
+                            Description = "Knitted ball with ropes on both sides.",
                             Price = 12.00m,
-                            Title = "Топка-Въже",
+                            Title = "Ball - Rope",
                             TitleImage = "BallSara2.jpg"
                         });
                 });

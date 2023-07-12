@@ -18,13 +18,12 @@
             this.Items = new HashSet<ItemSearchViewModel>();
         }
 
-        [Display(Name = "Категория")]
         public string? Category { get; set; }
 
-        [Display(Name = "Търси по дума")]
+        [Display(Name = "Search by type")]
         public string? SearchString { get; set; }
 
-        [Display(Name = "Сортирай по:")]
+        [Display(Name = "Sort By:")]
         public ItemSorting ItemSorting { get; set; }
 
         public int CurrentPage { get; set; }

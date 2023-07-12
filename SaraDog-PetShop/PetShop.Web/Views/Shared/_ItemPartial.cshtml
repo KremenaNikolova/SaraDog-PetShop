@@ -5,7 +5,7 @@
         <img class="card-img-top" src="@Url.Action("GetImage", "Home", new { imageName = Model.Image })" alt="Item Image">
         <div class="card-body text-center">
             <h4>@Model.Title</h4>
-            <p class="mb-3 h5">Цена: @Model.Price лв.</p>
+            <p class="mb-3 h5">Price: $@Model.Price</p>
             <a asp-controller="Item" asp-action="Edit" asp-route-id="@Model.Id"
                class="btn btn-warning">Edit</a>
             <a asp-controller="Item" asp-action="Details" asp-route-id="@Model.Id"

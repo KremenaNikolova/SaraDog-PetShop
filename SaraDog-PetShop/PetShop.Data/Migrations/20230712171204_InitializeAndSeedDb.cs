@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetShop.Data.Migrations
 {
-    public partial class InitializeAndSeedDB : Migration
+    public partial class InitializeAndSeedDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -223,14 +223,14 @@ namespace PetShop.Data.Migrations
                 columns: new[] { "Id", "Image", "Name" },
                 values: new object[,]
                 {
-                    { 1, "DressCategory.jpg", "Дрехи" },
-                    { 2, "CollarCategory.jpg", "Нашийници, Нагръдници и Поводи" },
-                    { 3, "ToyCategory.jpg", "Играчки" },
-                    { 4, "TravellingCategory.jpg", "Транспортни клетки" },
-                    { 5, "SleepingPad.jpg", "Легла" },
-                    { 6, "HygienicPad.jpg", "Пелени и подложки" },
-                    { 7, "ShortGroomingCloserCategory.jpg", "Грижа за козината" },
-                    { 8, "DressCategory.jpg", "Купички за храна и вода" }
+                    { 1, "DressCategory.jpg", "Clothing" },
+                    { 2, "CollarCategory.jpg", "Leads and Collars" },
+                    { 3, "ToyCategory.jpg", "Toys" },
+                    { 4, "TravellingCategory.jpg", "Travelling Crates and Bags" },
+                    { 5, "SleepingPad.jpg", "Beds and Sleeping" },
+                    { 6, "HygienicPad.jpg", "Hygienic Pads" },
+                    { 7, "ShortGroomingCloserCategory.jpg", "Grooming" },
+                    { 8, "DressCategory.jpg", "Food and Water Bowls" }
                 });
 
             migrationBuilder.InsertData(
@@ -238,26 +238,26 @@ namespace PetShop.Data.Migrations
                 columns: new[] { "Id", "AddedOn", "CategoryId", "Description", "Price", "Rating", "Title", "TitleImage" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4122), 1, "Жълто худи с мотиви на минион, в размер М, подходящо по-студените зимни дни.", 25.50m, null, "Худи- Минион", "MinionDress.jpg" },
-                    { 2, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4136), 1, "Зелено худи с мотиви на мече и ушички на качулката, в размер М, подходящо по-студените зимни дни.", 35.90m, null, "Худи - Зелено мече", "GreenHoodie2.jpg" },
-                    { 3, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4137), 1, "Дебела синя блузка с мотиви на мечета и розови листа, в размер М.", 20.30m, null, "Блуза - Синя есен", "BlueDress3.jpg" },
-                    { 4, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4140), 1, "Лилаво изчистено худи с джобче, в размер М.", 19.90m, null, "Худи - Люлак", "PurpleHoodie.jpg" },
-                    { 5, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4143), 1, "Дебела розова блузка, наподобяваща сладка пижамка, в размер М, подходяща по-студените зимни дни.", 20.30m, null, "Блуза - Розова пижама", "PinkDress2.jpg" },
-                    { 6, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4144), 3, "Плюшено сладоледче, с бибитка при натискане и въженце на върха.", 10.10m, null, "Сладолед", "IceCream.jpg" },
-                    { 7, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4145), 3, "Голем плючещен октопод, който може да се обръща и променя цвета си.", 8.80m, null, "Октопод", "Octopus2.jpg" },
-                    { 8, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4147), 3, "Жълт плюшен черхъл, на сини райета, с бибитка при натискане, за да може кучето вида си има свой собствен и да остави вашите на мира.", 9.50m, null, "Чехъл", "Sleeper.jpg" },
-                    { 9, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4149), 6, "Хигиенни подложки с лепенки.", 16.90m, null, "Хигиенни подложки", "HygienicPad.jpg" },
-                    { 10, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4151), 7, "Двустранен гребен за сресване на вашият любимец с по-буйна козина.", 14.50m, null, "Гребен за дълга козина", "LongGroomingSide.jpg" },
-                    { 11, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4152), 7, "Гребен специално предназначен за домашни любимци, които са със къса козина. Идеален за периода на смяна на козината.", 34.15m, null, "Гребен за къса козина", "ShortGrooming.jpg" },
-                    { 12, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4153), 5, "Удобен матрак, в голям размер, удобен за местене. Изключително практичен при пътуване с вашият любимец, тъй като не заема много място. Има цип, с който може да се вади донапрена отвътре и да се сменя или пере.", 55.00m, null, "Матрак - WonderWoman", "SleepingPad.jpg" },
-                    { 13, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4154), 4, "Мека и удобна чанта с дръжки за пренасяне на вашият любимец, с ципче за по-лесно поставяне на животното в нея. Подходяща за по-дребни породи до 4кг.", 32.90m, null, "Чанта - England Land", "TravelingBag2.jpg" },
-                    { 14, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4155), 4, "Розова пластмасова клетка, подходяща за домашни любимци до 6кг.", 20.90m, null, "Клетка - Розова сладост", "TravelingCageTop.jpg" },
-                    { 15, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4156), 8, "Керамична купичка за вода 300мл", 8.50m, null, "Купа за вода", "WaterBowl.jpg" },
-                    { 16, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4157), 8, "Керамична купичка за храна 250мл", 7.50m, null, "Купа за храна", "FoodBowlTop.jpg" },
-                    { 17, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4159), 2, "Регулируем нагръдник за дребни породи до 4кг, подходящ за по-топлите летни дни.", 19.90m, null, "Нагръдник - Лентички", "MeagerBreastplate2.jpg" },
-                    { 18, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4160), 2, "Дебел, подплатен розов нагръдник за дребни породи до 3кг, подходящ за по-студените и прохладни дни.", 14.30m, null, "Нагръдник - Розова лудост", "BreastplateTop2.jpg" },
-                    { 19, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4163), 2, "Кафяв, кожеш нашийник с прикачено звънче, предназначен за по-дребни породи.", 5.90m, null, "Нашийник - Звънкащо котенце", "Collar2.jpg" },
-                    { 20, new DateTime(2023, 7, 11, 15, 24, 35, 190, DateTimeKind.Utc).AddTicks(4164), 3, "Плетена топка с въженца от двете страни", 12.00m, null, "Топка-Въже", "BallSara2.jpg" }
+                    { 1, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8206), 1, "Yellow hoodie with minion motifs, size M, suitable for colder winter days.", 25.50m, null, "Hoodie - Minions", "MinionDress.jpg" },
+                    { 2, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8215), 1, "Green hoodie with bear motifs and eyelets on the hood, size M, suitable for colder winter days.", 35.90m, null, "Hoodie - Green bear", "GreenHoodie2.jpg" },
+                    { 3, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8217), 1, "Thick blue blouse with bears and rose leaf motifs, size M.", 20.30m, null, "Top - Blue autumn", "BlueDress3.jpg" },
+                    { 4, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8218), 1, "Purple clean hoodie with pocket, size M.", 19.90m, null, "Hoodie - Lilac", "PurpleHoodie.jpg" },
+                    { 5, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8222), 1, "A thick pink blouse that looks like a cute pajama, size M, perfect for colder winter days.", 20.30m, null, "Top - Pink pajamas", "PinkDress2.jpg" },
+                    { 6, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8223), 3, "Plush ice cream, with a push button and a rope on the top.", 10.10m, null, "Ice cream", "IceCream.jpg" },
+                    { 7, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8224), 3, "A large flat octopus that can turn and change color.", 8.80m, null, "Octopus", "Octopus2.jpg" },
+                    { 8, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8225), 3, "A yellow plush slipper with blue stripes and a snap button so your dog can have his own look and leave yours alone.", 9.50m, null, "Sleeper", "Sleeper.jpg" },
+                    { 9, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8228), 6, "Sanitary napkins with patches.", 16.90m, null, "Toilet Pads", "HygienicPad.jpg" },
+                    { 10, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8229), 7, "Double-sided comb for combing your pet with thicker fur.", 14.50m, null, "Comb for Long Fur", "LongGroomingSide.jpg" },
+                    { 11, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8230), 7, "A comb specially designed for pets with short fur. Ideal for the shedding period.", 34.15m, null, "Comb for Short Fur", "ShortGrooming.jpg" },
+                    { 12, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8231), 5, "Comfortable mattress, in a large size, easy to move. Extremely practical when traveling with your pet, as it does not take up much space. There is a zipper that can be used to remove the extra fabric from the inside and change it or wash it.", 55.00m, null, "SleepingPad - WonderWoman", "SleepingPad.jpg" },
+                    { 13, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8233), 4, "Soft and comfortable bag with handles for carrying your pet, with a zipper for easier placement of the animal in it. Suitable for smaller breeds up to 4kg.", 32.90m, null, "Bag - England Land", "TravelingBag2.jpg" },
+                    { 14, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8234), 4, "Pink plastic cage, suitable for pets up to 6 kg.", 20.90m, null, "Cage - Pink sweetness", "TravelingCageTop.jpg" },
+                    { 15, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8235), 8, "Ceramic water bowl 300ml", 8.50m, null, "Water Bowl", "WaterBowl.jpg" },
+                    { 16, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8236), 8, "Ceramic food bowl 250ml", 7.50m, null, "Food Bowl", "FoodBowlTop.jpg" },
+                    { 17, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8238), 2, "Adjustable chest for small breeds up to 4kg, suitable for warmer summer days.", 19.90m, null, "Breastplate - Casual Lines", "MeagerBreastplate2.jpg" },
+                    { 18, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8239), 2, "Thick, padded pink bib for small breeds up to 3kg, suitable for colder and cooler days.", 14.30m, null, "Breastplate - Pink madness", "BreastplateTop2.jpg" },
+                    { 19, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8241), 2, "Brown leather collar with attached bell designed for smaller breeds.", 5.90m, null, "Collar - Bell Kitty", "Collar2.jpg" },
+                    { 20, new DateTime(2023, 7, 12, 17, 12, 4, 403, DateTimeKind.Utc).AddTicks(8242), 3, "Knitted ball with ropes on both sides.", 12.00m, null, "Ball - Rope", "BallSara2.jpg" }
                 });
 
             migrationBuilder.CreateIndex(

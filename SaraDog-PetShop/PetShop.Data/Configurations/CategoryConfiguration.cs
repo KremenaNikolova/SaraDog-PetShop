@@ -21,7 +21,7 @@
             category = new Category()
             {
                 Id = 1,
-                Name = "Дрехи",
+                Name = "Clothing",
                 Image = "DressCategory.jpg"
             };
             categories.Add(category);
@@ -29,7 +29,7 @@
             category = new Category()
             {
                 Id = 2,
-                Name = "Нашийници, Нагръдници и Поводи",
+                Name = "Leads and Collars",
                 Image = "CollarCategory.jpg"
             };
             categories.Add(category);
@@ -37,7 +37,7 @@
             category = new Category()
             {
                 Id = 3,
-                Name = "Играчки",
+                Name = "Toys",
                 Image = "ToyCategory.jpg"
             };
             categories.Add(category);
@@ -45,7 +45,7 @@
             category = new Category()
             {
                 Id = 4,
-                Name = "Транспортни клетки",
+                Name = "Travelling Crates and Bags",
                 Image = "TravellingCategory.jpg"
             };
             categories.Add(category);
@@ -53,7 +53,7 @@
             category = new Category()
             {
                 Id = 5,
-                Name = "Легла",
+                Name = "Beds and Sleeping",
                 Image = "SleepingPad.jpg"
             };
             categories.Add(category);
@@ -61,7 +61,7 @@
             category = new Category()
             {
                 Id = 6,
-                Name = "Пелени и подложки",
+                Name = "Hygienic Pads",
                 Image = "HygienicPad.jpg"
             };
             categories.Add(category);
@@ -70,7 +70,7 @@
             category = new Category()
             {
                 Id = 7,
-                Name = "Грижа за козината",
+                Name = "Grooming",
                 Image = "ShortGroomingCloserCategory.jpg"
             };
             categories.Add(category);
@@ -78,7 +78,7 @@
             category = new Category()
             {
                 Id = 8,
-                Name = "Купички за храна и вода",
+                Name = "Food and Water Bowls",
                 Image = "DressCategory.jpg"
             };
             categories.Add(category);

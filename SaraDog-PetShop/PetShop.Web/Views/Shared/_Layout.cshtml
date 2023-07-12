@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 @if (this.User.Identity?.IsAuthenticated ?? false)
                 {
-                    <a class="navbar-brand" asp-area="Identity" asp-controller="Home" asp-action="Index">Здравей @User.Identity?.Name!</a>
+                    <a class="navbar-brand" asp-area="Identity" asp-controller="Home" asp-action="Index">Hello @User.Identity?.Name!</a>
                 }
                 else
                 {
@@ -29,10 +29,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SaraDog" asp-action="All">Всички подукти</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="All">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SaraDog" asp-action="All">Категории</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="All">Categories</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -51,8 +51,7 @@
             &copy; SaraDog @ReleaseYear
             @if (DateTime.UtcNow.Year != ReleaseYear)
             {
-                @Html.Raw($"- {DateTime.UtcNow.Year}")
-                ;
+                @Html.Raw($"- {DateTime.UtcNow.Year}");
             }
         </div>
     </footer>

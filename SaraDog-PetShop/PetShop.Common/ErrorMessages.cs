@@ -4,11 +4,11 @@
     {
         public static class TitleErrorMessages
         {
-            public const string InvalidTitle = "Заглавието трябва да бъде между {2} и {1} символа.";
+            public const string InvalidTitle = "Title must be between {1} and {0} characters.";
 
-            public const string InvalidDescription = "Опсанието трябва да бъде между {2} и {1} символа.";
+            public const string InvalidDescription = "Description must be between {1} and {0} characters.";
 
-            public const string InvalidPrice = "Цената трябва да е между {1} и {2} лева.";
+            public const string InvalidPrice = "Price must be between ${0} and ${1}.";
         }
 
     }
