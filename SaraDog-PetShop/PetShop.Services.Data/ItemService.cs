@@ -14,6 +14,8 @@
     using PetShop.Web.ViewModels.Item;
     using Azure.Core;
     using Azure.Core.Pipeline;
+    using PetShop.Services.Data.Models.Item;
+    using PetShop.Web.ViewModels.Item.Enums;
 
     public class ItemService : IItemService
     {
@@ -27,12 +29,12 @@
         }
 
 
-        public async Task<IEnumerable<IndexViewModel>> GetAllItemsAsync()
+        public async Task<IEnumerable<ItemIndexViewModel>> GetAllItemsAsync()
         {
             var allItems = await dbContext
                 .Items
                 .OrderByDescending(i => i.AddedOn)
-                .Select(i => new IndexViewModel
+                .Select(i => new ItemIndexViewModel
                 {
                     Id = i.Id,
                     Title = i.Title,
@@ -59,6 +61,64 @@
             await this.dbContext.AddAsync(newItem);
             await this.dbContext.SaveChangesAsync();
 
+        }
+
+        public async Task<AllItemsFilteredAndPagedServiceModel> AllItemsAsync(AllItemsQueryModel queryModel)
+        {
+            IQueryable<Item> itemsQuery = this.dbContext
+                .Items
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(queryModel.Category))
+            {
+                itemsQuery = itemsQuery
+                    .Where(i => i.Category.Name == queryModel.Category);
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+                itemsQuery = itemsQuery
+                    .Where(i => EF.Functions.Like(i.Title, wildCard) ||
+                                EF.Functions.Like(i.TitleImage, wildCard) ||
+                                EF.Functions.Like(i.Description, wildCard));
+            }
+
+            itemsQuery = queryModel.ItemSorting switch
+            {
+                ItemSorting.Newest => itemsQuery
+                    .OrderByDescending(i => i.AddedOn),
+                ItemSorting.Oldest => itemsQuery
+                    .OrderBy(i => i.AddedOn),
+                ItemSorting.PriceAscending => itemsQuery
+                    .OrderBy(i => i.Price),
+                ItemSorting.PriceDescending => itemsQuery
+                    .OrderByDescending(i => i.Price),
+                _ => itemsQuery
+                    .OrderByDescending(i => i.AddedOn)
+            };
+
+            IEnumerable<ItemSearchViewModel> searchedItems = await itemsQuery
+                .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
+                .Take(queryModel.ItemsPerPage)
+                .Select(i => new ItemSearchViewModel()
+                {
+                    Id = i.Id,
+                    Title = i.Title,
+                    Price = i.Price,
+                    Image = i.TitleImage
+
+                })
+                .ToArrayAsync();
+
+            int totalItems = itemsQuery.Count();
+
+            return new AllItemsFilteredAndPagedServiceModel()
+            {
+                TotalItemsCount = totalItems,
+                Items = searchedItems
+            };
         }
 
     }

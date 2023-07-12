@@ -40,5 +40,15 @@
 
             return isIdExist;
         }
+
+        public async Task<IEnumerable<string>> AllCategoriesNameAsync()
+        {
+            IEnumerable<string> allNames = await dbContext
+                .Categories
+                .Select(c => c.Name)
+                .ToArrayAsync();
+
+            return allNames;
+        }
     }
 }

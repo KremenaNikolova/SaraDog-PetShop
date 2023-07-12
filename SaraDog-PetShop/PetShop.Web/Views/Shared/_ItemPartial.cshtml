@@ -1,0 +1,26 @@
+﻿@model ItemSearchViewModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Url.Action("GetImage", "Home", new { imageName = Model.Image })" alt="Item Image">
+        <div class="card-body text-center">
+            <h4>@Model.Title</h4>
+            <p class="mb-3 h5">Цена: @Model.Price лв.</p>
+            <a asp-controller="Item" asp-action="Edit" asp-route-id="@Model.Id"
+               class="btn btn-warning">Edit</a>
+            <a asp-controller="Item" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Details</a>
+            <a asp-controller="Item" asp-action="Delete" asp-route-id="@Model.Id"
+               class="btn btn-danger">Delete</a>
+            @if (this.User.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="Item" asp-action="Edit" asp-route-id="@Model.Id"
+                   class="btn btn-warning">Edit</a>
+                <a asp-controller="Item" asp-action="Delete" asp-routeid="@Model.Id"
+                   class="btn btn-danger">Delete</a>
+                <p></p>
+            }
+        </div>
+    </div>
+</div>
+

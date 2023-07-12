@@ -18,6 +18,17 @@ namespace PetShop.Web.Controllers
 
         }
 
+        public async Task<IActionResult> All([FromQuery]AllItemsQueryModel queryModel)
+        {
+            var allItems = await itemService.AllItemsAsync(queryModel);
+
+            queryModel.Items = allItems.Items;
+            queryModel.TotalItems = allItems.TotalItemsCount;
+            queryModel.Categories = await categoryService.AllCategoriesNameAsync();
+
+            return View(queryModel);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Add()
         {

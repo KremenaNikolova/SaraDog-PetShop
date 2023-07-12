@@ -19,6 +19,7 @@
     <ProjectReference Include="..\PetShop.Common\PetShop.Common.csproj" />
     <ProjectReference Include="..\PetShop.Data.Models\PetShop.Data.Models.csproj" />
     <ProjectReference Include="..\PetShop.Data\PetShop.Data.csproj" />
+    <ProjectReference Include="..\PetShop.Services.Data.Models\PetShop.Services.Data.Models.csproj" />
     <ProjectReference Include="..\PetShop.Services.Data\PetShop.Services.Data.csproj" />
     <ProjectReference Include="..\PetShop.Web.Infrastructure\PetShop.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\PetShop.Web.ViewModels\PetShop.Web.ViewModels.csproj" />

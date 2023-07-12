@@ -21,9 +21,7 @@
 
         public async Task<IActionResult> Index()
         {
-            var allItems = await itemService.GetAllItemsAsync();
-
-            return View(allItems);
+            return RedirectToAction("All", "Item");
         }
 
         public async Task<IActionResult> GetImage(string imageName)

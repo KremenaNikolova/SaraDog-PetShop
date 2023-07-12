@@ -1,6 +1,6 @@
-﻿namespace PetShop.Web.ViewModels.Home
+﻿namespace PetShop.Web.ViewModels.Item
 {
-    public class IndexViewModel
+    public class ItemIndexViewModel
     {
         public int Id { get; set; }
 

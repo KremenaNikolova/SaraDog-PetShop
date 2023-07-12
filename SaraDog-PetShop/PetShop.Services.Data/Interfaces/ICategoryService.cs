@@ -8,5 +8,7 @@
         Task<ICollection<ItemCategoryViewModel>> AllCteagoriesAsync();
 
         Task<bool> IsCategoryExistAsync(int id);
+
+        Task<IEnumerable<string>> AllCategoriesNameAsync();
     }
 }
