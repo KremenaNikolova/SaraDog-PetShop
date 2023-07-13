@@ -165,5 +165,24 @@
             }
         }
 
+        public async Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavorites(string id)
+        {
+            IEnumerable<ItemIndexViewModel> favorites = await dbContext
+                .UserItems
+                .Where(ui => ui.UserId.ToString() == id)
+                .Select(ui => new ItemIndexViewModel()
+                {
+                    Id = ui.Item.Id,
+                    Title = ui.Item.Title,
+                    Image = ui.Item.TitleImage,
+                    Description = ui.Item.Description,
+                    Price = ui.Item.Price,
+                    Category = ui.Item.Category.Name
+                })
+                .ToArrayAsync();
+
+            return favorites;
+        }
+
     }
 }

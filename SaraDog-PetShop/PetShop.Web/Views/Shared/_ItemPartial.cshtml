@@ -10,6 +10,10 @@
                class="btn btn-success">Details</a>
             @if (this.User.Identity?.IsAuthenticated ?? false)
             {
+                <br/>
+                <br />
+                @*<a asp-controller="Item" asp-action="Favorites" asp-route-id="@Model.Id"
+                   class="btn btn-info">Add to Favorites</a>*@
                 <a asp-controller="Item" asp-action="Edit" asp-route-id="@Model.Id"
                    class="btn btn-warning">Edit</a>
                 <a asp-controller="Item" asp-action="Delete" asp-route-id="@Model.Id"

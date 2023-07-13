@@ -15,5 +15,7 @@
 
         Task EditProductAsync(int id, ItemFormViewModel itemModel);
 
+        Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavorites(string id);
+
     }
 }

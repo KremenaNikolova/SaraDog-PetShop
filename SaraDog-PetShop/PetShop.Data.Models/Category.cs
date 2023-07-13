@@ -1,6 +1,7 @@
 ﻿namespace PetShop.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+
     using static PetShop.Common.ValidationConstants.CategoryValidationConstants;
 
     public class Category

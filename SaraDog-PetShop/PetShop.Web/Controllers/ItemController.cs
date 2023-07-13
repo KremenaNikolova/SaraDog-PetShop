@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using PetShop.Services.Data.Interfaces;
+    using PetShop.Web.Infrastructure.Extensions;
     using PetShop.Web.ViewModels.Item;
 
     using static PetShop.Common.CustomExceptionsMessages;
@@ -146,6 +147,16 @@
             }
 
             return RedirectToAction("All", "Item");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Favorites()
+        {
+            var userId = this.User.GetId()!;
+
+            IEnumerable<ItemIndexViewModel> favorites = await itemService.GetAllItemsInFavorites(userId);
+
+            return View(favorites);
         }
     }
 }
