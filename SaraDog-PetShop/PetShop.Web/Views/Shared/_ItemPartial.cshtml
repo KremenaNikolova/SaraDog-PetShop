@@ -6,17 +6,13 @@
         <div class="card-body text-center">
             <h4>@Model.Title</h4>
             <p class="mb-3 h5">Price: $@Model.Price</p>
-            <a asp-controller="Item" asp-action="Edit" asp-route-id="@Model.Id"
-               class="btn btn-warning">Edit</a>
             <a asp-controller="Item" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
-            <a asp-controller="Item" asp-action="Delete" asp-route-id="@Model.Id"
-               class="btn btn-danger">Delete</a>
             @if (this.User.Identity?.IsAuthenticated ?? false)
             {
                 <a asp-controller="Item" asp-action="Edit" asp-route-id="@Model.Id"
                    class="btn btn-warning">Edit</a>
-                <a asp-controller="Item" asp-action="Delete" asp-routeid="@Model.Id"
+                <a asp-controller="Item" asp-action="Delete" asp-route-id="@Model.Id"
                    class="btn btn-danger">Delete</a>
                 <p></p>
             }

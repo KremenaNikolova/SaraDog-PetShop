@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PetShop.Services.Data.Interfaces;
 using PetShop.Web.ViewModels.Item;
 
 namespace PetShop.Web.Controllers
 {
+    [Authorize]
     public class ItemController : Controller
     {
         private readonly ICategoryService categoryService;
@@ -18,6 +20,7 @@ namespace PetShop.Web.Controllers
 
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery]AllItemsQueryModel queryModel)
         {
             var allItems = await itemService.AllItemsAsync(queryModel);
@@ -80,7 +83,7 @@ namespace PetShop.Web.Controllers
                 return this.View(itemModel);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All", "Item");
         }
     }
 }
