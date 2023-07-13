@@ -150,7 +150,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Favorites()
+        public async Task<IActionResult> Favourites()
         {
             var userId = this.User.GetId()!;
 
