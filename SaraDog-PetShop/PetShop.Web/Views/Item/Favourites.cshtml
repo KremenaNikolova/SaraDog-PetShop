@@ -8,22 +8,19 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<div class="text-center row">
-    @foreach (var e in Model)
-    {
-        <div class="card col-4" style="width: 20rem; ">
-            <div class="card-body">
-                <h5 class="card-title mt-1">@e.Title</h5>
-                <p class="mb-0"><span class="fw-bold">Category: </span>@e.Category</p>
-            </div>
-
-                <form class="input-group-sm " asp-controller="Item" asp-action="UnLike" asp-route-id="@e.Id">
-                    <input type="submit" value="Romove From Favorites" class="fs-6 btn btn-warning mb-3 w-100 p-3 fw-bold" />
-                </form>
-                <a asp-controller="Item" asp-action="Details" asp-route-id="@e.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Details</a>
-        </div>
-    }
-</div>
+@if (!Model.Any())
+{
+    <h2 class="text-center">You do not have any favrourite products yet!</h2>
+}
+else
+{
+    <div class="row">
+        @foreach (ItemIndexViewModel item in Model)
+        {
+            <partial name="_ItemPartial" model="item" />
+        }
+    </div>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

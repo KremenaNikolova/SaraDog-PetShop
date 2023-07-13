@@ -93,11 +93,11 @@
                     .OrderByDescending(i => i.AddedOn)
             };
 
-            IEnumerable<ItemSearchViewModel> searchedItems = await itemsQuery
+            IEnumerable<ItemIndexViewModel> searchedItems = await itemsQuery
                 .Where(i=>i.isActive)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
                 .Take(queryModel.ItemsPerPage)
-                .Select(i => new ItemSearchViewModel()
+                .Select(i => new ItemIndexViewModel()
                 {
                     Id = i.Id,
                     Title = i.Title,
@@ -116,7 +116,7 @@
             };
         }
 
-        public async Task<ItemFormViewModel?> GetItemByIdAsync(int id)
+        public async Task<ItemFormViewModel?> GetItemByIdAsync(int itemId)
         {
             var categories = await dbContext
                 .Categories
@@ -131,7 +131,7 @@
 
             var currItem = await dbContext
                 .Items
-                .Where(i => i.Id == id)
+                .Where(i => i.Id == itemId)
                 .Select(i => new ItemFormViewModel()
                 {
                     Title = i.Title,
@@ -146,11 +146,11 @@
             return currItem;
         }
 
-        public async Task EditProductAsync(int id, ItemFormViewModel itemModel)
+        public async Task EditProductAsync(int itemId, ItemFormViewModel itemModel)
         {
             var currItem = await dbContext
                 .Items
-                .FindAsync(id);
+                .FindAsync(itemId);
 
             if(currItem != null)
             {
@@ -165,11 +165,11 @@
             }
         }
 
-        public async Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavorites(string id)
+        public async Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavorites(string userId)
         {
             IEnumerable<ItemIndexViewModel> favorites = await dbContext
                 .UserItems
-                .Where(ui => ui.UserId.ToString() == id)
+                .Where(ui => ui.UserId.ToString() == userId)
                 .Select(ui => new ItemIndexViewModel()
                 {
                     Id = ui.Item.Id,
@@ -182,6 +182,27 @@
                 .ToArrayAsync();
 
             return favorites;
+        }
+
+        public async Task<ItemIndexViewModel?> GetDetailsByIdAsync(int itemId)
+        {
+            Item? item = await dbContext
+                .Items
+                .Include(i => i.Category)
+                .Where(i=>i.Id == itemId && i.isActive == true)
+                .FirstOrDefaultAsync();
+
+            ItemIndexViewModel? itemModel = new ItemIndexViewModel()
+            {
+                Id= item!.Id,
+                Title = item.Title,
+                Description = item.Description,
+                Price = item.Price,
+                Category = item.Category.Name,
+                Image = item.TitleImage
+            };
+
+            return itemModel;
         }
 
     }

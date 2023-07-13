@@ -7,7 +7,7 @@
     using PetShop.Web.Infrastructure.Extensions;
     using PetShop.Web.ViewModels.Item;
 
-    using static PetShop.Common.CustomExceptionsMessages;
+    using static PetShop.Common.NotificationMessagesConstants;
 
     [Authorize]
     public class ItemController : Controller
@@ -157,6 +157,21 @@
             IEnumerable<ItemIndexViewModel> favorites = await itemService.GetAllItemsInFavorites(userId);
 
             return View(favorites);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            ItemIndexViewModel? itemModel = await itemService.GetDetailsByIdAsync(id);
+
+            if(itemModel == null)
+            {
+                TempData[ErrorMessage] = "House with provided Id does not exist!";
+
+                return RedirectToAction("All", "Item");
+            }
+
+            return View(itemModel);
         }
     }
 }

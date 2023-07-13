@@ -6,10 +6,10 @@
     {
         public AllItemsFilteredAndPagedServiceModel()
         {
-            this.Items = new HashSet<ItemSearchViewModel>();
+            this.Items = new HashSet<ItemIndexViewModel>();
         }
         public int TotalItemsCount { get; set; }
 
-        public IEnumerable<ItemSearchViewModel> Items { get; set; }
+        public IEnumerable<ItemIndexViewModel> Items { get; set; }
     }
 }
