@@ -1,10 +1,6 @@
 ﻿namespace PetShop.Web.ViewModels.Item
 {
-    using Microsoft.AspNetCore.Http;
-    using PetShop.Common;
-    using PetShop.Web.ViewModels.Category;
     using System.ComponentModel.DataAnnotations;
-    using System.Xml.Linq;
 
     public class ItemSearchViewModel
     {

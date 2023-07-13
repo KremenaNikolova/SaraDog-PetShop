@@ -5,6 +5,11 @@
 
     public class Category
     {
+        public Category()
+        {
+            Items = new HashSet<Item>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -12,7 +17,7 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
+        public virtual ICollection<Item> Items { get; set; } 
 
         [Required]
         [MaxLength(ImageMaxLength)]

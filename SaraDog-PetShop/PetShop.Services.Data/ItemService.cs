@@ -1,21 +1,15 @@
 ﻿namespace PetShop.Services.Data
 {
-    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Hosting;
-
-    using Azure.Storage.Blobs;
-    using Azure.Storage.Blobs.Models;
 
     using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Data;
-    using PetShop.Web.ViewModels.Home;
     using PetShop.Web.ViewModels.Item;
-    using Azure.Core;
-    using Azure.Core.Pipeline;
     using PetShop.Services.Data.Models.Item;
     using PetShop.Web.ViewModels.Item.Enums;
+    using PetShop.Web.ViewModels.Category;
 
     public class ItemService : IItemService
     {
@@ -120,6 +114,55 @@
                 TotalItemsCount = totalItems,
                 Items = searchedItems
             };
+        }
+
+        public async Task<ItemFormViewModel?> GetItemByIdAsync(int id)
+        {
+            var categories = await dbContext
+                .Categories
+                .Select(c => new ItemCategoryViewModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Image = c.Image
+                })
+                .ToListAsync();
+
+
+            var currItem = await dbContext
+                .Items
+                .Where(i => i.Id == id)
+                .Select(i => new ItemFormViewModel()
+                {
+                    Title = i.Title,
+                    Description = i.Description,
+                    Price = i.Price,
+                    UploadPicture = i.TitleImage,
+                    CategoryId = i.CategoryId,
+                    Categories = categories
+                })
+                .FirstOrDefaultAsync();
+
+            return currItem;
+        }
+
+        public async Task EditProductAsync(int id, ItemFormViewModel itemModel)
+        {
+            var currItem = await dbContext
+                .Items
+                .FindAsync(id);
+
+            if(currItem != null)
+            {
+                currItem.Title = itemModel.Title;
+                currItem.Description = itemModel.Description;
+                currItem.Price = itemModel.Price;
+                currItem.TitleImage = itemModel.UploadPicture;
+                currItem.CategoryId = itemModel.CategoryId;
+                currItem.LastEdit = DateTime.UtcNow;
+
+                await dbContext.SaveChangesAsync();
+            }
         }
 
     }

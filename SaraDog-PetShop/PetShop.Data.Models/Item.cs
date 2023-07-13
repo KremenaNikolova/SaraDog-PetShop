@@ -10,6 +10,11 @@
         public Item()
         {
             isActive = true;
+
+            AddedOn = DateTime.Now;
+            LastEdit = DateTime.Now;
+
+            UserItems = new HashSet<ApplicationUserItem>();
         }
 
         [Key]
@@ -29,7 +34,9 @@
 
         public decimal Price { get; set; }
 
-        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
+        public DateTime AddedOn { get; set; }
+
+        public DateTime LastEdit { get; set; }
 
         public decimal? Rating { get; set; }
 
@@ -41,7 +48,7 @@
         [Required]
         public virtual Category Category { get; set; } = null!;
 
-        public virtual ICollection<ApplicationUserItem> UserItems { get; set; } = new HashSet<ApplicationUserItem>();
+        public virtual ICollection<ApplicationUserItem> UserItems { get; set; }
 
 
     }
