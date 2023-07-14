@@ -165,7 +165,7 @@
             }
         }
 
-        public async Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavorites(string userId)
+        public async Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavoritesAsync(string userId)
         {
             IEnumerable<ItemIndexViewModel> favorites = await dbContext
                 .UserItems

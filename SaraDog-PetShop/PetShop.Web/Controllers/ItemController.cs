@@ -154,7 +154,7 @@
         {
             var userId = this.User.GetId()!;
 
-            IEnumerable<ItemIndexViewModel> favorites = await itemService.GetAllItemsInFavorites(userId);
+            IEnumerable<ItemIndexViewModel> favorites = await itemService.GetAllItemsInFavoritesAsync(userId);
 
             return View(favorites);
         }

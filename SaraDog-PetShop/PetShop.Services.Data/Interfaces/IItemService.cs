@@ -15,7 +15,7 @@
 
         Task EditProductAsync(int id, ItemFormViewModel itemModel);
 
-        Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavorites(string userId);
+        Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavoritesAsync(string userId);
 
         Task<ItemIndexViewModel?> GetDetailsByIdAsync(int itemId);
 

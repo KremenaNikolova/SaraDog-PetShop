@@ -14,5 +14,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #E9F1FA;
+    /*background-color: #C5ADC5;*/
+    margin-bottom: 60px;
+}
+
+header {
+    background-color: #00ABE4;
+    /*background-color: #B2B5E0;*/
 }
