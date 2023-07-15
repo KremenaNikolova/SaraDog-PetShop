@@ -11,13 +11,13 @@
 
         Task<AllItemsFilteredAndPagedServiceModel> AllItemsAsync(AllItemsQueryModel queryModel);
 
-        Task<ItemFormViewModel?> GetItemByIdAsync(int itemId);
+        Task<ItemFormViewModel> GetItemByIdAsync(int itemId);
 
         Task EditProductAsync(int id, ItemFormViewModel itemModel);
 
         Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavoritesAsync(string userId);
 
-        Task<ItemIndexViewModel?> GetDetailsByIdAsync(int itemId);
+        Task<ItemIndexViewModel> GetDetailsByIdAsync(int itemId);
 
         Task SoftDeleteItemAsync(int itemId);
 

@@ -4,8 +4,10 @@
     
     using Microsoft.AspNetCore.Mvc;
 
-    using PetShop.Services.Data.Interfaces;
     using ViewModels.Home;
+    using PetShop.Services.Data.Interfaces;
+
+    using static PetShop.Common.NotificationMessagesConstants;
 
     public class HomeController : Controller
     {
@@ -29,14 +31,19 @@
 
         public async Task<IActionResult> GetImage(string imageName)
         {
-            var imageStream = await imageService.GetImageStreamAsync(imageName);
-
-            if (imageStream == null)
+            try
             {
-                return NotFound();
+                var imageStream = await imageService.GetImageStreamAsync(imageName);
+
+                return File(imageStream, "image/jpeg");
+            }
+            catch (Exception)
+            {
+                TempData[ErrorMessage] = "Something get wrong with taken image. Please try again later!";
+
+                return RedirectToAction("All", "Item");
             }
 
-            return File(imageStream, "image/jpeg");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

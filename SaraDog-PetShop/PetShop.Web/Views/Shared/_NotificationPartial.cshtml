@@ -1,0 +1,19 @@
+﻿@using static PetShop.Common.NotificationMessagesConstants;
+
+@if (TempData.ContainsKey(ErrorMessage))
+{
+    <script>toastr.error('@TempData[ErrorMessage]')</script>
+}
+else if (TempData.ContainsKey(WarningMessage))
+{
+    <script>toastr.warning('@TempData[WarningMessage]')</script>
+}
+else if (TempData.ContainsKey(InformationMessage))
+{
+    <script>toastr.error('@TempData[InformationMessage]')</script>
+}
+else if (TempData.ContainsKey(SuccessMessage))
+{
+    <script>toastr.success('@TempData[SuccessMessage]')</script>
+}
+

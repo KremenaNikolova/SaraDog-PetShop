@@ -27,24 +27,33 @@
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery]AllItemsQueryModel queryModel)
         {
-            var allItems = await itemService.AllItemsAsync(queryModel);
+                var allItems = await itemService.AllItemsAsync(queryModel);
 
-            queryModel.Items = allItems.Items;
-            queryModel.TotalItems = allItems.TotalItemsCount;
-            queryModel.Categories = await categoryService.AllCategoriesNameAsync();
+                queryModel.Items = allItems.Items;
+                queryModel.TotalItems = allItems.TotalItemsCount;
+                queryModel.Categories = await categoryService.AllCategoriesNameAsync();
 
-            return View(queryModel);
+                return View(queryModel);
+            
         }
 
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var itemModel = new ItemFormViewModel()
+            try
             {
-                Categories = await this.categoryService.AllCteagoriesAsync()
-            };
+                var itemModel = new ItemFormViewModel()
+                {
+                    Categories = await this.categoryService.AllCteagoriesAsync()
+                };
 
-            return View(itemModel);
+                return View(itemModel);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+            
         }
 
         [HttpPost]
@@ -76,6 +85,8 @@
             {
                 itemModel.Categories = await categoryService.AllCteagoriesAsync();
 
+                TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
+
                 return View(itemModel);
             }
 
@@ -83,34 +94,35 @@
             {
                 await itemService.CreateItemAsync(itemModel);
             }
-            catch
+            catch(Exception)
             {
-                ModelState.AddModelError(string.Empty, "An unexpected error occurred! Please, try again.");
+                TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
                 return View(itemModel);
             }
 
+            TempData[SuccessMessage] = "Your product have been added successfully.";
             return RedirectToAction("All", "Item");
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var cuurrItem = await itemService.GetItemByIdAsync(id);
-
-            if (cuurrItem == null)
+            try
             {
-                return RedirectToAction("All", "Item");
+                var cuurrItem = await itemService.GetItemByIdAsync(id);
+                return View(cuurrItem);
             }
-
-            return View(cuurrItem);
+            catch(Exception)
+            {
+                return GeneralErrorMessage();
+            }
+            
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, ItemFormViewModel itemModel)
         {
-            itemModel.Categories = await categoryService.AllCteagoriesAsync();
-
             bool isCategoryExist = await categoryService
                 .IsCategoryExistAsync(itemModel.CategoryId);
 
@@ -131,6 +143,7 @@
             if (!ModelState.IsValid)
             {
                 itemModel.Categories = await categoryService.AllCteagoriesAsync();
+                TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
                 return View(itemModel);
             }
@@ -139,39 +152,46 @@
             {
                 await itemService.EditProductAsync(id, itemModel);
             }
-            catch
+            catch(Exception)
             {
-               ModelState.AddModelError(string.Empty, "An unexpected error occurred! Please, try again.");
-
-                return View(itemModel);
+                return GeneralErrorMessage();
             }
 
+            TempData[SuccessMessage] = "You edited the product successfully.";
             return RedirectToAction("All", "Item");
         }
 
         [HttpGet]
         public async Task<IActionResult> Favourites()
         {
-            var userId = this.User.GetId()!;
+            try
+            {
+                string userId = this.User.GetId()!;
 
-            IEnumerable<ItemIndexViewModel> favorites = await itemService.GetAllItemsInFavoritesAsync(userId);
+                IEnumerable<ItemIndexViewModel> favorites = await itemService.GetAllItemsInFavoritesAsync(userId);
 
-            return View(favorites);
+                return View(favorites);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+            
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            ItemIndexViewModel? itemModel = await itemService.GetDetailsByIdAsync(id);
-
-            if(itemModel == null)
+            try
             {
-                TempData[ErrorMessage] = "House with provided Id does not exist!";
-
-                return RedirectToAction("All", "Item");
+                ItemIndexViewModel itemModel = await itemService.GetDetailsByIdAsync(id);
+                return View(itemModel);
             }
-
-            return View(itemModel);
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+            
         }
 
         [HttpPost]
@@ -180,15 +200,23 @@
             try
             {
                 await itemService.SoftDeleteItemAsync(id);
-
+                TempData[SuccessMessage] = "You deleted the product successfully.";
                 return RedirectToAction("All", "Item");
             }
             catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, "An unexpected error occurred! Please, try again.");
-
-                return RedirectToAction("All", "Item");
+                return GeneralErrorMessage();
             }
         }
+
+        private IActionResult GeneralErrorMessage()
+        {
+            TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
+
+            return this.RedirectToAction("All", "Home");
+        }
+
     }
+
+    
 }

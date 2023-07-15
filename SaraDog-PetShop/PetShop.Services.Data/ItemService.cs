@@ -117,7 +117,7 @@
             };
         }
 
-        public async Task<ItemFormViewModel?> GetItemByIdAsync(int itemId)
+        public async Task<ItemFormViewModel> GetItemByIdAsync(int itemId)
         {
             var categories = await dbContext
                 .Categories
@@ -142,7 +142,7 @@
                     CategoryId = i.CategoryId,
                     Categories = categories
                 })
-                .FirstOrDefaultAsync();
+                .FirstAsync();
 
             return currItem;
         }
@@ -185,13 +185,13 @@
             return favorites;
         }
 
-        public async Task<ItemIndexViewModel?> GetDetailsByIdAsync(int itemId)
+        public async Task<ItemIndexViewModel> GetDetailsByIdAsync(int itemId)
         {
-            Item? item = await dbContext
+            Item item = await dbContext
                 .Items
                 .Include(i => i.Category)
                 .Where(i => i.Id == itemId && i.isActive == true)
-                .FirstOrDefaultAsync();
+                .FirstAsync();
 
             ItemIndexViewModel? itemModel = new ItemIndexViewModel()
             {
