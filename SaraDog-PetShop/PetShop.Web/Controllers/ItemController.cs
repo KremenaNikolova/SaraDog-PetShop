@@ -173,5 +173,22 @@
 
             return View(itemModel);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, ItemIndexViewModel itemModel)
+        {
+            try
+            {
+                await itemService.SoftDeleteItemAsync(id);
+
+                return RedirectToAction("All", "Item");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "An unexpected error occurred! Please, try again.");
+
+                return RedirectToAction("All", "Item");
+            }
+        }
     }
 }

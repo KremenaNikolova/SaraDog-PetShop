@@ -27,6 +27,7 @@
         {
             var allItems = await dbContext
                 .Items
+                .Where(i=>i.isActive)
                 .OrderByDescending(i => i.AddedOn)
                 .Select(i => new ItemIndexViewModel
                 {
@@ -94,7 +95,7 @@
             };
 
             IEnumerable<ItemIndexViewModel> searchedItems = await itemsQuery
-                .Where(i=>i.isActive)
+                .Where(i => i.isActive)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
                 .Take(queryModel.ItemsPerPage)
                 .Select(i => new ItemIndexViewModel()
@@ -152,7 +153,7 @@
                 .Items
                 .FindAsync(itemId);
 
-            if(currItem != null)
+            if (currItem != null)
             {
                 currItem.Title = itemModel.Title;
                 currItem.Description = itemModel.Description;
@@ -189,12 +190,12 @@
             Item? item = await dbContext
                 .Items
                 .Include(i => i.Category)
-                .Where(i=>i.Id == itemId && i.isActive == true)
+                .Where(i => i.Id == itemId && i.isActive == true)
                 .FirstOrDefaultAsync();
 
             ItemIndexViewModel? itemModel = new ItemIndexViewModel()
             {
-                Id= item!.Id,
+                Id = item!.Id,
                 Title = item.Title,
                 Description = item.Description,
                 Price = item.Price,
@@ -203,6 +204,18 @@
             };
 
             return itemModel;
+        }
+
+        public async Task SoftDeleteItemAsync(int itemId)
+        {
+            Item item = await dbContext
+                .Items
+                .Where(i => i.isActive && i.Id == itemId)
+                .FirstAsync();
+
+
+            item.isActive = false;
+            await dbContext.SaveChangesAsync();
         }
 
     }

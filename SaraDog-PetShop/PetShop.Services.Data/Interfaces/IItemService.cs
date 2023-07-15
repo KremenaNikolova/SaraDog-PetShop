@@ -19,5 +19,7 @@
 
         Task<ItemIndexViewModel?> GetDetailsByIdAsync(int itemId);
 
+        Task SoftDeleteItemAsync(int itemId);
+
     }
 }
