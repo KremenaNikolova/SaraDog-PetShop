@@ -80,7 +80,7 @@
             }
         }
 
-        public async Task<LandingPageModel> GetLandingPageImageAsync()
+        public LandingPageModel GetLandingPageImageAsync()
         {
             var landingImageModel = new LandingPageModel()
             {

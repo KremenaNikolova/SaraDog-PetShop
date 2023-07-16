@@ -21,9 +21,9 @@
 
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var landingImage = await imageService
+            var landingImage = imageService
                 .GetLandingPageImageAsync();
 
             return View(landingImage);
