@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Aministration Panel";
+}
+
+<div class="container">
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <hr />
+    <br />
+
+    <div class="row">
+        <div class="mb-3">
+            <a class="btn btn-primary" asp-area="" asp-controller="Admin" asp-action="Items">Products</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Admin" asp-action="Categories">Categories</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Admin" asp-action="Users">Users</a>
+
+            <a class="btn btn btn-outline-primary float-end" asp-area="" asp-controller="Item" asp-action="Add">Add New Product</a>
+            <a class="btn btn btn-outline-primary float-end me-2" asp-area="" asp-controller="Category" asp-action="Add">Add New Category</a>
+        </div>
+    </div>
+</div>

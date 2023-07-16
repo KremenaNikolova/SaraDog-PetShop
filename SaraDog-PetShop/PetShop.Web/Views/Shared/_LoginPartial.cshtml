@@ -6,18 +6,16 @@
     @if (SignInManager.IsSignedIn(User))
     {
         @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей @User.Identity?.Name!</a>
-        </li>*@
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="Favourites">Favourites</a>
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей @User.Identity?.Name!</a>
+    </li>*@
+
+        <li class="nav-item me-2">
+            <a class="nav-link btn btn-outline-warning text-black" asp-area="" asp-controller="Admin" asp-action="Index">Admin Panel</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Cart">Cart</a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item me-3">
             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="EditProfile">Profile</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item me-3">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
             </form>
