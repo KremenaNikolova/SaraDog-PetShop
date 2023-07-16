@@ -32,7 +32,10 @@
                     Id = i.Id,
                     Title = i.Title,
                     Image = i.TitleImage,
-                    Price = i.Price
+                    Price = i.Price,
+                    Description = i.Description,
+                    IsActive = i.IsActive,
+                    Category = i.Category.Name
                 })
                 .ToArrayAsync();
 
@@ -56,10 +59,11 @@
 
         }
 
-        public async Task<AllItemsFilteredAndPagedServiceModel> AllItemsQueryAsync(AllItemsQueryModel queryModel)
+        public async Task<AllItemsFilteredAndPagedServiceModel> AllActiveItemsQueryAsync(AllItemsQueryModel queryModel)
         {
             IQueryable<Item> itemsQuery = this.dbContext
                 .Items
+                .Where(i=>i.IsActive)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(queryModel.Category))
@@ -101,8 +105,69 @@
                     Id = i.Id,
                     Title = i.Title,
                     Price = i.Price,
-                    Image = i.TitleImage
+                    Image = i.TitleImage,
+                    Description = i.Description
+                })
+                .ToArrayAsync();
 
+            int totalItems = itemsQuery.Count();
+
+            return new AllItemsFilteredAndPagedServiceModel()
+            {
+                TotalItemsCount = totalItems,
+                Items = searchedItems
+            };
+        }
+
+        public async Task<AllItemsFilteredAndPagedServiceModel> AllIVisibletemsQueryAsync(AllItemsQueryModel queryModel)
+        {
+            IQueryable<Item> itemsQuery = this.dbContext
+                .Items
+                .Where(i => i.IsVisible)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(queryModel.Category))
+            {
+                itemsQuery = itemsQuery
+                    .Where(i => i.Category.Name == queryModel.Category);
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+                itemsQuery = itemsQuery
+                    .Where(i => EF.Functions.Like(i.Title, wildCard) ||
+                                EF.Functions.Like(i.TitleImage, wildCard) ||
+                                EF.Functions.Like(i.Description, wildCard));
+            }
+
+            itemsQuery = queryModel.ItemSorting switch
+            {
+                ItemSorting.Newest => itemsQuery
+                    .OrderByDescending(i => i.AddedOn),
+                ItemSorting.Oldest => itemsQuery
+                    .OrderBy(i => i.AddedOn),
+                ItemSorting.PriceAscending => itemsQuery
+                    .OrderBy(i => i.Price),
+                ItemSorting.PriceDescending => itemsQuery
+                    .OrderByDescending(i => i.Price),
+                _ => itemsQuery
+                    .OrderByDescending(i => i.AddedOn)
+            };
+
+            IEnumerable<ItemIndexViewModel> searchedItems = await itemsQuery
+                .Where(i => i.IsVisible)
+                .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
+                .Take(queryModel.ItemsPerPage)
+                .Select(i => new ItemIndexViewModel()
+                {
+                    Id = i.Id,
+                    Title = i.Title,
+                    Price = i.Price,
+                    Image = i.TitleImage,
+                    Description = i.Description,
+                    IsActive = i.IsActive
                 })
                 .ToArrayAsync();
 
@@ -216,26 +281,6 @@
             item.IsVisible = false;
 
             await dbContext.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<ItemIndexViewModel>> AllItemsAsync()
-        {
-            var allItems = await dbContext
-                .Items
-                .Where(i => i.IsVisible)
-                .Select(i => new ItemIndexViewModel()
-                {
-                    Id = i.Id,
-                    Title = i.Title,
-                    Description = i.Description,
-                    Price = i.Price,
-                    Category = i.Category.Name,
-                    Image = i.TitleImage,
-                    IsActive = i.IsActive
-                })
-                .ToArrayAsync();
-
-            return allItems;
         }
 
     }

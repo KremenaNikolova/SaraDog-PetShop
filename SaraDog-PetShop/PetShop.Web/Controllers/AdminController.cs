@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.ViewModels.ApplicationUser;
+    using PetShop.Web.ViewModels.Item;
     using static PetShop.Common.NotificationMessagesConstants;
 
     public class AdminController : Controller
@@ -41,13 +42,17 @@
             }
         }
 
-        public async Task<IActionResult> Items()
+        public async Task<IActionResult> Items([FromQuery]AllItemsQueryModel queryModel)
         {
             try
             {
-                var allProducts = await itemService.AllItemsAsync();
+                var allProducts = await itemService.AllIVisibletemsQueryAsync(queryModel);
 
-                return View(allProducts);
+                queryModel.Items = allProducts.Items;
+                queryModel.TotalItems = allProducts.TotalItemsCount;
+                queryModel.Categories = await categoryService.AllCategoriesNameAsync();
+
+                return View(queryModel);
             }
             catch (Exception)
             {

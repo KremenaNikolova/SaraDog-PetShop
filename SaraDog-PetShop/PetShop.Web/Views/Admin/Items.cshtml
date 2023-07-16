@@ -1,8 +1,9 @@
-﻿@model IEnumerable<ItemIndexViewModel>
+﻿@model AllItemsQueryModel
 
 @{
     ViewBag.Title = "All Products";
 }
+
 
 <div class="container">
     <h2>@ViewBag.Title</h2>
@@ -24,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in @Model)
+                        @foreach (var item in @Model.Items)
                         {
                             <tr>
                                 <td>@item.Id</td>
@@ -36,8 +37,8 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <button asp-controller="Item" asp-action="Enable" asp-route-id="@item.Id" class="btn btn-sm @((bool)item.IsActive! ? "btn-secondary" : "btn-danger")"
-                                            disabled="@(!item.IsActive)">
+                                    <button asp-controller="Item" asp-action="Enable" asp-route-id="@item.Id"
+                                            class="btn btn-sm @((bool)item.IsActive! ? "btn btn-outline-secondary" : "btn-success")">
                                         @(((bool)item.IsActive! ? "Disable" : "Enable"))
                                     </button>
                                 </td>
@@ -64,3 +65,25 @@
         </div>
     </form>
 </div>
+
+@{
+    int maxPage = (int)Math.Ceiling((double)Model.TotalItems /
+    Model.ItemsPerPage);
+}
+<nav aria-label="Pagination" class="float-end">
+    <ul class="pagination">
+        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = Model.CurrentPage - 1 })" tabindex="-1" aria-disabled="@(Model.CurrentPage == 1 ? "true" : "false")">Previous</a>
+        </li>
+        @for (int i = 1; i <= maxPage; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = i })">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.CurrentPage == maxPage ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = Model.CurrentPage + 1 })">Next</a>
+        </li>
+    </ul>
+</nav>
+

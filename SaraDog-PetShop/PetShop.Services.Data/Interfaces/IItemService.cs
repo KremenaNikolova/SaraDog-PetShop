@@ -9,7 +9,9 @@
 
         Task CreateItemAsync(ItemFormViewModel itemModel);
 
-        Task<AllItemsFilteredAndPagedServiceModel> AllItemsQueryAsync(AllItemsQueryModel queryModel);
+        Task<AllItemsFilteredAndPagedServiceModel> AllActiveItemsQueryAsync(AllItemsQueryModel queryModel);
+
+        Task<AllItemsFilteredAndPagedServiceModel> AllIVisibletemsQueryAsync(AllItemsQueryModel queryModel);
 
         Task<ItemFormViewModel> GetItemByIdAsync(int itemId);
 
@@ -21,7 +23,6 @@
 
         Task SoftDeleteItemAsync(int itemId);
 
-        Task<IEnumerable<ItemIndexViewModel>> AllItemsAsync();
 
     }
 }
