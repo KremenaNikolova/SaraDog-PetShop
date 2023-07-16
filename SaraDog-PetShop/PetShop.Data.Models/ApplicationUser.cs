@@ -6,10 +6,13 @@
     {
         public ApplicationUser()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
+            IsManager = false;
         }
 
         public string? Address { get; set; }
+
+        public bool IsManager { get; set; }
 
     }
 }
