@@ -30,7 +30,7 @@
 
         public int CategoryId { get; set; }
 
-        public virtual ICollection<ItemCategoryViewModel> Categories { get; set; } = new HashSet<ItemCategoryViewModel>();
+        public virtual ICollection<CategoryViewModel> Categories { get; set; } = new HashSet<CategoryViewModel>();
 
     }
 }

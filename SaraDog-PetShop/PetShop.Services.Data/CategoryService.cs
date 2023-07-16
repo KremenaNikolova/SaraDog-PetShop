@@ -17,12 +17,12 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<ICollection<ItemCategoryViewModel>> AllCteagoriesAsync()
+        public async Task<ICollection<CategoryViewModel>> AllCteagoriesAsync()
         {
             var allCategories = await dbContext
                 .Categories
                 .AsNoTracking()
-                .Select(c => new ItemCategoryViewModel()
+                .Select(c => new CategoryViewModel()
                 {
                     Id = c.Id,
                     Name = c.Name

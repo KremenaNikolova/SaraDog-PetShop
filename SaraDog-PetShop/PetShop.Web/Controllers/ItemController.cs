@@ -27,7 +27,7 @@
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery]AllItemsQueryModel queryModel)
         {
-                var allItems = await itemService.AllItemsAsync(queryModel);
+                var allItems = await itemService.AllItemsQueryAsync(queryModel);
 
                 queryModel.Items = allItems.Items;
                 queryModel.TotalItems = allItems.TotalItemsCount;

@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Http;
 
-    public class ItemCategoryViewModel
+    public class CategoryViewModel
     {
         public int Id { get; set; }
 

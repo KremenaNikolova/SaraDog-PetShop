@@ -9,7 +9,7 @@
 
         Task CreateItemAsync(ItemFormViewModel itemModel);
 
-        Task<AllItemsFilteredAndPagedServiceModel> AllItemsAsync(AllItemsQueryModel queryModel);
+        Task<AllItemsFilteredAndPagedServiceModel> AllItemsQueryAsync(AllItemsQueryModel queryModel);
 
         Task<ItemFormViewModel> GetItemByIdAsync(int itemId);
 

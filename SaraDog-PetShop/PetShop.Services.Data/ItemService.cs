@@ -58,7 +58,7 @@
 
         }
 
-        public async Task<AllItemsFilteredAndPagedServiceModel> AllItemsAsync(AllItemsQueryModel queryModel)
+        public async Task<AllItemsFilteredAndPagedServiceModel> AllItemsQueryAsync(AllItemsQueryModel queryModel)
         {
             IQueryable<Item> itemsQuery = this.dbContext
                 .Items
@@ -121,7 +121,7 @@
         {
             var categories = await dbContext
                 .Categories
-                .Select(c => new ItemCategoryViewModel()
+                .Select(c => new CategoryViewModel()
                 {
                     Id = c.Id,
                     Name = c.Name,
