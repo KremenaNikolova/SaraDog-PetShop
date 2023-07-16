@@ -9,7 +9,8 @@
     {
         public Item()
         {
-            isActive = true;
+            IsActive = true;
+            IsVisible = true;
 
             AddedOn = DateTime.Now;
             LastEdit = DateTime.Now;
@@ -40,7 +41,9 @@
 
         public decimal? Rating { get; set; }
 
-        public bool isActive { get; set; }
+        public bool IsActive { get; set; }
+
+        public bool IsVisible { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
