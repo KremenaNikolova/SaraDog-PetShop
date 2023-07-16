@@ -1,6 +1,7 @@
 ﻿namespace PetShop.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using PetShop.Services.Data;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.ViewModels.ApplicationUser;
     using PetShop.Web.ViewModels.Item;
@@ -11,12 +12,15 @@
         private readonly IItemService itemService;
         private readonly IUserService userService;
         private readonly ICategoryService categoryService;
+        private readonly IImageService imageService;
 
-        public AdminController(IItemService itemService, IUserService userService, ICategoryService categoryService)
+        public AdminController(IItemService itemService, IUserService userService, ICategoryService categoryService, IImageService imageService)
         {
             this.itemService = itemService;
             this.userService = userService;
             this.categoryService = categoryService;
+            this.imageService = imageService;
+
         }
 
         public async Task<IActionResult> Index()
@@ -51,6 +55,11 @@
                 queryModel.Items = allProducts.Items;
                 queryModel.TotalItems = allProducts.TotalItemsCount;
                 queryModel.Categories = await categoryService.AllCategoriesNameAsync();
+
+                foreach (var item in allProducts.Items)
+                {
+                    await imageService.DownloadImageAsync(item.Image);
+                }
 
                 return View(queryModel);
             }

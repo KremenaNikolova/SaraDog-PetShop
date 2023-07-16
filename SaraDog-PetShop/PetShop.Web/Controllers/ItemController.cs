@@ -27,13 +27,26 @@
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery]AllItemsQueryModel queryModel)
         {
+            try
+            {
                 var allItems = await itemService.AllActiveItemsQueryAsync(queryModel);
 
                 queryModel.Items = allItems.Items;
                 queryModel.TotalItems = allItems.TotalItemsCount;
                 queryModel.Categories = await categoryService.AllCategoriesNameAsync();
 
+                foreach(var item in allItems.Items)
+                {
+                    await imageService.DownloadImageAsync(item.Image);
+                }
+
                 return View(queryModel);
+            }
+            catch(Exception)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+                
             
         }
 
@@ -168,7 +181,11 @@
             {
                 string userId = this.User.GetId()!;
 
-                IEnumerable<ItemIndexViewModel> favorites = await itemService.GetAllItemsInFavoritesAsync(userId);
+                var favorites = await itemService.GetAllItemsInFavoritesAsync(userId);
+                foreach (var item in favorites)
+                {
+                    await imageService.DownloadImageAsync(item.Image);
+                }
 
                 return View(favorites);
             }
@@ -184,7 +201,9 @@
         {
             try
             {
-                ItemIndexViewModel itemModel = await itemService.GetDetailsByIdAsync(id);
+                var itemModel = await itemService.GetDetailsByIdAsync(id);
+                await imageService.DownloadImageAsync(itemModel.Image);
+
                 return View(itemModel);
             }
             catch (Exception)

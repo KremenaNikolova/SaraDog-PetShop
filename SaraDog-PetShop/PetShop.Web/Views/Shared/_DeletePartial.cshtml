@@ -14,7 +14,7 @@
                     <div class="card-body text-center">
                         <h3>@Model.Title</h3>
                     </div>
-                    <img class="card-img-top img-fluid mb-3" style="max-width: 20rem;" src="@Url.Action("GetImage", "Home", new { imageName = Model.Image })">
+                    <img class="card-img-top img-fluid mb-3" style="max-width: 20rem;" src="~/Images/@Model.Image">
                 </div>
             </div>
             <div class="modal-footer">

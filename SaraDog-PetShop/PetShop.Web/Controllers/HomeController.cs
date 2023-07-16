@@ -11,24 +11,28 @@
 
     public class HomeController : Controller
     {
-        private readonly IItemService itemService;
         private readonly IImageService imageService;
 
-        public HomeController(IItemService shopService, IImageService imageService)
+        public HomeController(IImageService imageService)
         {
-            this.itemService = shopService;
             this.imageService = imageService;
 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var landingImage = imageService
                 .GetLandingPageImageAsync();
 
+            await imageService.DownloadImageAsync(landingImage.LandingImage);
+
             return View(landingImage);
         }
 
+        /// <summary>
+        /// This Action is for directly using pictures from Azure Storage for view pages as src="@Url.Action("GetImage", "Home", new { imageName = category.Image })"
+        /// At this moment we are downaloding all pictures and use it localy because no money for proper acount :D
+        /// </summary>
         public async Task<IActionResult> GetImage(string imageName)
         {
             try
