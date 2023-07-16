@@ -10,6 +10,46 @@
     <hr />
 
     <form method="get">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-3">
+                <div class="form-group mb-2">
+                    <label asp-for="Category"></label>
+                    <select asp-for="Category" class="form-control">
+                        <option value="">All</option>
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category">@category</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group mb-2">
+                    <label asp-for="SearchString"></label>
+                    <input asp-for="SearchString" class="form-control" placeholder="...">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group mb-2">
+                    <label asp-for="ItemSorting"></label>
+                    <select asp-for="ItemSorting" class="form-control">
+                        <option value="0">Products (Newest)</option>
+                        <option value="1">Products (Oldest)</option>
+                        <option value="2">Price (Ascending)</option>
+                        <option value="3">Price (Descending)</option>
+                        <option value="4">Id (Ascending)</option>
+                        <option value="5">Id (Descending)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group mb-1">
+                    <label>&nbsp;</label> <!-- Empty label for spacing -->
+                    <input type="submit" value="Search" class="btn btn-primary form-control" />
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped">

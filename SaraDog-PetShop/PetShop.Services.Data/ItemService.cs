@@ -25,7 +25,7 @@
         {
             var allItems = await dbContext
                 .Items
-                .Where(i=>i.IsActive)
+                .Where(i => i.IsActive)
                 .OrderByDescending(i => i.AddedOn)
                 .Select(i => new ItemIndexViewModel
                 {
@@ -63,7 +63,7 @@
         {
             IQueryable<Item> itemsQuery = this.dbContext
                 .Items
-                .Where(i=>i.IsActive)
+                .Where(i => i.IsActive)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(queryModel.Category))
@@ -152,6 +152,10 @@
                     .OrderBy(i => i.Price),
                 ItemSorting.PriceDescending => itemsQuery
                     .OrderByDescending(i => i.Price),
+                ItemSorting.IdAscending => itemsQuery
+                .OrderBy(i => i.Id),
+                ItemSorting.IdDescending => itemsQuery
+                .OrderByDescending(i => i.Id),
                 _ => itemsQuery
                     .OrderByDescending(i => i.AddedOn)
             };
