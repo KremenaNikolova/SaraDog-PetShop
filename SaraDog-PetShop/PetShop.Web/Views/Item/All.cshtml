@@ -64,8 +64,7 @@
 }
 <div class="row mb-5">
     <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" :
-string.Empty)"
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
            asp-controller="Item"
            asp-action="All"
            asp-route-currentPage="@previousPage"

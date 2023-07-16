@@ -23,7 +23,7 @@
             try
             {
                 var allCategories = await categoryService.AllCteagoriesAsync();
-                var allItems = await itemService.GetAllItemsAsync();
+                var allItems = await itemService.GetAllIActivetemsAsync();
                 var allUsers = await userService.GetAllUsersAsync();
 
                 ManagerGroupFormViewModel groupModel = new ManagerGroupFormViewModel()
@@ -37,10 +37,29 @@
             }
             catch (Exception)
             {
-                TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
-
-                return RedirectToAction("All", "Item");
+                return GeneralErrorMessage();
             }
+        }
+
+        public async Task<IActionResult> Items()
+        {
+            try
+            {
+                var allProducts = await itemService.AllItemsAsync();
+
+                return View(allProducts);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        private IActionResult GeneralErrorMessage()
+        {
+            TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
+
+            return RedirectToAction("Index", "Admin");
         }
     }
 }

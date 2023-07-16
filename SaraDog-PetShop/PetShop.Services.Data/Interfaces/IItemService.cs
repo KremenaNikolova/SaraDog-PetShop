@@ -5,7 +5,7 @@
 
     public interface IItemService
     {
-        Task<IEnumerable<ItemIndexViewModel>> GetAllItemsAsync();
+        Task<IEnumerable<ItemIndexViewModel>> GetAllIActivetemsAsync();
 
         Task CreateItemAsync(ItemFormViewModel itemModel);
 
@@ -20,6 +20,8 @@
         Task<ItemIndexViewModel> GetDetailsByIdAsync(int itemId);
 
         Task SoftDeleteItemAsync(int itemId);
+
+        Task<IEnumerable<ItemIndexViewModel>> AllItemsAsync();
 
     }
 }

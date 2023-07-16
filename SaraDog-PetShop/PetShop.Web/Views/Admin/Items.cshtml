@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ItemIndexViewModel>
+
+@{
+    ViewBag.Title = "All Products";
+}
+
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    <form method="get">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Active</th>
+                            <th>Actions</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Title</td>
+                                <td>$@item.Price</td>
+                                <td>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-@item.Id">
+                                        @item.Image
+                                    </a>
+                                </td>
+                                <td>
+                                    <button asp-controller="Item" asp-action="Enable" asp-route-id="@item.Id" class="btn btn-sm @((bool)item.IsActive! ? "btn-secondary" : "btn-danger")"
+                                            disabled="@(!item.IsActive)">
+                                        @(((bool)item.IsActive! ? "Disable" : "Enable"))
+                                    </button>
+                                </td>
+                                <td>
+                                    <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning ">Edit</a>
+                                </td>
+                                <td>
+                                    <partial name="_DeletePartial" model="@item" />
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="imageModal-@item.Id" tabindex="-1" aria-labelledby="imageModalLabel-@item.Id" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body text-center">
+                                            <img src="@Url.Action("GetImage", "Home", new { imageName = item.Image })" alt="Item Image" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>

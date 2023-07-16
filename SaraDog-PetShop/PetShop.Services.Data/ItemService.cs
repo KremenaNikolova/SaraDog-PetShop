@@ -14,27 +14,25 @@
     public class ItemService : IItemService
     {
         private readonly PetShopDbContext dbContext;
-        private readonly IHostEnvironment environment;
 
-        public ItemService(PetShopDbContext dbContext, IHostEnvironment environment)
+        public ItemService(PetShopDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.environment = environment;
         }
 
 
-        public async Task<IEnumerable<ItemIndexViewModel>> GetAllItemsAsync()
+        public async Task<IEnumerable<ItemIndexViewModel>> GetAllIActivetemsAsync()
         {
             var allItems = await dbContext
                 .Items
-                .Where(i=>i.isActive)
+                .Where(i=>i.IsActive)
                 .OrderByDescending(i => i.AddedOn)
                 .Select(i => new ItemIndexViewModel
                 {
                     Id = i.Id,
                     Title = i.Title,
                     Image = i.TitleImage,
-                    Price = i.Price,
+                    Price = i.Price
                 })
                 .ToArrayAsync();
 
@@ -95,7 +93,7 @@
             };
 
             IEnumerable<ItemIndexViewModel> searchedItems = await itemsQuery
-                .Where(i => i.isActive)
+                .Where(i => i.IsActive)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
                 .Take(queryModel.ItemsPerPage)
                 .Select(i => new ItemIndexViewModel()
@@ -190,7 +188,7 @@
             Item item = await dbContext
                 .Items
                 .Include(i => i.Category)
-                .Where(i => i.Id == itemId && i.isActive == true)
+                .Where(i => i.Id == itemId && i.IsActive == true)
                 .FirstAsync();
 
             ItemIndexViewModel? itemModel = new ItemIndexViewModel()
@@ -210,12 +208,34 @@
         {
             Item item = await dbContext
                 .Items
-                .Where(i => i.isActive && i.Id == itemId)
+                .Where(i => i.IsActive && i.Id == itemId)
                 .FirstAsync();
 
 
-            item.isActive = false;
+            item.IsActive = false;
+            item.IsVisible = false;
+
             await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ItemIndexViewModel>> AllItemsAsync()
+        {
+            var allItems = await dbContext
+                .Items
+                .Where(i => i.IsVisible)
+                .Select(i => new ItemIndexViewModel()
+                {
+                    Id = i.Id,
+                    Title = i.Title,
+                    Description = i.Description,
+                    Price = i.Price,
+                    Category = i.Category.Name,
+                    Image = i.TitleImage,
+                    IsActive = i.IsActive
+                })
+                .ToArrayAsync();
+
+            return allItems;
         }
 
     }
