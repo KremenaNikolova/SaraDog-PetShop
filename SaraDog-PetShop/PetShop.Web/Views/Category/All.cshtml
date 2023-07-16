@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CategoryViewModel>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            <div class="col-md-3 mb-2">
+                <a href="#" class="card-link">
+                    <div class="card position-relative">
+                        <img src="@Url.Action("GetImage", "Home", new { imageName = category.Image })" alt="Item Image" class="card-img border border-info">
+                        <div class="card-img-overlay card-img-position d-flex align-items-center justify-content-center">
+                            <h2 class="card-title text-white text-center">@category.Name</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+
+

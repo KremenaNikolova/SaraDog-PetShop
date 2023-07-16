@@ -23,3 +23,19 @@ header {
     background-color: #00ABE4;
     /*background-color: #B2B5E0;*/
 }
+
+.card-img-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-position {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 10rem;
+    top: 50%;
+    transform: translateY(-50%);
+}

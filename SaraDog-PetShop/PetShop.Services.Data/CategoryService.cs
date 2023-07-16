@@ -25,7 +25,8 @@
                 .Select(c => new CategoryViewModel()
                 {
                     Id = c.Id,
-                    Name = c.Name
+                    Name = c.Name,
+                    Image = c.Image
                 })
                 .ToListAsync();
 
