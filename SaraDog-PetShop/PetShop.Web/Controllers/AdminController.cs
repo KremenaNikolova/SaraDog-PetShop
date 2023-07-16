@@ -60,6 +60,24 @@
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult>Enable(int id)
+        {
+            try
+            {
+                await itemService.TurnActivityAsync(id);
+                ItemFormViewModel currItem = await itemService.GetItemByIdAsync(id);
+
+                TempData[SuccessMessage] = currItem.IsActive ? "You Deactivated the product successfully." : "You Actived the product successfully.";
+
+                return RedirectToAction("Items", "Admin");
+            }
+            catch(Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
         private IActionResult GeneralErrorMessage()
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";

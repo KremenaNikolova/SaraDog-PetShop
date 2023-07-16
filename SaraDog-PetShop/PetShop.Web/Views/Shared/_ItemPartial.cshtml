@@ -8,10 +8,6 @@
             <p class="mb-3 h5">Price: $@Model.Price</p>
             <a asp-controller="Item" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
-            @if (this.User.Identity?.IsAuthenticated ?? false)
-            {
-                <partial name="_DeletePartial" model="@Model" />
-            }
         </div>
     </div>
 </div>

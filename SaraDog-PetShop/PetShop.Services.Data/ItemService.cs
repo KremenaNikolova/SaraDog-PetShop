@@ -207,7 +207,8 @@
                     Price = i.Price,
                     UploadPicture = i.TitleImage,
                     CategoryId = i.CategoryId,
-                    Categories = categories
+                    Categories = categories,
+                    IsActive = i.IsActive
                 })
                 .FirstAsync();
 
@@ -260,9 +261,9 @@
                 .Where(i => i.Id == itemId && i.IsActive == true)
                 .FirstAsync();
 
-            ItemIndexViewModel? itemModel = new ItemIndexViewModel()
+            ItemIndexViewModel itemModel = new ItemIndexViewModel()
             {
-                Id = item!.Id,
+                Id = item.Id,
                 Title = item.Title,
                 Description = item.Description,
                 Price = item.Price,
@@ -283,6 +284,18 @@
 
             item.IsActive = false;
             item.IsVisible = false;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task TurnActivityAsync(int itemId)
+        {
+            Item currItem = await dbContext
+                .Items
+                .Where(i=> i.Id == itemId)
+                .FirstAsync();
+
+            currItem.IsActive = !currItem.IsActive;
 
             await dbContext.SaveChangesAsync();
         }

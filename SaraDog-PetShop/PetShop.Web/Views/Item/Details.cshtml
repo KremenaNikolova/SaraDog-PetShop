@@ -20,14 +20,6 @@
             </p>
             <p>@Model.Description</p>
             <p>Category: <b>@Model.Category</b></p>
-            <div class="form-inline">
-                @if (this.User.Identity?.IsAuthenticated ?? false)
-                {
-                    <a class="btn btn-warning" asp-controller="Item" asp-action="Edit"
-                       asp-route-id="@Model.Id">Edit</a>
-                    <partial name="_DeletePartial" />
-                }
-            </div>
         </div>
     </div>
 </div>

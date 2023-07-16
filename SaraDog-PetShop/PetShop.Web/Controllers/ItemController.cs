@@ -158,7 +158,7 @@
             }
 
             TempData[SuccessMessage] = "You edited the product successfully.";
-            return RedirectToAction("All", "Item");
+            return RedirectToAction("Items", "Admin");
         }
 
         [HttpGet]
@@ -195,13 +195,13 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id, ItemIndexViewModel itemModel)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
                 await itemService.SoftDeleteItemAsync(id);
                 TempData[SuccessMessage] = "You deleted the product successfully.";
-                return RedirectToAction("All", "Item");
+                return RedirectToAction("Items", "Admin");
             }
             catch (Exception)
             {
@@ -213,7 +213,7 @@
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
-            return this.RedirectToAction("All", "Home");
+            return this.RedirectToAction("All", "Item");
         }
 
     }

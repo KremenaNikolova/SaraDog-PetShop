@@ -14,13 +14,12 @@
                     <div class="card-body text-center">
                         <h3>@Model.Title</h3>
                     </div>
-                    <img class="card-img-top img-fluid mb-3" style="max-width: 20rem;"
-                    src="@Url.Action("GetImage", "Home", new { imageName = Model.Image })">
+                    <img class="card-img-top img-fluid mb-3" style="max-width: 20rem;" src="@Url.Action("GetImage", "Home", new { imageName = Model.Image })">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                <form asp-controller="Item" asp-action="Delete" asp-route-id="@Model.Id" method="post">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>

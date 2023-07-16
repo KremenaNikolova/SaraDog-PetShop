@@ -28,6 +28,8 @@
 
         public IFormFile? ImageFile { get; set; }
 
+        public bool IsActive { get; set; }
+
         public int CategoryId { get; set; }
 
         public virtual ICollection<CategoryViewModel> Categories { get; set; } = new HashSet<CategoryViewModel>();
