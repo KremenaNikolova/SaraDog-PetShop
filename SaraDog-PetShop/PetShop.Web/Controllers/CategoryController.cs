@@ -36,5 +36,30 @@
             }
         }
 
+        public async Task<IActionResult> CategoryItems(int id)
+        {
+            try
+            {
+                var items = await categoryService.AllItemsByChooseCateryAsync(id);
+
+                foreach (var item in items)
+                {
+                    await imageService.DownloadImageAsync(item.Image);
+                }
+
+                return View(items);
+            }
+            catch (Exception)
+            {
+                return GenerealCategoryError();
+            }
+        }
+
+        private IActionResult GenerealCategoryError()
+        {
+            TempData[ErrorMessage] = "Something get wrong! Please try again later";
+            return RedirectToAction("All", "Category");
+        }
+
     }
 }

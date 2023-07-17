@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ItemIndexViewModel>
+
+@{
+    ViewBag.Title = "Items";
+}
+
+<form method="get">
+    @if (!Model.Any())
+    {
+        <h2 class="text-center">No products in this category yet!</h2>
+    }
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <partial name="_ItemPartial" model="@item" />
+        }
+    </div>
+</form>

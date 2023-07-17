@@ -9,7 +9,7 @@
         @foreach (var category in Model)
         {
             <div class="col-md-3 mb-2">
-                <a asp-controller="Category" asp-action="Items" class="card-link">
+                <a asp-controller="Category" asp-action="CategoryItems" asp-route-id="@category.Id" class="card-link">
                     <div class="card position-relative">
                         <img src="~/Images/@category.Image" alt="Item Image" class="card-img border border-info">
                         <div class="card-img-overlay card-img-position d-flex align-items-center justify-content-center">

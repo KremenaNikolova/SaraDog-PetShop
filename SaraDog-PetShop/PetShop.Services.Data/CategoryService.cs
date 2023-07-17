@@ -5,6 +5,7 @@
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Data;
     using PetShop.Web.ViewModels.Category;
+    using PetShop.Web.ViewModels.Item;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -50,6 +51,26 @@
                 .ToArrayAsync();
 
             return allNames;
+        }
+
+        public async Task<IEnumerable<ItemIndexViewModel>> AllItemsByChooseCateryAsync(int categoryId)
+        {
+            var allItems = await dbContext
+                .Items
+                .Where(i => i.CategoryId == categoryId && i.IsActive)
+                .Select(i=> new ItemIndexViewModel()
+                {
+                    Id= i.Id,
+                    Title = i.Title,
+                    Image = i.TitleImage,
+                    Description = i.Description,
+                    Price = i.Price,
+                    IsActive = i.IsActive,
+                    Category = i.Category.Name
+                })
+                .ToArrayAsync();
+
+            return allItems;
         }
     }
 }
