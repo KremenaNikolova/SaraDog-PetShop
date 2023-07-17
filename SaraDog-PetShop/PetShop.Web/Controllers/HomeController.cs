@@ -30,7 +30,7 @@
         }
 
         /// <summary>
-        /// This Action is for directly using pictures from Azure Storage for view pages as src="@Url.Action("GetImage", "Home", new { imageName = category.Image })"
+        /// This Action is for directly using pictures from Azure Storage for view pages as src="@Url.Action("GetImage", "Home", new { imageName = Model.Image })"
         /// At this moment we are downaloding all pictures and use it localy because no money for proper acount :D
         /// </summary>
         public async Task<IActionResult> GetImage(string imageName)
