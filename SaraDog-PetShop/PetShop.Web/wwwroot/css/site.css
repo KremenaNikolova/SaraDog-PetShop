@@ -38,3 +38,13 @@ header {
     /*top: 30%;
     transform: translateY(-50%);*/
 }
+
+.heart-icon {
+    width: 2rem;
+    height: 2rem;
+    transition: color 0.3s ease;
+}
+
+    .heart-icon:hover {
+        color: blue;
+    }

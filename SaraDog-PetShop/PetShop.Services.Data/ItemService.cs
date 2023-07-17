@@ -253,6 +253,31 @@
             return favorites;
         }
 
+        public async Task AddToFavourites(string userId, int itemId)
+        {
+            Item item = await dbContext
+                .Items
+                .FirstAsync(i => i.Id == itemId);
+
+            bool isAlredyAdded = item
+                .UserItems
+                .Any(ui => ui.UserId.ToString() == userId);
+
+            Guid guidId;
+            bool isValidGuid = Guid.TryParse(userId, out guidId);
+
+            if(!isAlredyAdded && isValidGuid)
+            {
+                item.UserItems.Add(new ApplicationUserItem()
+                {
+                    UserId = guidId,
+                    ItemId = itemId
+                });
+
+                await dbContext.SaveChangesAsync();
+            }
+        }
+
         public async Task<ItemIndexViewModel> GetDetailsByIdAsync(int itemId)
         {
             Item item = await dbContext

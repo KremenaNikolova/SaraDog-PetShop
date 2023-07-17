@@ -10,7 +10,7 @@ else if (TempData.ContainsKey(WarningMessage))
 }
 else if (TempData.ContainsKey(InformationMessage))
 {
-    <script>toastr.error('@TempData[InformationMessage]')</script>
+    <script>toastr.info('@TempData[InformationMessage]')</script>
 }
 else if (TempData.ContainsKey(SuccessMessage))
 {

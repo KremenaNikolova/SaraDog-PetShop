@@ -175,28 +175,6 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Favourites()
-        {
-            try
-            {
-                string userId = this.User.GetId()!;
-
-                var favorites = await itemService.GetAllItemsInFavoritesAsync(userId);
-                foreach (var item in favorites)
-                {
-                    await imageService.DownloadImageAsync(item.Image);
-                }
-
-                return View(favorites);
-            }
-            catch (Exception)
-            {
-                return GeneralErrorMessage();
-            }
-            
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -228,11 +206,52 @@
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Favourites()
+        {
+            try
+            {
+                string userId = this.User.GetId()!;
+
+                var favorites = await itemService.GetAllItemsInFavoritesAsync(userId);
+                foreach (var item in favorites)
+                {
+                    await imageService.DownloadImageAsync(item.Image);
+                }
+
+                return View(favorites);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToFavourites(int id)
+        {
+            try
+            {
+                var userId = User.GetId();
+
+                await itemService.AddToFavourites(userId!, id);
+                TempData[SuccessMessage] = "Successfully added the Product to Favourites"!;
+
+                return RedirectToAction("All", "Item");
+            }
+            catch(Exception)
+            {
+                TempData[WarningMessage] = "The Product is already added or An unexpected error occurred!";
+                return RedirectToAction("All", "Item");
+            }
+        }
+
         private IActionResult GeneralErrorMessage()
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
-            return this.RedirectToAction("All", "Item");
+            return RedirectToAction("All", "Item");
         }
 
     }
