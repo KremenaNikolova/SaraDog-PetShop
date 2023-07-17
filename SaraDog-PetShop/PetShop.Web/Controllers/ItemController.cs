@@ -229,21 +229,20 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToFavourites(int id)
+        public async Task<IActionResult> Favourites(int id)
         {
             try
             {
                 var userId = User.GetId();
 
-                await itemService.AddToFavourites(userId!, id);
-                TempData[SuccessMessage] = "Successfully added the Product to Favourites"!;
+                await itemService.AddToFavouritesAsync(userId!, id);
+                TempData[InformationMessage] = "Successfully updated your Favourites list!";
 
                 return RedirectToAction("All", "Item");
             }
             catch(Exception)
             {
-                TempData[WarningMessage] = "The Product is already added or An unexpected error occurred!";
-                return RedirectToAction("All", "Item");
+                return GeneralErrorMessage();
             }
         }
 

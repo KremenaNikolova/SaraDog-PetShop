@@ -19,7 +19,9 @@
 
         Task<IEnumerable<ItemIndexViewModel>> GetAllItemsInFavoritesAsync(string userId);
 
-        Task AddToFavourites(string userId, int itemId);
+        Task AddToFavouritesAsync(string userId, int itemId);
+
+        bool IsAlreadyAddedAsync(string userId, int itemId);
 
         Task<ItemIndexViewModel> GetDetailsByIdAsync(int itemId);
 

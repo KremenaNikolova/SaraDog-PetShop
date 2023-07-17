@@ -253,11 +253,16 @@
             return favorites;
         }
 
-        public async Task AddToFavourites(string userId, int itemId)
+        public async Task AddToFavouritesAsync(string userId, int itemId)
         {
             Item item = await dbContext
                 .Items
                 .FirstAsync(i => i.Id == itemId);
+
+            ApplicationUserItem? userItem = await dbContext
+                   .UserItems
+                   .Where(ui => ui.UserId.ToString() == userId && ui.ItemId == itemId)
+                   .FirstOrDefaultAsync();
 
             bool isAlredyAdded = item
                 .UserItems
@@ -276,6 +281,22 @@
 
                 await dbContext.SaveChangesAsync();
             }
+            else if (isAlredyAdded && isValidGuid && userItem!=null)
+            {
+
+                dbContext.UserItems.Remove(userItem);
+                await dbContext.SaveChangesAsync();
+            }
+
+        }
+
+        public bool IsAlreadyAddedAsync(string userId, int itemId)
+        {
+            bool isAlredyAdded = dbContext
+               .UserItems
+               .Any(ui => ui.UserId.ToString() == userId && ui.ItemId==itemId);
+
+            return isAlredyAdded;
         }
 
         public async Task<ItemIndexViewModel> GetDetailsByIdAsync(int itemId)
