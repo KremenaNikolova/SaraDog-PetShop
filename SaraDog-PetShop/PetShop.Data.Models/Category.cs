@@ -18,12 +18,11 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        public virtual ICollection<Item> Items { get; set; } 
-
         [Required]
         [MaxLength(ImageMaxLength)]
         public string Image { get; set; } = null!;
 
+        public virtual ICollection<Item> Items { get; set; } 
 
     }
 }

@@ -7,11 +7,11 @@ namespace PetShop.Data.Models
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
 
-        public ApplicationUser User { get; set; } = null!;
+        public virtual ApplicationUser User { get; set; } = null!;
 
         [ForeignKey(nameof(Item))]
         public int ItemId { get; set; }
 
-        public Item Item { get; set; } = null!;
+        public virtual Item Item { get; set; } = null!;
     }
 }
