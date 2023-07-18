@@ -16,5 +16,7 @@
 
         [Required]
         public Cart Cart { get; set; } = null!;
+
+        public int Quantity { get; set; }
     }
 }

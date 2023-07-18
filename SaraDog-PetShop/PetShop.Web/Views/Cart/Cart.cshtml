@@ -1,0 +1,48 @@
+﻿@model CartFormViewModel
+
+@{
+    ViewBag.Title = "Products in Cart";
+}
+
+<h1 class="text-center">@ViewBag.Title</h1>
+<hr/>
+
+@if(Model==null || !Model.Items.Any())
+{
+    <h2 class="text-center">There are no products in the cart yet!</h2>
+    <dev class="text-center">
+        <img src="~/Images/EmtyCart.png" class="w-50 rounded mx-auto d-block" />
+    </dev>
+    
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TotalPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <dev>
+        <p class="h4">Total: $@Model.TotalPrice</p>
+    </dev>
+   
+}
