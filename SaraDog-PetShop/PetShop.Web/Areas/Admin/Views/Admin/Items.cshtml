@@ -1,0 +1,146 @@
+﻿@model AllItemsQueryModel
+
+@{
+    ViewBag.Title = "All Products";
+}
+
+
+
+<partial name="_AdministrationPartial" />
+
+
+<form method="get">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-3">
+            <div class="form-group mb-2">
+                <label asp-for="Category"></label>
+                <select asp-for="Category" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group mb-2">
+                <label asp-for="SearchString"></label>
+                <input asp-for="SearchString" class="form-control" placeholder="...">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group mb-2">
+                <label asp-for="ItemSorting"></label>
+                <select asp-for="ItemSorting" class="form-control">
+                    <option value="0">Products (Newest)</option>
+                    <option value="1">Products (Oldest)</option>
+                    <option value="2">Price (Ascending)</option>
+                    <option value="3">Price (Descending)</option>
+                    <option value="4">Id (Ascending)</option>
+                    <option value="5">Id (Descending)</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group mb-1">
+                <label>&nbsp;</label> <!-- Empty label for spacing -->
+                <input type="submit" value="Search" class="btn btn-primary form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<hr />
+<div class="d-flex justify-content-center">
+    <h4>@ViewBag.Title</h4>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Items)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+                        <td>$@item.Price</td>
+                        <td>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-@item.Id">
+                                @item.Image
+                            </a>
+                        </td>
+                        <form method="post">
+                        <td>
+                            <button asp-controller="Admin" asp-action="Enable" asp-route-id="@item.Id" type="submit"
+                                    class="btn btn-sm @((bool)item.IsActive! ? "btn btn-outline-secondary" : "btn-success")">
+                                    @(((bool)item.IsActive! ? "Disable" : "Enable"))
+                            </button>
+                        </td>
+                        </form>
+                        <td>
+                            <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning ">Edit</a>
+                        </td>
+                        <td>
+                            <partial name="_DeletePartial" model="@item"/>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+ @foreach (var item in @Model.Items)
+{
+    <div class="modal fade" id="imageModal-@item.Id" tabindex="-1" aria-labelledby="imageModalLabel-@item.Id" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="~/Images/@item.Image" alt="Item Image" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="mb-5">
+    @{
+        int maxPage = (int)Math.Ceiling((double)Model.TotalItems /
+        Model.ItemsPerPage);
+    }
+
+    <nav aria-label="Pagination" class="float-end">
+        <ul class="pagination">
+            <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = Model.CurrentPage - 1 })" tabindex="-1" aria-disabled="@(Model.CurrentPage == 1 ? "true" : "false")">Previous</a>
+            </li>
+            @for (int i = 1; i <= maxPage; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = i })">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.CurrentPage == maxPage ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = Model.CurrentPage + 1 })">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+

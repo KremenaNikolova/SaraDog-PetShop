@@ -339,7 +339,7 @@ namespace PetShop.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsVisible")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("LastEdit")
@@ -373,12 +373,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1783),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4253),
                             CategoryId = 1,
                             Description = "Yellow hoodie with minion motifs, size M, suitable for colder winter days.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1818),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4288),
                             Price = 25.50m,
                             Title = "Hoodie - Minions",
                             TitleImage = "MinionDress.jpg"
@@ -386,12 +386,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 2,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1828),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4301),
                             CategoryId = 1,
                             Description = "Green hoodie with bear motifs and eyelets on the hood, size M, suitable for colder winter days.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1830),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4302),
                             Price = 35.90m,
                             Title = "Hoodie - Green bear",
                             TitleImage = "GreenHoodie2.jpg"
@@ -399,12 +399,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 3,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1832),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4305),
                             CategoryId = 1,
                             Description = "Thick blue blouse with bears and rose leaf motifs, size M.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1833),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4307),
                             Price = 20.30m,
                             Title = "Top - Blue autumn",
                             TitleImage = "BlueDress3.jpg"
@@ -412,12 +412,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 4,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1836),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4310),
                             CategoryId = 1,
                             Description = "Purple clean hoodie with pocket, size M.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1837),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4311),
                             Price = 19.90m,
                             Title = "Hoodie - Lilac",
                             TitleImage = "PurpleHoodie.jpg"
@@ -425,12 +425,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 5,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1842),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4315),
                             CategoryId = 1,
                             Description = "A thick pink blouse that looks like a cute pajama, size M, perfect for colder winter days.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1843),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4316),
                             Price = 20.30m,
                             Title = "Top - Pink pajamas",
                             TitleImage = "PinkDress2.jpg"
@@ -438,12 +438,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 6,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1845),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4319),
                             CategoryId = 3,
                             Description = "Plush ice cream, with a push button and a rope on the top.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1846),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4320),
                             Price = 10.10m,
                             Title = "Ice cream",
                             TitleImage = "IceCream.jpg"
@@ -451,12 +451,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 7,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1850),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4322),
                             CategoryId = 3,
                             Description = "A large flat octopus that can turn and change color.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1851),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4323),
                             Price = 8.80m,
                             Title = "Octopus",
                             TitleImage = "Octopus2.jpg"
@@ -464,12 +464,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 8,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1853),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4325),
                             CategoryId = 3,
                             Description = "A yellow plush slipper with blue stripes and a snap button so your dog can have his own look and leave yours alone.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1854),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4327),
                             Price = 9.50m,
                             Title = "Sleeper",
                             TitleImage = "Sleeper.jpg"
@@ -477,12 +477,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 9,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1859),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4331),
                             CategoryId = 6,
                             Description = "Sanitary napkins with patches.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1860),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4332),
                             Price = 16.90m,
                             Title = "Toilet Pads",
                             TitleImage = "HygienicPad.jpg"
@@ -490,12 +490,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 10,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1862),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4334),
                             CategoryId = 7,
                             Description = "Double-sided comb for combing your pet with thicker fur.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1863),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4336),
                             Price = 14.50m,
                             Title = "Comb for Long Fur",
                             TitleImage = "LongGroomingSide.jpg"
@@ -503,12 +503,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 11,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1866),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4338),
                             CategoryId = 7,
                             Description = "A comb specially designed for pets with short fur. Ideal for the shedding period.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1867),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4339),
                             Price = 34.15m,
                             Title = "Comb for Short Fur",
                             TitleImage = "ShortGrooming.jpg"
@@ -516,12 +516,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 12,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1870),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4342),
                             CategoryId = 5,
                             Description = "Comfortable mattress, in a large size, easy to move. Extremely practical when traveling with your pet, as it does not take up much space. There is a zipper that can be used to remove the extra fabric from the inside and change it or wash it.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1871),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4343),
                             Price = 55.00m,
                             Title = "SleepingPad - WonderWoman",
                             TitleImage = "SleepingPad.jpg"
@@ -529,12 +529,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 13,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1873),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4345),
                             CategoryId = 4,
                             Description = "Soft and comfortable bag with handles for carrying your pet, with a zipper for easier placement of the animal in it. Suitable for smaller breeds up to 4kg.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1874),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4346),
                             Price = 32.90m,
                             Title = "Bag - England Land",
                             TitleImage = "TravelingBag2.jpg"
@@ -542,12 +542,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 14,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1876),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4348),
                             CategoryId = 4,
                             Description = "Pink plastic cage, suitable for pets up to 6 kg.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1877),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4349),
                             Price = 20.90m,
                             Title = "Cage - Pink sweetness",
                             TitleImage = "TravelingCageTop.jpg"
@@ -555,12 +555,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 15,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1879),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4351),
                             CategoryId = 8,
                             Description = "Ceramic water bowl 300ml",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1881),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4353),
                             Price = 8.50m,
                             Title = "Water Bowl",
                             TitleImage = "WaterBowl.jpg"
@@ -568,12 +568,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 16,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1883),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4355),
                             CategoryId = 8,
                             Description = "Ceramic food bowl 250ml",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1884),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4356),
                             Price = 7.50m,
                             Title = "Food Bowl",
                             TitleImage = "FoodBowlTop.jpg"
@@ -581,12 +581,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 17,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1886),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4358),
                             CategoryId = 2,
                             Description = "Adjustable chest for small breeds up to 4kg, suitable for warmer summer days.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1887),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4359),
                             Price = 19.90m,
                             Title = "Breastplate - Casual Lines",
                             TitleImage = "MeagerBreastplate2.jpg"
@@ -594,12 +594,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 18,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1890),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4361),
                             CategoryId = 2,
                             Description = "Thick, padded pink bib for small breeds up to 3kg, suitable for colder and cooler days.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1891),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4362),
                             Price = 14.30m,
                             Title = "Breastplate - Pink madness",
                             TitleImage = "BreastplateTop2.jpg"
@@ -607,12 +607,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 19,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1894),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4366),
                             CategoryId = 2,
                             Description = "Brown leather collar with attached bell designed for smaller breeds.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1896),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4367),
                             Price = 5.90m,
                             Title = "Collar - Bell Kitty",
                             TitleImage = "Collar2.jpg"
@@ -620,12 +620,12 @@ namespace PetShop.Data.Migrations
                         new
                         {
                             Id = 20,
-                            AddedOn = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1898),
+                            AddedOn = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4369),
                             CategoryId = 3,
                             Description = "Knitted ball with ropes on both sides.",
                             IsActive = true,
-                            IsVisible = true,
-                            LastEdit = new DateTime(2023, 7, 16, 13, 2, 55, 640, DateTimeKind.Local).AddTicks(1899),
+                            IsDeleted = false,
+                            LastEdit = new DateTime(2023, 7, 18, 11, 10, 26, 965, DateTimeKind.Local).AddTicks(4370),
                             Price = 12.00m,
                             Title = "Ball - Rope",
                             TitleImage = "BallSara2.jpg"

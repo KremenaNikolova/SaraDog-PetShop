@@ -123,7 +123,7 @@
         {
             IQueryable<Item> itemsQuery = this.dbContext
                 .Items
-                .Where(i => i.IsVisible)
+                .Where(i => !i.IsDeleted)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(queryModel.Category))
@@ -161,7 +161,7 @@
             };
 
             IEnumerable<ItemIndexViewModel> searchedItems = await itemsQuery
-                .Where(i => i.IsVisible)
+                .Where(i => !i.IsDeleted)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
                 .Take(queryModel.ItemsPerPage)
                 .Select(i => new ItemIndexViewModel()
@@ -324,12 +324,12 @@
         {
             Item item = await dbContext
                 .Items
-                .Where(i => i.IsActive && i.Id == itemId)
+                .Where(i => !i.IsDeleted && i.Id == itemId)
                 .FirstAsync();
 
 
             item.IsActive = false;
-            item.IsVisible = false;
+            item.IsDeleted = true;
 
             await dbContext.SaveChangesAsync();
         }

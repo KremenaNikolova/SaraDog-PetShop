@@ -1,0 +1,38 @@
+﻿@model ManagerGroupFormViewModel
+
+<form method="get">
+    <partial name="_AdministrationPartial" />
+
+        <div class="row">
+            <div class="col-md-12">
+            <hr />
+
+            <div class="d-flex justify-content-center">
+                <h4>All Users</h4>
+            </div>
+
+            <hr />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Is Manager</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <td>@user.UserName</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    <input type="checkbox" @(user.IsManager ? "checked" : "") />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</form>

@@ -10,7 +10,7 @@
         public Item()
         {
             IsActive = true;
-            IsVisible = true;
+            IsDeleted = false;
 
             AddedOn = DateTime.Now;
             LastEdit = DateTime.Now;
@@ -43,7 +43,7 @@
 
         public bool IsActive { get; set; }
 
-        public bool IsVisible { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }

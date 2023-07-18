@@ -60,7 +60,18 @@ namespace PetShop.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapDefaultControllerRoute();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "Admin",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
+                endpoints.MapDefaultControllerRoute();
+
+            });
+
+            
             app.MapRazorPages();
 
             app.Run();
