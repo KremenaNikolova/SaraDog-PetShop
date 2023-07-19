@@ -7,9 +7,10 @@
     {
         public Cart()
         {
-            CartItems = new HashSet<CartItem>();
-
+            Id = Guid.NewGuid();
             CreatedOn = DateTime.UtcNow;
+
+            CartItems = new HashSet<CartItem>();
         }
 
         [Key]
