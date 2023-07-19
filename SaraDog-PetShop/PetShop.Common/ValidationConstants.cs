@@ -37,5 +37,27 @@
             public const string QuantityMaxValue = "100";
         }
 
+        public static class OrderValidations
+        {
+            public const int FirstNameMinLength = 2;
+            public const int FirstNameMaxLength = 50;
+
+            public const int LastNameMinLength = 2;
+            public const int LastNameMaxLength = 50;
+
+            public const int CountryMinLength = 4;
+            public const int CountryMaxLength = 56;
+
+            public const int CityMinLenght = 2;
+            public const int CityMaxLenght = 49;
+
+            public const int AddressMinLength = 4;
+            public const int AddressMaxLength = 150;
+
+            public const int PostCodeMinLength = 4;
+            public const int PostCodeMaxLength = 12;
+
+        }
+
     }
 }

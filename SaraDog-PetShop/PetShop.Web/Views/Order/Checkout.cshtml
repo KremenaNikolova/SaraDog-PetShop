@@ -1,0 +1,57 @@
+﻿@model OrderFormViewModel
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+@if (Model == null)
+{
+    <h3>ToDo</h3>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form asp-action="Add" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label asp-for="@Model.FirstName" class="form-label">First Name</label>
+                    <input asp-for="@Model.FirstName" class="form-control" aria-required="true" />
+                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.LastName" class="form-label">Last Name</label>
+                    <textarea asp-for="@Model.LastName" class="form-control" aria-required="true"></textarea>
+                    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Country" class="form-label">Country</label>
+                    <textarea asp-for="@Model.Country" class="form-control" aria-required="true"></textarea>
+                    <span asp-validation-for="@Model.Country" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.City" class="form-label">City</label>
+                    <textarea asp-for="@Model.City" class="form-control" aria-required="true"></textarea>
+                    <span asp-validation-for="@Model.City" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Address" class="form-label">Address</label>
+                    <textarea asp-for="@Model.Address" class="form-control" aria-required="true"></textarea>
+                    <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.PostCode" class="form-label">Postal Code</label>
+                    <textarea asp-for="@Model.PostCode" class="form-control" aria-required="true"></textarea>
+                    <span asp-validation-for="@Model.PostCode" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.TotalPrice" class="form-label">Total Price</label>
+                    <textarea asp-for="@Model.TotalPrice" class="form-control" aria-required="true"></textarea>
+                    <span asp-validation-for="@Model.TotalPrice" class="text-danger"></span>
+                </div>
+                <div class="mb-3 align-content-center">
+                    <input class="btn btn-primary" type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+}

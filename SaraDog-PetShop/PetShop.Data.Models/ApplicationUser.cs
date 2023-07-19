@@ -8,11 +8,15 @@
         {
             Id = Guid.NewGuid();
             IsManager = false;
+
+            Orders = new HashSet<Order>();
         }
 
         public string? Address { get; set; }
 
         public bool IsManager { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
 
     }
 }

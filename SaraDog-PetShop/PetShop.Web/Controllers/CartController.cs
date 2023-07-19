@@ -4,18 +4,16 @@
 
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.Extensions;
-    using System.Security.Policy;
+
     using static PetShop.Common.NotificationMessagesConstants;
 
     public class CartController : Controller
     {
         private readonly ICartService cartService;
-        private readonly IItemService itemService;
 
-        public CartController(ICartService cartService, IItemService itemService)
+        public CartController(ICartService cartService)
         {
             this.cartService = cartService;
-            this.itemService = itemService;
         }
 
         [HttpGet]

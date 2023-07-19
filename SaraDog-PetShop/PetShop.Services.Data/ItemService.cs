@@ -54,7 +54,7 @@
                 CategoryId = itemModel.CategoryId
             };
 
-            await this.dbContext.AddAsync(newItem);
+            await this.dbContext.Items.AddAsync(newItem);
             await this.dbContext.SaveChangesAsync();
 
         }

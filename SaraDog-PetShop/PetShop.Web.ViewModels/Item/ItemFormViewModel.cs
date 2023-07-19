@@ -7,7 +7,7 @@
     using PetShop.Web.ViewModels.Category;
 
     using static PetShop.Common.ValidationConstants.ItemValidationConstants;
-    using static PetShop.Common.ErrorMessages.TitleErrorMessages;
+    using static PetShop.Common.ErrorMessages.ItemErrorMessages;
 
     public class ItemFormViewModel
     {
