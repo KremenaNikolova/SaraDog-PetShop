@@ -47,13 +47,25 @@ else
                     </td>
                     <td>$@item.Price</td>
                     <td class="align-middle">
-                        <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.Id" method="post" class="d-inline-block">
-                            <button type="submit" class="btn btn-sm">
-                                <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
-                            </button>
-                        </form>
+                        @if (item.Quantity <= 1)
+                        {
+                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.Id" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-sm" disabled>
+                                    <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.Id" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-sm">
+                                    <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
+                                </button>
+                            </form>
+                        }
                         <span>@item.Quantity</span>
                         <form asp-controller="Cart" asp-action="Increase" asp-route-id="@item.Id" method="post" class="d-inline-block">
+                            
                             <button type="submit" class="btn btn-sm">
                                 <i class="fas fa-chevron-right fa-lg" style="color: #0771a6;"></i>
                             </button>
