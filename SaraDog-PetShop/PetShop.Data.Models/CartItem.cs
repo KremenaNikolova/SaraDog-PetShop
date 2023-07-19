@@ -5,6 +5,11 @@
 
     public class CartItem
     {
+        public CartItem()
+        {
+            Quantity = 1;
+        }
+
         [ForeignKey(nameof(Item))]
         public int ItemId { get; set; }
 
@@ -18,5 +23,6 @@
         public Cart Cart { get; set; } = null!;
 
         public int Quantity { get; set; }
+
     }
 }

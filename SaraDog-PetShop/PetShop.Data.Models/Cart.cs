@@ -23,9 +23,7 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public decimal TotalPrice { get; set; }
-
-        public virtual IEnumerable<CartItem> CartItems { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
     }
 }

@@ -17,9 +17,6 @@
                 .HasForeignKey(ci => ci.CartId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder
-                .Property(c => c.TotalPrice)
-                .HasPrecision(18, 2);
         }
     }
 }

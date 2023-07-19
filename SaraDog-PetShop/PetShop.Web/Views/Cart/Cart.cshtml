@@ -33,7 +33,7 @@ else
                     <td>@item.Title</td>
                     <td>@item.Price</td>
                     <td>@item.Quantity</td>
-                    <td>@item.TotalPrice</td>
+                    <td>@item.TotalPrice.ToString("f2")</td>
                 </tr>
             }
         </tbody>
@@ -42,7 +42,7 @@ else
     <hr/>
 
     <dev>
-        <p class="h4">Total: $@Model.TotalPrice</p>
+        <p class="h4">Total: $@Model.TotalPrice.ToString("f2")</p>
     </dev>
    
 }
