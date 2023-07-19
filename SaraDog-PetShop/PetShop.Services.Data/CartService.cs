@@ -28,7 +28,9 @@
                     .Select(ci => new CartItemViewModel()
                     {
                         Id = ci.ItemId,
+                        ItemId = ci.ItemId,
                         Title = ci.Item.Title,
+                        Image = ci.Item.TitleImage,
                         Price = ci.Item.Price,
                         Quantity = ci.Quantity,
                         TotalPrice = ci.Quantity * ci.Item.Price

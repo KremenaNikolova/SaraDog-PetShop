@@ -10,10 +10,9 @@
 @if (Model == null || !Model.Items.Any())
 {
     <h2 class="text-center">There are no products in the cart yet!</h2>
-    <dev class="text-center">
+    <div class="text-center">
         <img src="~/Images/EmtyCart.png" class="w-50 rounded mx-auto d-block" />
-    </dev>
-
+    </div>
 }
 else
 {
@@ -23,6 +22,7 @@ else
                 <th>Product</th>
                 <th>Unit Price</th>
                 <th>Quantity</th>
+                <th></th>
                 <th>Total Price</th>
             </tr>
         </thead>
@@ -30,15 +30,33 @@ else
             @foreach (var item in Model.Items)
             {
                 <tr>
-                    <td>@item.Title</td>
+                    <td>
+                        <button type="button" class="btn btn-link btn-product" data-bs-toggle="modal" data-bs-target="#modal-@item.ItemId">@item.Title</button>
+                        <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="modal-@item.Id-label" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <p class="h4" style="color:#077fa6">@item.Title</p>
+                                        <p class="h4" style="color:#077fa6">Price: $@item.Price.ToString("f2")</p>
+                                        <p><img src="~/Images/@item.Image" style="width: 18rem;"/></p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td>$@item.Price</td>
-                    <td>@item.Quantity</td>
-                    <td>$@item.TotalPrice.ToString("f2")</td>
-                    <td><form asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Id" method="post" class="me-2 mb-2">
+                    <td>
+                        <span class="ms-4">@item.Quantity</span>
+                    </td>
+                    <td>
+                        <form asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Id" method="post" class="me-2 mb-2">
                             <button type="submit" class="btn btn-sm ms-2">
-                                <i class="far fa-heart custom-icon" style="color: #ff0000;"></i>
+                                <i class="far fa-times-circle fa-lg" style="color: #700000;"></i>
                             </button>
-                    </form></td>
+                        </form>
+                    </td>
+                    <td>$@item.TotalPrice.ToString("f2")</td>
                 </tr>
             }
         </tbody>
@@ -46,8 +64,7 @@ else
 
     <hr />
 
-    <dev>
+    <div>
         <p class="h4">Total: $@Model.TotalPrice.ToString("f2")</p>
-    </dev>
-
+    </div>
 }
