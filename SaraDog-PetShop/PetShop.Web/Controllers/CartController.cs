@@ -10,10 +10,12 @@
     public class CartController : Controller
     {
         private readonly ICartService cartService;
+        private readonly IItemService itemService;
 
-        public CartController(ICartService cartService)
+        public CartController(ICartService cartService, IItemService itemService)
         {
             this.cartService = cartService;
+            this.itemService = itemService;
         }
 
         [HttpGet]
@@ -59,10 +61,27 @@
             }
             catch (Exception)
             {
-                GeneralErrorMessage();
+                return GeneralErrorMessage();
             }
 
-            return RedirectToAction("Cart", "Cart");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Remove(int id)
+        {
+            try
+            {
+                await cartService.RemoveItemFromCartAsync(id);
+
+                TempData[SuccessMessage] = "You have successfully removed the item from the cart!";
+
+                return RedirectToAction("Cart", "Cart");
+
+            }
+            catch(Exception)
+            {
+                return GeneralErrorMessage();
+            }
         }
 
         private IActionResult GeneralErrorMessage()

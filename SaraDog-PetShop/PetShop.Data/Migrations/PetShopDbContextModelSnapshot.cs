@@ -241,7 +241,7 @@ namespace PetShop.Data.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("UserItems");
+                    b.ToTable("UserItems", (string)null);
                 });
 
             modelBuilder.Entity("PetShop.Data.Models.Cart", b =>
@@ -260,7 +260,7 @@ namespace PetShop.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("PetShop.Data.Models.CartItem", b =>
@@ -278,7 +278,7 @@ namespace PetShop.Data.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("PetShop.Data.Models.Category", b =>
@@ -301,7 +301,7 @@ namespace PetShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -404,7 +404,7 @@ namespace PetShop.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
 
                     b.HasData(
                         new

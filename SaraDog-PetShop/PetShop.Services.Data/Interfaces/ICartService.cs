@@ -9,5 +9,7 @@
         Task CreateCartAsync(string userId);
 
         Task AddItemToCartAsync(int itemId, string cartId, string userId);
+
+        Task RemoveItemFromCartAsync(int cartItemId);
     }
 }

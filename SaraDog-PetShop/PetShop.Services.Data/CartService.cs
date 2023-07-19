@@ -113,5 +113,20 @@
             await dbContext.SaveChangesAsync();
 
         }
+
+        public async Task RemoveItemFromCartAsync(int itemId)
+        {
+            var cartItem = await dbContext
+                .CartItems
+                .Where (ci => ci.ItemId == itemId)
+                .FirstAsync();
+
+            if (cartItem != null)
+            {
+                dbContext.CartItems.Remove(cartItem);
+                await dbContext.SaveChangesAsync();
+            }
+        }
+
     }
 }

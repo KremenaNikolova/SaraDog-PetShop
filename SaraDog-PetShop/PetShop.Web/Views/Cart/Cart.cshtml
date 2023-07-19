@@ -34,6 +34,11 @@ else
                     <td>$@item.Price</td>
                     <td>@item.Quantity</td>
                     <td>$@item.TotalPrice.ToString("f2")</td>
+                    <td><form asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Id" method="post" class="me-2 mb-2">
+                            <button type="submit" class="btn btn-sm ms-2">
+                                <i class="far fa-heart custom-icon" style="color: #ff0000;"></i>
+                            </button>
+                    </form></td>
                 </tr>
             }
         </tbody>
