@@ -11,5 +11,9 @@
         Task AddItemToCartAsync(int itemId, string cartId, string userId);
 
         Task RemoveItemFromCartAsync(int cartItemId);
+
+        Task IncreaseItemCountAsync(int itemId);
+
+        Task DecreaseItemCountAsync(int itemId);
     }
 }

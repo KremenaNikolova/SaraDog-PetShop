@@ -4,7 +4,7 @@
 
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.Extensions;
-
+    using System.Security.Policy;
     using static PetShop.Common.NotificationMessagesConstants;
 
     public class CartController : Controller
@@ -82,6 +82,41 @@
             {
                 return GeneralErrorMessage();
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Increase(int id)
+        {
+            try
+            {
+                await cartService.IncreaseItemCountAsync(id);
+            }
+            catch
+            {
+                TempData[ErrorMessage] = "An unexpected error occurred with cart! Please, try again.";
+
+                return RedirectToAction("Cart", "Cart");
+            }
+
+            return RedirectToAction("Cart", "Cart");
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Decrease(int id)
+        {
+            try
+            {
+                await cartService.DecreaseItemCountAsync(id);
+            }
+            catch
+            {
+                TempData[ErrorMessage] = "An unexpected error occurred with cart! Please, try again.";
+
+                return RedirectToAction("Cart", "Cart");
+            }
+
+            return RedirectToAction("Cart", "Cart");
         }
 
         private IActionResult GeneralErrorMessage()

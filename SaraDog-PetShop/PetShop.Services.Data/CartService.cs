@@ -130,5 +130,30 @@
             }
         }
 
+        public async Task IncreaseItemCountAsync(int itemId)
+        {
+            var cartItem = await dbContext
+                .CartItems
+                .Where(ci => ci.ItemId == itemId)
+                .FirstAsync();
+
+            cartItem.Quantity++;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task DecreaseItemCountAsync(int itemId)
+        {
+            var cartItem = await dbContext
+                .CartItems
+                .Where(ci => ci.ItemId == itemId)
+                .FirstAsync();
+
+            cartItem.Quantity--;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+
     }
 }
