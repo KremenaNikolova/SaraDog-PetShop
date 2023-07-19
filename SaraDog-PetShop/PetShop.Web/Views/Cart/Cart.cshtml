@@ -5,15 +5,15 @@
 }
 
 <h1 class="text-center">@ViewBag.Title</h1>
-<hr/>
+<hr />
 
-@if(Model==null || !Model.Items.Any())
+@if (Model == null || !Model.Items.Any())
 {
     <h2 class="text-center">There are no products in the cart yet!</h2>
     <dev class="text-center">
         <img src="~/Images/EmtyCart.png" class="w-50 rounded mx-auto d-block" />
     </dev>
-    
+
 }
 else
 {
@@ -31,18 +31,18 @@ else
             {
                 <tr>
                     <td>@item.Title</td>
-                    <td>@item.Price</td>
+                    <td>$@item.Price</td>
                     <td>@item.Quantity</td>
-                    <td>@item.TotalPrice.ToString("f2")</td>
+                    <td>$@item.TotalPrice.ToString("f2")</td>
                 </tr>
             }
         </tbody>
     </table>
 
-    <hr/>
+    <hr />
 
     <dev>
         <p class="h4">Total: $@Model.TotalPrice.ToString("f2")</p>
     </dev>
-   
+
 }

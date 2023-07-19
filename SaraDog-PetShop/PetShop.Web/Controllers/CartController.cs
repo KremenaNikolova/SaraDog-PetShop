@@ -53,7 +53,9 @@
 
                 await cartService.AddItemToCartAsync(id, cartId, userId!);
 
-                return RedirectToAction("Cart", "Cart");
+                TempData[SuccessMessage] = "You have successfully added the product to the cart!";
+
+                return RedirectToAction("All", "Item");
             }
             catch (Exception)
             {
