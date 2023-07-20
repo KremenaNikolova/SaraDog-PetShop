@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    
+
     using Microsoft.EntityFrameworkCore;
 
     using PetShop.Data.Models;
@@ -121,10 +121,10 @@
                     .OrderBy(c => c.Name),
                 CategorySorting.NameDescending => categoryQuery
                     .OrderByDescending(c => c.Name),
-                    CategorySorting.IdAscending => categoryQuery
-                    .OrderBy(c => c.Id),
-                    CategorySorting.IdDescending => categoryQuery
-                    .OrderByDescending (c => c.Id),
+                CategorySorting.IdAscending => categoryQuery
+                .OrderBy(c => c.Id),
+                CategorySorting.IdDescending => categoryQuery
+                .OrderByDescending(c => c.Id),
                 _ => categoryQuery
                     .OrderBy(c => c.Id)
             };
@@ -165,13 +165,13 @@
             return category;
         }
 
-        public async Task EditProductAsync(int cateogryId, NewCategoryViewModel categoryModel)
+        public async Task EditCategoryAsync(int cateogryId, NewCategoryViewModel categoryModel)
         {
             var currCategory = await dbContext
                 .Categories
                 .FindAsync(cateogryId);
 
-            if(currCategory != null)
+            if (currCategory != null)
             {
                 currCategory.Name = categoryModel.Name;
                 currCategory.Image = categoryModel.Image;
@@ -179,6 +179,18 @@
 
                 await dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task SoftDeleteCategoryAsync(int categoryId)
+        {
+            Category category = await dbContext
+                .Categories
+                .Where(c => c.Id == categoryId)
+                .FirstAsync();
+
+            category.IsDeleted = true;
+
+            await dbContext.SaveChangesAsync();
         }
     }
 }

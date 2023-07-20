@@ -21,10 +21,10 @@
             <div class="form-group mb-2">
                 <label asp-for="ItemSorting"></label>
                 <select asp-for="ItemSorting" class="form-control">
-                    <option value="0">Name (Ascending)</option>
-                    <option value="1">Name (Descending)</option>
                     <option value="2">Id (Ascending)</option>
                     <option value="3">Id (Descending)</option>
+                    <option value="0">Name (Ascending)</option>
+                    <option value="1">Name (Descending)</option>
                 </select>
             </div>
         </div>
@@ -71,7 +71,32 @@
                             <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning ">Edit</a>
                         </td>
                         <td>
-                            delete button here
+                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel_@category.Id">Delete</a>
+
+                            <div class="modal fade" id="deleteModel_@category.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center text-danger">
+                                            <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this category?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <div class="card mb-3 d-flex align-items-center justify-content-center">
+                                                <div class="card-body text-center">
+                                                    <h3>@category.Name</h3>
+                                                </div>
+                                                <img class="card-img-top img-fluid mb-3" style="max-width: 20rem;" src="~/Images/@category.Image">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <form asp-area="Admin" asp-controller="Item" asp-action="Delete" asp-route-id="@category.Id" method="post">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 }

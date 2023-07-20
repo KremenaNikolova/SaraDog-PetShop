@@ -117,7 +117,7 @@
 
             try
             {
-                await categoryService.EditProductAsync(id, categoryModel);
+                await categoryService.EditCategoryAsync(id, categoryModel);
             }
             catch (Exception)
             {
@@ -126,6 +126,21 @@
 
             TempData[SuccessMessage] = "You edited the category successfully.";
             return RedirectToAction("Categories", "Admin");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await categoryService.SoftDeleteCategoryAsync(id);
+                TempData[SuccessMessage] = "You deleted category successfully.";
+                return RedirectToAction("Categories", "Admin");
+            }
+            catch(Exception)
+            {
+                return GeneralErrorMessage();
+            }
         }
 
         private IActionResult GeneralErrorMessage()
