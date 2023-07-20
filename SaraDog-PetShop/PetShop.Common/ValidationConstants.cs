@@ -8,7 +8,7 @@
             public const int TitleMaxLength = 30;
 
             public const int DescriptionMinLength = 10;
-            public const int DescriptionMaxLength = 500;
+            public const int DescriptionMaxLength = 1500;
 
             public const string PriceMinValue = "0";
             public const string PriceMaxValue = "500";
@@ -56,6 +56,8 @@
 
             public const int PostCodeMinLength = 4;
             public const int PostCodeMaxLength = 12;
+
+            public const int DescriptionMaxLength = 1500;
 
         }
 

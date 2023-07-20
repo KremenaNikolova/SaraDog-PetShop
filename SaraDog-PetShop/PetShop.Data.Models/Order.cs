@@ -25,6 +25,8 @@
 
         public string? PostCode { get; set; }
 
+        public string? Description { get; set; }
+
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
 

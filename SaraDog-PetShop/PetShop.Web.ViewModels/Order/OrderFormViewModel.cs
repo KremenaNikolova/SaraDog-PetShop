@@ -36,6 +36,9 @@
         [StringLength(PostCodeMaxLength, MinimumLength = PostCodeMinLength, ErrorMessage = InvalidPostCode)]
         public string PostCode { get; set; } = null!;
 
+        [StringLength(DescriptionMaxLength, ErrorMessage = InvalidDescripion)]
+        public string? Description { get; set; }
+
         [Required]
         public string UserId { get; set; } = null!;
 

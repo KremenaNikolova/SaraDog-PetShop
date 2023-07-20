@@ -24,6 +24,8 @@
             public const string InvalidAddress = "Address must be between {2} and {1} characters.";
 
             public const string InvalidPostCode = "Postal Code must be between {2} and {1} characters.";
+
+            public const string InvalidDescripion = "Description can not be more of {1} characters.";
         }
 
     }
