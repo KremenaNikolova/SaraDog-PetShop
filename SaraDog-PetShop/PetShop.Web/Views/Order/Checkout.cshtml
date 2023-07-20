@@ -19,7 +19,7 @@
 
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-        <form asp-action="Add" method="post" enctype="multipart/form-data">
+        <form asp-action="Checkout" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <input asp-for="@Model.FirstName" class="form-control" type="text" placeholder="First Name" aria-required="true" />
                 <span asp-validation-for="@Model.FirstName" class="text-danger"></span>

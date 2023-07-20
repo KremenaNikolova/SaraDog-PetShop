@@ -7,8 +7,7 @@
 
     public class OrderFormViewModel
     {
-        [Key]
-        public string Id { get; set; } = null!;
+        public string? Id { get; set; }
 
         [Required]
         [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength, ErrorMessage = InvalidFirstName)]
@@ -39,11 +38,9 @@
         [StringLength(DescriptionMaxLength, ErrorMessage = InvalidDescripion)]
         public string? Description { get; set; }
 
-        [Required]
-        public string UserId { get; set; } = null!;
+        public string? UserId { get; set; }
 
-        [Required]
-        public string CartId { get; set; } = null!;
+        public string? CartId { get; set; } 
 
         public decimal TotalPrice { get; set; }
     }

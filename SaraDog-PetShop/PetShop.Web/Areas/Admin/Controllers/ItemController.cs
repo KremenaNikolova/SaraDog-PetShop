@@ -86,7 +86,7 @@
             }
 
             TempData[SuccessMessage] = "Your product have been added successfully.";
-            return RedirectToAction("All", "Item");
+            return Redirect("/Item/All");
         }
 
         [HttpGet]

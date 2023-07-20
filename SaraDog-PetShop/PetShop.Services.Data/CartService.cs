@@ -38,14 +38,16 @@
                     .ToArray()
 
                 })
-                .FirstOrDefaultAsync();
+                .ToListAsync();
 
-            if (cart != null)
+            var lastCart = cart.LastOrDefault();
+
+            if (lastCart != null)
             {
-                cart.TotalPrice += cart.Items.Select(i => i.TotalPrice).Sum();
+                lastCart.TotalPrice += lastCart.Items.Select(i => i.TotalPrice).Sum();
             }
             
-            return cart;
+            return lastCart;
         }
 
         public async Task CreateCartAsync(string userId)

@@ -29,7 +29,8 @@ namespace PetShop.Services.Data
                     City = o.City!,
                     Address = o.Address!,
                     PostCode = o.PostCode!,
-                    CartId = cartId,
+                    CartId = o.CartId.ToString(),
+                    UserId = o.UserId.ToString(),
                     TotalPrice = o.TotalPrice
                 })
                 .FirstOrDefaultAsync();
@@ -37,7 +38,7 @@ namespace PetShop.Services.Data
             return order;
         }
 
-        public async Task CreateOrder(OrderFormViewModel orderModel)
+        public async Task CreateOrderAsync(OrderFormViewModel orderModel)
         {
             Guid validCartId;
             Guid validUserId;
@@ -64,6 +65,31 @@ namespace PetShop.Services.Data
                 await dbContext.SaveChangesAsync();
             }
             
+        }
+
+        public async Task<OrderFormViewModel?> GetOrderListByUserIdAsync(string userId)
+        {
+            var orderList = await dbContext
+                .Orders
+                .Where(o=>o.UserId.ToString()==userId)
+                .Select(o => new OrderFormViewModel()
+                {
+                    Id = o.Id.ToString(),
+                    FirstName = o.FirstName!,
+                    LastName = o.LastName!,
+                    Country = o.Country!,
+                    City = o.City!,
+                    Address = o.Address!,
+                    PostCode = o.PostCode!,
+                    CartId = o.CartId.ToString(),
+                    UserId = o.UserId.ToString(),
+                    TotalPrice = o.TotalPrice
+                })
+                .ToListAsync();
+
+            var lastOrder = orderList.LastOrDefault();
+
+            return(lastOrder);
         }
     }
 }

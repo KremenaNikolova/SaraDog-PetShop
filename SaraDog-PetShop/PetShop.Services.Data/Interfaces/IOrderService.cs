@@ -6,6 +6,9 @@
     {
         Task<OrderFormViewModel?> GetOrderDetailsAsync(string cartId);
 
-        Task CreateOrder(OrderFormViewModel orderModel);
+        Task CreateOrderAsync(OrderFormViewModel orderModel);
+
+        Task<OrderFormViewModel?> GetOrderListByUserIdAsync(string userId);
+        
     }
 }
