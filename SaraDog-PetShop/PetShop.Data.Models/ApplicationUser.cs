@@ -7,14 +7,18 @@
         public ApplicationUser()
         {
             Id = Guid.NewGuid();
-            IsManager = false;
+
+            IsModerator = false;
+            IsDeleted = false;
 
             Orders = new HashSet<Order>();
         }
 
         public string? Address { get; set; }
 
-        public bool IsManager { get; set; }
+        public bool IsModerator { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public ICollection<Order> Orders { get; set; }
 

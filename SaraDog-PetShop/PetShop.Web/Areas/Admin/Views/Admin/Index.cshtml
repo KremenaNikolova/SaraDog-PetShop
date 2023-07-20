@@ -27,7 +27,7 @@
                                 <td>@user.UserName</td>
                                 <td>@user.Email</td>
                                 <td>
-                                    <input type="checkbox" @(user.IsManager ? "checked" : "") />
+                                    <input type="checkbox" @(user.IsModerator ? "checked" : "") />
                                 </td>
                             </tr>
                         }
