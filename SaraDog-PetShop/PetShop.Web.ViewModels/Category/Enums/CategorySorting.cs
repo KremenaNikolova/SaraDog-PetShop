@@ -2,9 +2,10 @@
 {
     public enum CategorySorting
     {
-        NameAscending = 0,
-        NameDescending = 1,
-        IdAscending = 2,
-        IdDescending = 3,
+        IdDescending = 0,
+        IdAscending = 1,
+        NameAscending = 2,
+        NameDescending = 3
+        
     }
 }
