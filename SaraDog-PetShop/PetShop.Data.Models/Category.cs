@@ -8,6 +8,8 @@
     {
         public Category()
         {
+            IsDeleted = false;
+            
             Items = new HashSet<Item>();
         }
 
@@ -21,6 +23,8 @@
         [Required]
         [MaxLength(ImageMaxLength)]
         public string Image { get; set; } = null!;
+
+        public bool IsDeleted { get; set; }
 
         public virtual ICollection<Item> Items { get; set; } 
 
