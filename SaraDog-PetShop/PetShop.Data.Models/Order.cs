@@ -7,7 +7,9 @@
     {
         public Order()
         {
-            Id = Guid.NewGuid();    
+            Id = Guid.NewGuid();  
+            
+            CreatedOn = DateTime.UtcNow;
         }
 
         [Key]
@@ -26,6 +28,8 @@
         public string? PostCode { get; set; }
 
         public string? Description { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }

@@ -76,10 +76,5 @@
             return RedirectToAction("Confirmed", "Order");
         }
 
-        public IActionResult Confirmed()
-        {
-            return View();
-        }
-
     }
 }
