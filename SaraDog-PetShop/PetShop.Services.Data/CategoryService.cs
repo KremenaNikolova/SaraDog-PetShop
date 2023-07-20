@@ -27,6 +27,7 @@
         {
             var allCategories = await dbContext
                 .Categories
+                .Where(c => c.IsDeleted == false)
                 .AsNoTracking()
                 .Select(c => new CategoryViewModel()
                 {
@@ -43,6 +44,7 @@
         {
             var isIdExist = await dbContext
                 .Categories
+                .Where(c => c.IsDeleted == false)
                 .AnyAsync(c => c.Id == id);
 
             return isIdExist;
@@ -52,6 +54,7 @@
         {
             IEnumerable<string> allNames = await dbContext
                 .Categories
+                .Where(c => c.IsDeleted == false)
                 .Select(c => c.Name)
                 .ToArrayAsync();
 
@@ -62,7 +65,7 @@
         {
             var allItems = await dbContext
                 .Items
-                .Where(i => i.CategoryId == categoryId && i.IsActive)
+                .Where(i => i.CategoryId == categoryId && i.IsActive && i.Category.IsDeleted == false)
                 .Select(i => new ItemIndexViewModel()
                 {
                     Id = i.Id,
@@ -82,6 +85,7 @@
         {
             var isExist = await dbContext
                 .Categories
+                .Where(c => c.IsDeleted == false)
                 .AnyAsync(c => c.Name == categoryName);
 
             return isExist;
@@ -154,7 +158,7 @@
         {
             var category = await dbContext
                 .Categories
-                .Where(c => c.Id == categoryId)
+                .Where(c => c.Id == categoryId && c.IsDeleted == false)
                 .Select(c => new NewCategoryViewModel()
                 {
                     Name = c.Name,
