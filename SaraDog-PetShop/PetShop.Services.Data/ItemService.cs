@@ -54,14 +54,14 @@
                 CategoryId = itemModel.CategoryId
             };
 
-            await this.dbContext.Items.AddAsync(newItem);
-            await this.dbContext.SaveChangesAsync();
+            await dbContext.Items.AddAsync(newItem);
+            await dbContext.SaveChangesAsync();
 
         }
 
         public async Task<AllItemsFilteredAndPagedServiceModel> AllActiveItemsQueryAsync(AllItemsQueryModel queryModel)
         {
-            IQueryable<Item> itemsQuery = this.dbContext
+            IQueryable<Item> itemsQuery = dbContext
                 .Items
                 .Where(i => i.IsActive)
                 .AsQueryable();
@@ -121,7 +121,7 @@
 
         public async Task<AllItemsFilteredAndPagedServiceModel> AllIVisibletemsQueryAsync(AllItemsQueryModel queryModel)
         {
-            IQueryable<Item> itemsQuery = this.dbContext
+            IQueryable<Item> itemsQuery = dbContext
                 .Items
                 .Where(i => !i.IsDeleted)
                 .AsQueryable();

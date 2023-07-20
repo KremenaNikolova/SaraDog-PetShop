@@ -2,6 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.VisualBasic;
+    using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Data;
     using PetShop.Web.ViewModels.Category;
@@ -71,6 +72,27 @@
                 .ToArrayAsync();
 
             return allItems;
+        }
+
+        public async Task<bool> IsCategoryExistByNameAsync(string categoryName)
+        {
+            var isExist = await dbContext
+                .Categories
+                .AnyAsync(c=>c.Name == categoryName);
+
+            return isExist;
+        }
+
+        public async Task CreateNewCategoryAsync(NewCategoryViewModel categoryModel)
+        {
+            Category category = new Category()
+            {
+                Name = categoryModel.Name,
+                Image = categoryModel.Image
+            };
+
+            await dbContext.Categories.AddAsync(category);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -28,5 +28,10 @@
             public const string InvalidDescripion = "Description can not be more of {1} characters.";
         }
 
+        public static class CategoryErrorMessages
+        {
+            public const string InvalidName = "Category Name must be between {2} and {1} characters.";
+        }
+
     }
 }

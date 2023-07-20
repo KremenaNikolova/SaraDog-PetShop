@@ -10,6 +10,6 @@
 
         public string? Image { get; set; }
 
-        public IFormFile? ImageFile { get; set; }
+        
     }
 }

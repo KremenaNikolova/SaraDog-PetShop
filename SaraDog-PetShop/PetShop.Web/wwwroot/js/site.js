@@ -1,4 +1,8 @@
-﻿﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿document.getElementById("image-input").addEventListener("change", function () {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("image-preview").src = e.target.result;
+        document.getElementById("image-preview").style.display = "block";
+    };
+    reader.readAsDataURL(this.files[0]);
+});

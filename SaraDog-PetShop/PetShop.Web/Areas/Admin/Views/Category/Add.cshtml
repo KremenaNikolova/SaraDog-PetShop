@@ -1,0 +1,39 @@
+﻿@model NewCategoryViewModel
+
+@{
+    ViewBag.Title = "Create New Category";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-area="Admin" asp-action="Add" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label">Category Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="input-container">
+                <label asp-for="@Model.Image" class="w-40">Choose Image</label>
+                <input type="file" asp-for="@Model.ImageFile" id="image-input">
+            </div>
+            <div class="message-box pd-x-28 error">
+                <span asp-validation-for="ImageFile"></span>
+            </div>
+            <div class="image-preview mt-3 d-flex justify-content-center align-items-center" id="image-preview-container">
+                <img id="image-preview" src="#" alt="Preview" style="display: none; max-width: 80%;" />
+            </div>
+            <br />
+            <div class="mb-3 d-flex justify-content-end">
+                <input class="btn btn-primary" type="submit" value="Create" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}
