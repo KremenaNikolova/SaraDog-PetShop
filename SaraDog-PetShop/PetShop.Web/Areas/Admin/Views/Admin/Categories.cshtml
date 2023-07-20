@@ -1,0 +1,121 @@
+﻿@model AllCategoriesQueryModel
+
+@{
+    ViewBag.Title = "All Categories";
+}
+
+
+
+<partial name="_AdministrationPartial" />
+
+
+<form method="get">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-2">
+            <div class="form-group mb-2">
+                <label asp-for="SearchString"></label>
+                <input asp-for="SearchString" class="form-control" placeholder="...">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group mb-2">
+                <label asp-for="ItemSorting"></label>
+                <select asp-for="ItemSorting" class="form-control">
+                    <option value="0">Name (Ascending)</option>
+                    <option value="1">Name (Descending)</option>
+                    <option value="2">Id (Ascending)</option>
+                    <option value="3">Id (Descending)</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group mb-1">
+                <label>&nbsp;</label> <!-- Empty label for spacing -->
+                <input type="submit" value="Search" class="btn btn-primary form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<hr />
+<div class="d-flex justify-content-center">
+    <h4>@ViewBag.Title</h4>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in @Model.Categories)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td>@category.Name</td>
+                        <td>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-@category.Id">
+                                @category.Image
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning ">Edit</a>
+                        </td>
+                        <td>
+                            delete button here
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@foreach (var category in @Model.Categories)
+{
+    <div class="modal fade" id="imageModal-@category.Id" tabindex="-1" aria-labelledby="imageModalLabel-@category.Id" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="~/Images/@category.Image" alt="Category Image" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="mb-5">
+    @{
+        int maxPage = (int)Math.Ceiling((double)Model.TotalItems /
+        Model.ItemsPerPage);
+    }
+
+    <nav aria-label="Pagination" class="float-end">
+        <ul class="pagination">
+            <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = Model.CurrentPage - 1 })" tabindex="-1" aria-disabled="@(Model.CurrentPage == 1 ? "true" : "false")">Previous</a>
+            </li>
+            @for (int i = 1; i <= maxPage; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = i })">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.CurrentPage == maxPage ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Items", "Admin", new { currentPage = Model.CurrentPage + 1 })">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+

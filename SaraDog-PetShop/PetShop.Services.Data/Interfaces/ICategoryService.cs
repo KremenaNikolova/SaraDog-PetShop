@@ -1,5 +1,6 @@
 ﻿namespace PetShop.Services.Data.Interfaces
 {
+    using PetShop.Services.Data.Models.Category;
     using PetShop.Web.ViewModels.Category;
     using PetShop.Web.ViewModels.Item;
 
@@ -16,5 +17,7 @@
         Task<bool> IsCategoryExistByNameAsync(string categoryName);
 
         Task CreateNewCategoryAsync(NewCategoryViewModel categoryModel);
+
+        Task<AllCategoriesFilteredAndPagedServiceModel> AllCategoriesQueryAsync(AllCategoriesQueryModel queryModel);
     }
 }

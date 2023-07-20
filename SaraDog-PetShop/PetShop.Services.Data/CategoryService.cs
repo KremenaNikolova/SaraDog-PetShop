@@ -1,14 +1,18 @@
 ﻿namespace PetShop.Services.Data
 {
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.VisualBasic;
-    using PetShop.Data.Models;
-    using PetShop.Services.Data.Interfaces;
-    using PetShop.Web.Data;
-    using PetShop.Web.ViewModels.Category;
-    using PetShop.Web.ViewModels.Item;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    
+    using Microsoft.EntityFrameworkCore;
+
+    using PetShop.Data.Models;
+    using PetShop.Services.Data.Interfaces;
+    using PetShop.Services.Data.Models.Category;
+    using PetShop.Web.Data;
+    using PetShop.Web.ViewModels.Category;
+    using PetShop.Web.ViewModels.Category.Enums;
+    using PetShop.Web.ViewModels.Item;
+
 
     public class CategoryService : ICategoryService
     {
@@ -59,9 +63,9 @@
             var allItems = await dbContext
                 .Items
                 .Where(i => i.CategoryId == categoryId && i.IsActive)
-                .Select(i=> new ItemIndexViewModel()
+                .Select(i => new ItemIndexViewModel()
                 {
-                    Id= i.Id,
+                    Id = i.Id,
                     Title = i.Title,
                     Image = i.TitleImage,
                     Description = i.Description,
@@ -78,7 +82,7 @@
         {
             var isExist = await dbContext
                 .Categories
-                .AnyAsync(c=>c.Name == categoryName);
+                .AnyAsync(c => c.Name == categoryName);
 
             return isExist;
         }
@@ -93,6 +97,57 @@
 
             await dbContext.Categories.AddAsync(category);
             await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<AllCategoriesFilteredAndPagedServiceModel> AllCategoriesQueryAsync(AllCategoriesQueryModel queryModel)
+        {
+            IQueryable<Category> categoryQuery = dbContext
+                .Categories
+                .Where(c => c.IsDeleted == false)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+                categoryQuery = categoryQuery
+                    .Where(c => EF.Functions.Like(c.Name, wildCard) ||
+                                EF.Functions.Like(c.Image, wildCard));
+            }
+
+            categoryQuery = queryModel.ItemSorting switch
+            {
+                CategorySorting.NameAscending => categoryQuery
+                    .OrderBy(c => c.Name),
+                CategorySorting.NameDescending => categoryQuery
+                    .OrderByDescending(c => c.Name),
+                    CategorySorting.IdAscending => categoryQuery
+                    .OrderBy(c => c.Id),
+                    CategorySorting.IdDescending => categoryQuery
+                    .OrderByDescending (c => c.Id),
+                _ => categoryQuery
+                    .OrderBy(c => c.Id)
+            };
+
+            IEnumerable<CategoryViewModel> searchedCategories = await categoryQuery
+                .Where(i => i.IsDeleted == false)
+                .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
+                .Take(queryModel.ItemsPerPage)
+                .Select(i => new CategoryViewModel()
+                {
+                    Id = i.Id,
+                    Name = i.Name,
+                    Image = i.Image
+                })
+                .ToArrayAsync();
+
+            int totalCategories = categoryQuery.Count();
+
+            return new AllCategoriesFilteredAndPagedServiceModel()
+            {
+                TotalCategoriesCount = totalCategories,
+                Categories = searchedCategories
+            };
         }
     }
 }

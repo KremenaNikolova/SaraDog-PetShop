@@ -4,6 +4,7 @@
 
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.ViewModels.ApplicationUser;
+    using PetShop.Web.ViewModels.Category;
     using PetShop.Web.ViewModels.Item;
 
     using static PetShop.Common.NotificationMessagesConstants;
@@ -61,6 +62,28 @@
                 foreach (var item in allProducts.Items)
                 {
                     await imageService.DownloadImageAsync(item.Image);
+                }
+
+                return View(queryModel);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        public async Task<IActionResult> Categories([FromQuery] AllCategoriesQueryModel queryModel)
+        {
+            try
+            {
+                var allCategories = await categoryService.AllCategoriesQueryAsync(queryModel);
+
+                queryModel.Categories = allCategories.Categories;
+                queryModel.TotalItems = allCategories.TotalCategoriesCount;
+
+                foreach (var category in allCategories.Categories)
+                {
+                    await imageService.DownloadImageAsync(category.Image!);
                 }
 
                 return View(queryModel);

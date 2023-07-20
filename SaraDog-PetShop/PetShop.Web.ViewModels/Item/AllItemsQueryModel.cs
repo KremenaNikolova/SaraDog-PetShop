@@ -2,6 +2,7 @@
 {
     using PetShop.Web.ViewModels.Item.Enums;
     using System.ComponentModel.DataAnnotations;
+
     using static PetShop.Common.ApplicationConstants;
 
     /// <summary>
@@ -11,11 +12,11 @@
     {
         public AllItemsQueryModel()
         {
-            this.CurrentPage = DefaultPage;
-            this.ItemsPerPage = ItemsPerPageConstant;
+            CurrentPage = DefaultPage;
+            ItemsPerPage = ItemsPerPageConstant;
 
-            this.Categories = new HashSet<string>();
-            this.Items = new HashSet<ItemIndexViewModel>();
+            Categories = new HashSet<string>();
+            Items = new HashSet<ItemIndexViewModel>();
         }
 
         public string? Category { get; set; }
