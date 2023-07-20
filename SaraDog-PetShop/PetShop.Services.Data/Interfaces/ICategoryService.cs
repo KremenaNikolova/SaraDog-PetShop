@@ -19,5 +19,9 @@
         Task CreateNewCategoryAsync(NewCategoryViewModel categoryModel);
 
         Task<AllCategoriesFilteredAndPagedServiceModel> AllCategoriesQueryAsync(AllCategoriesQueryModel queryModel);
+
+        Task<NewCategoryViewModel> GetCategoryByIdAsync(int categoryId);
+
+        Task EditProductAsync(int cateogryId, NewCategoryViewModel categoryModel);
     }
 }

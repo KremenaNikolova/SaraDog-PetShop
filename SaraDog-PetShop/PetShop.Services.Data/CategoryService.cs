@@ -149,5 +149,36 @@
                 Categories = searchedCategories
             };
         }
+
+        public async Task<NewCategoryViewModel> GetCategoryByIdAsync(int categoryId)
+        {
+            var category = await dbContext
+                .Categories
+                .Where(c => c.Id == categoryId)
+                .Select(c => new NewCategoryViewModel()
+                {
+                    Name = c.Name,
+                    Image = c.Image
+                })
+                .FirstAsync();
+
+            return category;
+        }
+
+        public async Task EditProductAsync(int cateogryId, NewCategoryViewModel categoryModel)
+        {
+            var currCategory = await dbContext
+                .Categories
+                .FindAsync(cateogryId);
+
+            if(currCategory != null)
+            {
+                currCategory.Name = categoryModel.Name;
+                currCategory.Image = categoryModel.Image;
+                currCategory.IsDeleted = false;
+
+                await dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

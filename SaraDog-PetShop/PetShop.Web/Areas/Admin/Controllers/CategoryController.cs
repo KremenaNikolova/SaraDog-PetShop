@@ -79,14 +79,60 @@
             }
 
             TempData[SuccessMessage] = "Your new category have been added successfully.";
-            return RedirectToAction("Items", "Admin");
+            return RedirectToAction("Categories", "Admin");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            try
+            {
+                var currCategory = await categoryService.GetCategoryByIdAsync(id);
+                return View(currCategory);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, NewCategoryViewModel categoryModel)
+        {
+            if (categoryModel.ImageFile != null)
+            {
+                var fileResult = await imageService.SaveImage(categoryModel.ImageFile);
+                if (fileResult.Item1 == 1)
+                {
+                    categoryModel.Image = fileResult.Item2; // getting name of image
+                }
+            }
+
+            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(categoryModel.Image))
+            {
+                TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
+
+                return View(categoryModel);
+            }
+
+            try
+            {
+                await categoryService.EditProductAsync(id, categoryModel);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+
+            TempData[SuccessMessage] = "You edited the category successfully.";
+            return RedirectToAction("Categories", "Admin");
         }
 
         private IActionResult GeneralErrorMessage()
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
-            return RedirectToAction("Items", "Admin");
+            return RedirectToAction("Categories", "Admin");
         }
     }
 }
