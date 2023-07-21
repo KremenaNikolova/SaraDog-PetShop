@@ -5,13 +5,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetShop.Data.Migrations
 {
-    public partial class IsDeletedPropertyInCategory : Migration
+    public partial class AddIsDeleteAndCreatedOnColumnsToUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "IsManager",
+                table: "AspNetUsers",
+                newName: "IsModerator");
+
             migrationBuilder.AddColumn<bool>(
                 name: "IsDeleted",
                 table: "Categories",
+                type: "bit",
+                nullable: false,
+                defaultValue: false);
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "CreatedOn",
+                table: "AspNetUsers",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+            migrationBuilder.AddColumn<bool>(
+                name: "IsDeleted",
+                table: "AspNetUsers",
                 type: "bit",
                 nullable: false,
                 defaultValue: false);
@@ -21,140 +40,140 @@ namespace PetShop.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4298), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4334) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6488), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6528) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 2,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4345), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4347) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6541), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6543) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 3,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4382), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4383) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6546), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6547) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 4,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4386), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4387) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6549), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6551) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 5,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4391), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4393) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6555), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6556) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 6,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4395), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4396) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6558), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6560) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 7,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4399), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4400) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6562), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6563) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 8,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4403), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4404) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6565), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6566) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 9,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4407), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4408) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6570), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6571) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 10,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4411), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4412) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6573), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6575) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 11,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4414), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4415) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6577), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6578) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 12,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4417), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4418) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6580), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6582) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 13,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4421), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4422) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6584), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6585) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 14,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4424), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4425) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6587), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6588) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 15,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4428), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4430) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6592), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6593) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 16,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4432), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4433) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6595), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6596) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 17,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4435), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4436) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6598), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6600) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 18,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4438), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4439) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6602), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6603) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 19,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4442), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4444) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6636), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6637) });
 
             migrationBuilder.UpdateData(
                 table: "Items",
                 keyColumn: "Id",
                 keyValue: 20,
                 columns: new[] { "AddedOn", "LastEdit" },
-                values: new object[] { new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4446), new DateTime(2023, 7, 20, 15, 59, 15, 959, DateTimeKind.Local).AddTicks(4447) });
+                values: new object[] { new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6640), new DateTime(2023, 7, 20, 23, 14, 27, 672, DateTimeKind.Local).AddTicks(6641) });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -162,6 +181,19 @@ namespace PetShop.Data.Migrations
             migrationBuilder.DropColumn(
                 name: "IsDeleted",
                 table: "Categories");
+
+            migrationBuilder.DropColumn(
+                name: "CreatedOn",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "IsDeleted",
+                table: "AspNetUsers");
+
+            migrationBuilder.RenameColumn(
+                name: "IsModerator",
+                table: "AspNetUsers",
+                newName: "IsManager");
 
             migrationBuilder.UpdateData(
                 table: "Items",

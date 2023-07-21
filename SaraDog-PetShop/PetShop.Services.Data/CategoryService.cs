@@ -135,8 +135,8 @@
 
             IEnumerable<CategoryViewModel> searchedCategories = await categoryQuery
                 .Where(i => i.IsDeleted == false)
-                .Skip((queryModel.CurrentPage - 1) * queryModel.ItemsPerPage)
-                .Take(queryModel.ItemsPerPage)
+                .Skip((queryModel.CurrentPage - 1) * queryModel.CategoriesPerPage)
+                .Take(queryModel.CategoriesPerPage)
                 .Select(i => new CategoryViewModel()
                 {
                     Id = i.Id,

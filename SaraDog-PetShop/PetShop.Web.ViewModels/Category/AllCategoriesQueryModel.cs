@@ -11,7 +11,7 @@
         public AllCategoriesQueryModel()
         {
             CurrentPage = DefaultPage;
-            ItemsPerPage = ItemsPerPageConstant;
+            CategoriesPerPage = ItemsPerPageConstant;
 
             Categories = new HashSet<CategoryViewModel>();
         }
@@ -24,9 +24,9 @@
 
         public int CurrentPage { get; set; }
 
-        public int ItemsPerPage { get; set; }
+        public int CategoriesPerPage { get; set; }
 
-        public int TotalItems { get; set; }
+        public int TotalCategories { get; set; }
 
         public IEnumerable<CategoryViewModel> Categories { get; set; }
     }

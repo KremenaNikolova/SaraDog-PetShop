@@ -79,12 +79,29 @@
                 var allCategories = await categoryService.AllCategoriesQueryAsync(queryModel);
 
                 queryModel.Categories = allCategories.Categories;
-                queryModel.TotalItems = allCategories.TotalCategoriesCount;
+                queryModel.TotalCategories = allCategories.TotalCategoriesCount;
 
                 foreach (var category in allCategories.Categories)
                 {
                     await imageService.DownloadImageAsync(category.Image!);
                 }
+
+                return View(queryModel);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        public async Task<IActionResult> Users([FromQuery] AllUsersQueryModel queryModel)
+        {
+            try
+            {
+                var allUsers = await userService.AllUsersQueryAsync(queryModel);
+
+                queryModel.Users = allUsers.Users;
+                queryModel.TotalUsers = allUsers.TotalUsersCount;
 
                 return View(queryModel);
             }

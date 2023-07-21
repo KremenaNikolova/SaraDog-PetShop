@@ -8,7 +8,11 @@
 
         public string? Email { get; set; }
 
-        public bool IsManager { get; set; }
+        public string? Address { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool IsModerator { get; set; }
 
     }
 }

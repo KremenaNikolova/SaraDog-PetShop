@@ -1,7 +1,7 @@
-﻿@model AllCategoriesQueryModel
+﻿@model AllUsersQueryModel
 
 @{
-    ViewBag.Title = "All Categories";
+    ViewBag.Title = "All Users";
 }
 
 
@@ -21,8 +21,8 @@
             <div class="form-group mb-2">
                 <label asp-for="ItemSorting"></label>
                 <select asp-for="ItemSorting" class="form-control">
-                    <option value="0">Id (Descending)</option>
-                    <option value="1">Id (Ascending)</option>
+                    <option value="0">Created (Oldest)</option>
+                    <option value="1">Created (Newest)</option>
                     <option value="2">Name (Ascending)</option>
                     <option value="3">Name (Descending)</option>
                 </select>
@@ -50,47 +50,48 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Image</th>
+                    <th>CreatedOn</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Moderator</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var category in @Model.Categories)
+                @foreach (var user in @Model.Users)
                 {
                     <tr>
-                        <td>@category.Id</td>
-                        <td>@category.Name</td>
+                        <td>@user.Id</td>
+                        <td>@user.CreatedOn</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email </td>
                         <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-@category.Id">
-                                @category.Image
-                            </a>
+                            <input type="checkbox" @(user.IsModerator ? "checked" : "") />
                         </td>
                         <td>
-                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning ">Edit</a>
+                            <a asp-controller="Admin" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-warning ">Edit</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel_@category.Id">Delete</a>
+                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel_@user.Id">Delete</a>
 
-                            <div class="modal fade" id="deleteModel_@category.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="deleteModel_@user.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header text-center text-danger">
-                                            <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this category?</h5>
+                                            <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this user?</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body text-center">
                                             <div class="card mb-3 d-flex align-items-center justify-content-center">
                                                 <div class="card-body text-center">
-                                                    <h3>@category.Name</h3>
+                                                    <h3>@user.UserName</h3>
                                                 </div>
-                                                <img class="card-img-top img-fluid mb-3" style="max-width: 20rem;" src="~/Images/@category.Image">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <form asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" method="post">
+                                            <form asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="@user.Id" method="post">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </div>
@@ -105,7 +106,7 @@
     </div>
 </div>
 
-@foreach (var category in @Model.Categories)
+@*@foreach (var category in @Model.Categories)
 {
     <div class="modal fade" id="imageModal-@category.Id" tabindex="-1" aria-labelledby="imageModalLabel-@category.Id" aria-hidden="true">
         <div class="modal-dialog">
@@ -116,27 +117,27 @@
             </div>
         </div>
     </div>
-}
+}*@
 
 <div class="mb-5">
     @{
-        int maxPage = (int)Math.Ceiling((double)Model.TotalCategories /
-        Model.CategoriesPerPage);
+        int maxPage = (int)Math.Ceiling((double)Model.TotalUsers /
+        Model.UsersPerPage);
     }
 
     <nav aria-label="Pagination" class="float-end">
         <ul class="pagination">
             <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
-                <a class="page-link" href="@Url.Action("Categories", "Admin", new { currentPage = Model.CurrentPage - 1 })" tabindex="-1" aria-disabled="@(Model.CurrentPage == 1 ? "true" : "false")">Previous</a>
+                <a class="page-link" href="@Url.Action("Users", "Admin", new { currentPage = Model.CurrentPage - 1 })" tabindex="-1" aria-disabled="@(Model.CurrentPage == 1 ? "true" : "false")">Previous</a>
             </li>
             @for (int i = 1; i <= maxPage; i++)
             {
                 <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Categories", "Admin", new { currentPage = i })">@i</a>
+                    <a class="page-link" href="@Url.Action("Users", "Admin", new { currentPage = i })">@i</a>
                 </li>
             }
             <li class="page-item @(Model.CurrentPage == maxPage ? "disabled" : "")">
-                <a class="page-link" href="@Url.Action("Categories", "Admin", new { currentPage = Model.CurrentPage + 1 })">Next</a>
+                <a class="page-link" href="@Url.Action("Users", "Admin", new { currentPage = Model.CurrentPage + 1 })">Next</a>
             </li>
         </ul>
     </nav>
