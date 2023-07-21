@@ -54,7 +54,6 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Moderator</th>
-                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -68,9 +67,6 @@
                         <td>@user.Email </td>
                         <td>
                             <input type="checkbox" @(user.IsModerator ? "checked" : "") />
-                        </td>
-                        <td>
-                            <a asp-controller="Admin" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-warning ">Edit</a>
                         </td>
                         <td>
                             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel_@user.Id">Delete</a>

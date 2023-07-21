@@ -90,5 +90,74 @@
                 Users = searchedUsers
             };
         }
+
+        public async Task<UserProfileViewModel> GetUserByIdAsync(string userId)
+        {
+            var userModel = await dbContext
+                .Users
+                .Where(u=>u.Id.ToString()==userId)
+                .Select(u=> new UserProfileViewModel()
+                {
+                    Id=u.Id.ToString(),
+                    UserName = u.UserName,
+                    Image = u.Image,
+                    Email = u.Email,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Country = u.Country,
+                    City = u.City,
+                    Address = u.Address,
+                    PostCode = u.PostCode,
+                })
+                .FirstAsync();
+
+            if(string.IsNullOrWhiteSpace(userModel.Image))
+            {
+                userModel.Image = "avatar.png";
+            }
+
+            return userModel;
+        }
+
+        public async Task EditProfileAsync(string userId, UserProfileViewModel model)
+        {
+            var user = await dbContext
+                .Users
+                .Where(u => u.Id.ToString() == userId)
+                .FirstAsync();
+
+            if(user !=null)
+            {
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Country = model.Country;
+                user.City = model.City;
+                user.Address = model.Address;
+                user.PostCode = model.PostCode;
+                user.Image = model.Image;
+                user.Email = model.Email;
+
+                await dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task SoftDeleteUserAsync(string userId)
+        {
+            var user = await dbContext
+                .Users
+                .Where(u=>u.Id.ToString()==userId)
+                .FirstAsync();
+
+            user.FirstName=null;
+            user.LastName=null;
+            user.Country=null;
+            user.City=null;
+            user.Address=null;
+            user.PostCode=null;
+            user.Image=null;
+            user.IsDeleted = true;
+
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

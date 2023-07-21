@@ -22,9 +22,7 @@
             </div>
             <div class="input-container">
                 <label asp-for="@Model.ImageFile" class="w-40">Choose Image</label>
-                <input type="file" asp-for="@Model.ImageFile">
-            </div>
-            <div class="message-box pd-x-28 error">
+                <input type="file" asp-for="@Model.ImageFile" class="form-control">
                 <span asp-validation-for="ImageFile"> </span>
             </div>
             <div class="mb-3">
