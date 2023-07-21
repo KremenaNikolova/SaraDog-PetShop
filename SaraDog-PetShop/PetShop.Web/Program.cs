@@ -42,12 +42,13 @@ namespace PetShop.Web
 
             if (app.Environment.IsDevelopment())
             {
-                app.UseMigrationsEndPoint();
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
 
                 app.UseHsts();
             }
@@ -71,8 +72,7 @@ namespace PetShop.Web
 
             });
 
-            
-            app.MapRazorPages();
+           app.MapRazorPages();
 
             app.Run();
         }
