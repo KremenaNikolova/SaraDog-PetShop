@@ -7,6 +7,7 @@ namespace PetShop.Web
     using PetShop.Web.Infrastructure.Extensions;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.ModelBinder;
+    using Microsoft.AspNetCore.Mvc;
 
     public class Program
     {
@@ -35,6 +36,7 @@ namespace PetShop.Web
                 .AddMvcOptions(options =>
                 {
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
 
             var app = builder.Build();
