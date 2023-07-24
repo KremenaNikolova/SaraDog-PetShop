@@ -1,7 +1,8 @@
 ﻿namespace PetShop.Web.Controllers
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    
+    using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.Extensions;
     using PetShop.Web.ViewModels.User;
@@ -12,11 +13,13 @@
     {
         private readonly IUserService userService;
         private readonly IImageService imageService;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public UserController(IUserService userService,IImageService imageService)
+        public UserController(IUserService userService,IImageService imageService, SignInManager<ApplicationUser> signInManager)
         {
             this.userService = userService;
             this.imageService = imageService;
+            this.signInManager = signInManager;
         }
 
         [HttpGet]
@@ -92,7 +95,8 @@
             try
             {
                 await userService.SoftDeleteUserAsync(userId!);
-                TempData[SuccessMessage] = "You deleted your profle successfully.";
+
+                await signInManager.SignOutAsync();
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception)
