@@ -1,5 +1,6 @@
 ﻿namespace PetShop.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using PetShop.Services.Data.Interfaces;
@@ -7,6 +8,7 @@
 
     using static PetShop.Common.NotificationMessagesConstants;
 
+    [Authorize]
     public class CartController : Controller
     {
         private readonly ICartService cartService;

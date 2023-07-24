@@ -32,6 +32,11 @@ namespace PetShop.Web
 
             builder.Services.AddApplicationServices(typeof(IItemService));
 
+            builder.Services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.LoginPath = "/Account/Login";
+            });
+
             builder.Services.AddControllersWithViews()
                 .AddMvcOptions(options =>
                 {

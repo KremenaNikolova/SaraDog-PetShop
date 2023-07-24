@@ -15,8 +15,8 @@
             @if (!this.User.Identity?.IsAuthenticated ?? false)
             {
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <a class="btn btn-primary m-lg-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                    <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    <a class="btn btn-primary mt-3" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="btn btn-primary" asp-area="" asp-page="/Account/Register">Register</a>
                 </div>
             }
             <br />

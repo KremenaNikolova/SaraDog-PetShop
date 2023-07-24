@@ -1,5 +1,6 @@
 ﻿namespace PetShop.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using PetShop.Services.Data.Interfaces;
@@ -8,6 +9,7 @@
 
     using static PetShop.Common.NotificationMessagesConstants;
 
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService orderService;
