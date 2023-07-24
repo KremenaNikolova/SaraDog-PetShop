@@ -4,6 +4,14 @@
     ViewData["Title"] = "Log in";
 }
 
+
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <script>
+        window.location.href = '@Url.Action("Index", "Home")';
+    </script>
+}
+
 <h1 class="text-center">@ViewData["Title"]</h1>
 <hr />
 <div class="row">
@@ -43,6 +51,7 @@
         </section>
     </div>
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

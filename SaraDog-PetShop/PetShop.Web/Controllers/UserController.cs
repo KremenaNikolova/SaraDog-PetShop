@@ -1,5 +1,6 @@
 ﻿namespace PetShop.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using PetShop.Data.Models;
@@ -10,6 +11,7 @@
     
     using static PetShop.Common.NotificationMessagesConstants;
 
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserService userService;
@@ -25,12 +27,14 @@
             this.signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
@@ -64,12 +68,14 @@
             return View(loginModel);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerModel)
         {
