@@ -1,6 +1,6 @@
-﻿namespace PetShop.Web.ViewModels.ApplicationUser
+﻿namespace PetShop.Web.ViewModels.User
 {
-    public class ApplicationUserViewModel
+    public class UserViewModel
     {
         public string Id { get; set; } = null!;
 

@@ -1,13 +1,14 @@
-﻿namespace PetShop.Web.ViewModels.ApplicationUser
+﻿namespace PetShop.Web.ViewModels.User
 {
     using System.ComponentModel.DataAnnotations;
     
     using Microsoft.AspNetCore.Http;
 
 
-    internal class ProfileViewModel
+    public class ProfileViewModel
     {
-        public string? UserName { get; set; }
+        [Required]
+        public string UserName { get; set; } = null!;
 
         public string? FirstName { get; set; }
 
@@ -25,7 +26,8 @@
 
         public IFormFile? FormImage { get; set; }
 
+        [Required]
         [EmailAddress]
-        public string? Email { get; set; }
+        public string Email { get; set; } = null!;
     }
 }

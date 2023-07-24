@@ -1,14 +1,19 @@
-﻿namespace PetShop.Web.ViewModels.ApplicationUser
+﻿namespace PetShop.Web.ViewModels.User
 {
     using Microsoft.AspNetCore.Http;
     using System.ComponentModel.DataAnnotations;
 
-    public class UserProfileViewModel
+    using static PetShop.Common.ValidationConstants.UserValidations;
+    using static PetShop.Common.ErrorMessages.UserErrorMessage;
+
+    public class EditUserProfileViewModel
     {
         [Required]
         public string Id { get; set; } = null!;
 
-        public string? UserName { get; set; }
+        [Required]
+        [StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength, ErrorMessage = InvalidUsername)]
+        public string UserName { get; set; } = null!;
 
         public string? FirstName { get; set; }
 
@@ -26,7 +31,8 @@
 
         public IFormFile? FormImage { get; set; }
 
+        [Required]
         [EmailAddress]
-        public string? Email { get; set; }
+        public string Email { get; set; } = null!;
     }
 }

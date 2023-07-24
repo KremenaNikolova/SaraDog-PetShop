@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Http;
     using System.ComponentModel.DataAnnotations;
 
-    using static PetShop.Common.ValidationConstants.CategoryValidationConstants;
+    using static PetShop.Common.ValidationConstants.CategoryValidation;
     using static PetShop.Common.ErrorMessages.CategoryErrorMessages;
 
     public class NewCategoryViewModel

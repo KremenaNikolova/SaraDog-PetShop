@@ -33,5 +33,10 @@
             public const string InvalidName = "Category Name must be between {2} and {1} characters.";
         }
 
+        public static class UserErrorMessage
+        {
+            public const string InvalidUsername = "{0} must be between {2} and {1} characters.";
+        }
+
     }
 }

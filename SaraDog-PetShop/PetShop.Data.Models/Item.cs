@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static PetShop.Common.ValidationConstants.ItemValidationConstants;
+    using static PetShop.Common.ValidationConstants.ItemValidation;
 
     public class Item
     {
@@ -38,8 +38,6 @@
         public DateTime AddedOn { get; set; }
 
         public DateTime LastEdit { get; set; }
-
-        public decimal? Rating { get; set; }
 
         public bool IsActive { get; set; }
 

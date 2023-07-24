@@ -1,4 +1,4 @@
-﻿namespace PetShop.Web.ViewModels.ApplicationUser.Enums
+﻿namespace PetShop.Web.ViewModels.User.Enums
 {
 
     public enum UsersSorting

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static PetShop.Common.ValidationConstants.OrderValidations;
+    using static PetShop.Common.ValidationConstants.UserValidations;
     using static PetShop.Common.ErrorMessages.OrderErrorMessages;
 
     public class OrderFormViewModel

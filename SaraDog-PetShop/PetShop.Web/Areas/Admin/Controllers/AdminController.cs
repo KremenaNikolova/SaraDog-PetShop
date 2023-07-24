@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using PetShop.Services.Data.Interfaces;
-    using PetShop.Web.ViewModels.ApplicationUser;
+    using PetShop.Web.ViewModels.User;
     using PetShop.Web.ViewModels.Category;
     using PetShop.Web.ViewModels.Item;
 

@@ -1,7 +1,10 @@
 ﻿namespace PetShop.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore.Migrations;
+
+    using System.ComponentModel.DataAnnotations;
+
+    using static PetShop.Common.ValidationConstants.UserValidations;
 
     public class ApplicationUser : IdentityUser<Guid>
     {
@@ -17,16 +20,22 @@
             Orders = new HashSet<Order>();
         }
 
+        [MaxLength(FirstNameMaxLength)]
         public string? FirstName { get; set; }
 
+        [MaxLength(LastNameMaxLength)]
         public string? LastName { get; set; }
 
+        [MaxLength(CountryMaxLength)]
         public string? Country { get; set; }
 
+        [MaxLength(CityMaxLenght)]
         public string? City { get; set; }
 
+        [MaxLength(AddressMaxLength)]
         public string? Address { get; set; }
 
+        [MaxLength(PostCodeMaxLength)]
         public string? PostCode { get; set; }
 
         public string? Image { get; set; }

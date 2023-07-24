@@ -2,7 +2,7 @@
 {
     public static class ValidationConstants
     {
-        public static class ItemValidationConstants
+        public static class ItemValidation
         {
             public const int TitleMinLength = 5;
             public const int TitleMaxLength = 30;
@@ -20,7 +20,7 @@
 
         }
 
-        public static class CategoryValidationConstants
+        public static class CategoryValidation
         {
             public const int NameMinLength = 5;
             public const int NameMaxLength = 50;
@@ -37,12 +37,15 @@
             public const string QuantityMaxValue = "100";
         }
 
-        public static class OrderValidations
+        public static class UserValidations
         {
-            public const int FirstNameMinLength = 2;
+            public const int UsernameMinLength = 1;
+            public const int UsernameMaxLength = 50;
+
+            public const int FirstNameMinLength = 1;
             public const int FirstNameMaxLength = 50;
 
-            public const int LastNameMinLength = 2;
+            public const int LastNameMinLength = 1;
             public const int LastNameMaxLength = 50;
 
             public const int CountryMinLength = 4;
@@ -58,8 +61,8 @@
             public const int PostCodeMaxLength = 12;
 
             public const int DescriptionMaxLength = 1500;
-
         }
+
 
     }
 }

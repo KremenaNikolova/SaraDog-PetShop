@@ -1,8 +1,8 @@
-﻿namespace PetShop.Web.ViewModels.ApplicationUser
+﻿namespace PetShop.Web.ViewModels.User
 {
     using System.ComponentModel.DataAnnotations;
     
-    using PetShop.Web.ViewModels.ApplicationUser.Enums;
+    using PetShop.Web.ViewModels.User.Enums;
     using static PetShop.Common.ApplicationConstants;
 
     public class AllUsersQueryModel
@@ -12,7 +12,7 @@
             CurrentPage = DefaultPage;
             UsersPerPage = ItemsPerPageConstant;
 
-            Users = new HashSet<ApplicationUserViewModel>();
+            Users = new HashSet<UserViewModel>();
         }
 
         [Display(Name = "Search by type")]
@@ -27,6 +27,6 @@
 
         public int TotalUsers { get; set; }
 
-        public IEnumerable<ApplicationUserViewModel> Users { get; set; }
+        public IEnumerable<UserViewModel> Users { get; set; }
     }
 }

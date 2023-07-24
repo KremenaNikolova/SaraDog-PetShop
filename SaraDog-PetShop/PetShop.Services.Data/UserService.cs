@@ -1,13 +1,14 @@
 ﻿namespace PetShop.Services.Data
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     
     using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Services.Data.Models.User;
     using PetShop.Web.Data;
-    using PetShop.Web.ViewModels.ApplicationUser;
-    using PetShop.Web.ViewModels.ApplicationUser.Enums;
+    using PetShop.Web.ViewModels.User;
+    using PetShop.Web.ViewModels.User.Enums;
 
     public class UserService : IUserService
     {
@@ -18,11 +19,11 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<ApplicationUserViewModel>> GetAllUsersAsync()
+        public async Task<IEnumerable<UserViewModel>> GetAllUsersAsync()
         {
             var allUsers = await dbContext
                 .Users
-                .Select(u => new ApplicationUserViewModel()
+                .Select(u => new UserViewModel()
                 {
                     Id = u.Id.ToString(),
                     UserName = u.UserName,
@@ -68,11 +69,11 @@
                     .OrderBy(u => u.CreatedOn)
             };
 
-            IEnumerable<ApplicationUserViewModel> searchedUsers = await userQuery
+            IEnumerable<UserViewModel> searchedUsers = await userQuery
                 .Where(u => u.IsDeleted == false)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.UsersPerPage)
                 .Take(queryModel.UsersPerPage)
-                .Select(u => new ApplicationUserViewModel()
+                .Select(u => new UserViewModel()
                 {
                     Id = u.Id.ToString(),
                     UserName = u.UserName,
@@ -91,12 +92,13 @@
             };
         }
 
-        public async Task<UserProfileViewModel> GetUserByIdAsync(string userId)
+        public async Task<EditUserProfileViewModel> GetUserByIdAsync(string userId)
         {
             var userModel = await dbContext
                 .Users
-                .Where(u=>u.Id.ToString()==userId)
-                .Select(u=> new UserProfileViewModel()
+                .Where(u=>u.Id.ToString()==userId
+                       && u.IsDeleted == false)
+                .Select(u=> new EditUserProfileViewModel()
                 {
                     Id=u.Id.ToString(),
                     UserName = u.UserName,
@@ -119,11 +121,12 @@
             return userModel;
         }
 
-        public async Task EditProfileAsync(string userId, UserProfileViewModel model)
+        public async Task EditProfileAsync(string userId, EditUserProfileViewModel model)
         {
             var user = await dbContext
                 .Users
-                .Where(u => u.Id.ToString() == userId)
+                .Where(u => u.Id.ToString() == userId
+                         && u.IsDeleted == false)
                 .FirstAsync();
 
             if(user !=null)
@@ -145,7 +148,8 @@
         {
             var user = await dbContext
                 .Users
-                .Where(u=>u.Id.ToString()==userId)
+                .Where(u=>u.Id.ToString()==userId
+                        && u.IsDeleted == false)
                 .FirstAsync();
 
             user.FirstName=null;

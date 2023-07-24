@@ -1,4 +1,4 @@
-﻿namespace PetShop.Web.ViewModels.ApplicationUser
+﻿namespace PetShop.Web.ViewModels.User
 {
     using PetShop.Web.ViewModels.Category;
     using PetShop.Web.ViewModels.Item;
@@ -9,10 +9,10 @@
         {
             Items = new HashSet<ItemIndexViewModel>();
             Categories = new HashSet<CategoryViewModel>();
-            Users = new HashSet<ApplicationUserViewModel>();
+            Users = new HashSet<UserViewModel>();
         }
 
-        public IEnumerable<ApplicationUserViewModel> Users { get; set; }
+        public IEnumerable<UserViewModel> Users { get; set; }
 
         public IEnumerable<ItemIndexViewModel> Items { get; set; }
 

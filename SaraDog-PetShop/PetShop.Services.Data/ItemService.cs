@@ -1,7 +1,6 @@
 ﻿namespace PetShop.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Hosting;
 
     using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;

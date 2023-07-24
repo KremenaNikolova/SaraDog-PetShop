@@ -1,10 +1,11 @@
 ﻿namespace PetShop.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-
+    
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.Extensions;
-    using PetShop.Web.ViewModels.ApplicationUser;
+    using PetShop.Web.ViewModels.User;
+    
     using static PetShop.Common.NotificationMessagesConstants;
 
     public class UserController : Controller
@@ -22,7 +23,6 @@
         public async Task<IActionResult> Details()
         {
             var userId = User.GetId();
-
             try
             {
                 var currUser = await userService.GetUserByIdAsync(userId!);
@@ -52,7 +52,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(UserProfileViewModel userModel)
+        public async Task<IActionResult> Edit(EditUserProfileViewModel userModel)
         {
             if (userModel.FormImage != null)
             {

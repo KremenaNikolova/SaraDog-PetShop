@@ -21,10 +21,6 @@
                 .HasPrecision(18, 2);
 
             builder
-                .Property(i => i.Rating)
-                .HasPrecision(18, 2);
-
-            builder
                 .HasData(this.GenerateItems());
         }
 

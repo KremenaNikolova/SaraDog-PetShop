@@ -3,6 +3,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using static PetShop.Common.ValidationConstants.UserValidations;
+
     public class Order
     {
         public Order()
@@ -15,18 +17,25 @@
         [Key]
         public Guid Id { get; set; }
 
+        [MaxLength(FirstNameMaxLength)]
         public string? FirstName { get; set; }
 
+        [MaxLength(LastNameMaxLength)]
         public string? LastName { get; set; }
 
+        [MaxLength(CountryMaxLength)]
         public string? Country { get; set; }
 
+        [MaxLength(CityMaxLenght)]
         public string? City { get; set; }
 
+        [MaxLength(AddressMaxLength)]
         public string? Address { get; set; }
 
+        [MaxLength(PostCodeMaxLength)]
         public string? PostCode { get; set; }
 
+        [MaxLength(DescriptionMaxLength)]
         public string? Description { get; set; }
 
         public DateTime CreatedOn { get; set; }

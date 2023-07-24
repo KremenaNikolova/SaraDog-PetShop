@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static PetShop.Common.ValidationConstants.CategoryValidationConstants;
+    using static PetShop.Common.ValidationConstants.CategoryValidation;
 
     public class Category
     {
