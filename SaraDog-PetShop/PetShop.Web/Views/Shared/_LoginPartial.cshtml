@@ -7,13 +7,12 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        @*<li class="nav-item">
-    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей @User.Identity?.Name!</a>
-    </li>*@
-
-        <li class="nav-item me-2">
-            <a class="nav-link btn btn-outline-warning text-black" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin Panel</a>
-        </li>
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+        {
+            <li class="nav-item me-2">
+                <a class="nav-link btn btn-outline-warning text-black" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+            </li>
+        }
         <li class="nav-item me-3">
             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Details">Profile</a>
         </li>

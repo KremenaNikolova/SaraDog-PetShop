@@ -44,13 +44,14 @@
             }
 
             var user = await userManager.FindByEmailAsync(loginModel.Email);
-            if(user.IsDeleted)
-            {
-                ModelState.AddModelError(string.Empty, "This account doesn't exist");
-                return View(loginModel);
-            }
             if (user != null)
             {
+                if (user.IsDeleted)
+                {
+                    ModelState.AddModelError(string.Empty, "This account doesn't exist");
+                    return View(loginModel);
+                }
+
                 var isValidPassword = await userManager.CheckPasswordAsync(user, loginModel.Password);
 
                 if (isValidPassword)

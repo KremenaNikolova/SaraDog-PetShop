@@ -7,7 +7,7 @@
     using PetShop.Services.Data.Interfaces;
     using PetShop.Services.Data.Models.User;
     using PetShop.Web.Data;
-    using PetShop.Web.ViewModels.Account;
+
     using PetShop.Web.ViewModels.User;
     using PetShop.Web.ViewModels.User.Enums;
 
@@ -163,6 +163,14 @@
             user.PostCode=null;
             user.Image=null;
             user.IsDeleted = true;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task ReverseIsModeratorAsync(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            user.IsModerator = !user.IsModerator;
 
             await dbContext.SaveChangesAsync();
         }

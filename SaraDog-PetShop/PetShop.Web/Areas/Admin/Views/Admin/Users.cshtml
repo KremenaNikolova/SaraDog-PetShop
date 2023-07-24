@@ -58,7 +58,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var user in @Model.Users)
+                @foreach (var user in Model.Users)
                 {
                     <tr>
                         <td>@user.Id</td>
@@ -66,7 +66,14 @@
                         <td>@user.UserName</td>
                         <td>@user.Email </td>
                         <td>
-                            <input type="checkbox" @(user.IsModerator ? "checked" : "") />
+                            <form method="post" asp-action="SetRole" asp-area="Admin" asp-controller="Admin" class="toggle-moderator-form">
+                                <input type="hidden" name="userId" value="@user.Id" />
+                                <input type="hidden" name="isModerator" value="@user.IsModerator" />
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" data-user-id="@user.Id" @(user.IsModerator ? "checked" : "") />
+                                </div>
+                            </form>
+                            
                         </td>
                         <td>
                             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel_@user.Id">Delete</a>
@@ -102,19 +109,6 @@
     </div>
 </div>
 
-@*@foreach (var category in @Model.Categories)
-{
-    <div class="modal fade" id="imageModal-@category.Id" tabindex="-1" aria-labelledby="imageModalLabel-@category.Id" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <img src="~/Images/@category.Image" alt="Category Image" class="img-fluid" />
-                </div>
-            </div>
-        </div>
-    </div>
-}*@
-
 <div class="mb-5">
     @{
         int maxPage = (int)Math.Ceiling((double)Model.TotalUsers /
@@ -138,6 +132,17 @@
         </ul>
     </nav>
 </div>
+
+
+@section Scripts {
+    <script>
+        // Submit the form when checkbox value changes
+        $(".toggle-moderator-form input[type='checkbox']").change(function () {
+            $(this).closest("form").submit();
+        });
+    </script>
+}
+
 
 
 

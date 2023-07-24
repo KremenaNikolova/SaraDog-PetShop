@@ -8,21 +8,31 @@
     using PetShop.Web.ViewModels.Item;
 
     using static PetShop.Common.NotificationMessagesConstants;
+    using Microsoft.AspNetCore.Identity;
+    using PetShop.Data.Models;
+    using PetShop.Web.Infrastructure.Extensions;
+    using PetShop.Web.Data;
 
-    
     public class AdminController : BaseController
     {
         private readonly IItemService itemService;
         private readonly IUserService userService;
         private readonly ICategoryService categoryService;
         private readonly IImageService imageService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public AdminController(IItemService itemService, IUserService userService, ICategoryService categoryService, IImageService imageService)
+        public AdminController(
+            IItemService itemService, 
+            IUserService userService, 
+            ICategoryService categoryService, 
+            IImageService imageService, 
+            UserManager<ApplicationUser> userManager)
         {
             this.itemService = itemService;
             this.userService = userService;
             this.categoryService = categoryService;
             this.imageService = imageService;
+            this.userManager = userManager;
 
         }
 
@@ -104,6 +114,33 @@
                 queryModel.TotalUsers = allUsers.TotalUsersCount;
 
                 return View(queryModel);
+            }
+            catch (Exception)
+            {
+                return GeneralErrorMessage();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetRole(string userId, bool isModerator)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            var roles = await userManager.GetRolesAsync(user);
+            bool isChecked = roles.Any(r => r.Contains("Moderator"));
+
+            try
+            {
+                if (!isModerator && !isChecked)
+                {
+                    await userManager.AddToRoleAsync(user, "Moderator");
+                }
+                else if (isModerator && isChecked)
+                {
+                    await userManager.RemoveFromRoleAsync(user, "Moderator");
+                }
+
+                await userService.ReverseIsModeratorAsync(userId);
+                return RedirectToAction("Users", "Admin");
             }
             catch (Exception)
             {
