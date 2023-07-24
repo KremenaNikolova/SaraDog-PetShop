@@ -8,6 +8,7 @@ namespace PetShop.Web
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.ModelBinder;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
 
     public class Program
     {
@@ -28,6 +29,7 @@ namespace PetShop.Web
                 options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Idetity:Password:RequireNonAlphanumeric");
                 options.Password.RequiredLength = builder.Configuration.GetValue<int>("Idetity:Password:RequiredLength");
             })
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<PetShopDbContext>();
 
             builder.Services.AddApplicationServices(typeof(IItemService));
@@ -68,6 +70,9 @@ namespace PetShop.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedRoles();
+            app.SeedAdministrator();
 
             app.UseEndpoints(endpoints =>
             {

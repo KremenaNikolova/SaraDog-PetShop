@@ -1,7 +1,9 @@
 ﻿namespace PetShop.Web.Infrastructure.Extensions
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-
+    using PetShop.Data.Models;
     using System.Reflection;
 
     public static class WebApplicationBuilderExtensions
@@ -23,10 +25,10 @@
 
             Type[] sType = serviceAssembly
                 .GetTypes()
-                .Where(st=>st.Name.EndsWith("Service") && !st.IsInterface)
+                .Where(st => st.Name.EndsWith("Service") && !st.IsInterface)
                 .ToArray();
 
-            foreach (Type st in sType) 
+            foreach (Type st in sType)
             {
                 var interfaceType = st
                     .GetInterface($"I{st.Name}");
@@ -39,6 +41,61 @@
                 services.AddScoped(interfaceType, st);
             }
 
+        }
+
+        public static IApplicationBuilder SeedRoles(this IApplicationBuilder app)
+        {
+            using IServiceScope scopedServices = app.ApplicationServices.CreateScope();
+
+            var roleManager = scopedServices.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+
+            var roles = new[] { "Admin", "Moderator", "User" };
+
+            Task.Run(async () =>
+            {
+                foreach (var role in roles)
+                {
+                    if (!await roleManager.RoleExistsAsync(role))
+                    {
+                        await roleManager.CreateAsync(new IdentityRole<Guid>(role));
+                    }
+                }
+            })
+            .GetAwaiter()
+            .GetResult();
+
+            return app;
+        }
+
+        public static IApplicationBuilder SeedAdministrator(this IApplicationBuilder app)
+        {
+            using IServiceScope scopedServices = app.ApplicationServices.CreateScope();
+
+            var userManager = scopedServices.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            string username = "Admin";
+            string email = "administrator@abv.bg";
+            string password = "Admin1234,";
+            string role = "Admin";
+
+            Task.Run(async () =>
+            {
+                if (await userManager.FindByEmailAsync(email) == null)
+                {
+                    var user = new ApplicationUser();
+
+                    await userManager.SetUserNameAsync(user, username);
+                    await userManager.SetEmailAsync(user, email);
+
+                    await userManager.CreateAsync(user, password);
+
+                    await userManager.AddToRoleAsync(user, role);
+                }
+            })
+            .GetAwaiter()
+            .GetResult();
+
+            return app;
         }
     }
 }

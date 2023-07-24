@@ -12,5 +12,6 @@
             builder
                 .HasKey(ut => new { ut.UserId, ut.ItemId });
         }
+
     }
 }

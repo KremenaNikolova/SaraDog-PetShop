@@ -21,7 +21,7 @@
                 .HasPrecision(18, 2);
 
             builder
-                .HasData(this.GenerateItems());
+                .HasData(GenerateItems());
         }
 
         private Item[] GenerateItems()
