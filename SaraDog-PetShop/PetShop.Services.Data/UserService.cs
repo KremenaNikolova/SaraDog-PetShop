@@ -7,16 +7,19 @@
     using PetShop.Services.Data.Interfaces;
     using PetShop.Services.Data.Models.User;
     using PetShop.Web.Data;
+    using PetShop.Web.ViewModels.Account;
     using PetShop.Web.ViewModels.User;
     using PetShop.Web.ViewModels.User.Enums;
 
     public class UserService : IUserService
     {
         private readonly PetShopDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public UserService(PetShopDbContext dbContext)
+        public UserService(PetShopDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this.dbContext = dbContext;
+            this.userManager = userManager;
         }
 
         public async Task<IEnumerable<UserViewModel>> GetAllUsersAsync()
