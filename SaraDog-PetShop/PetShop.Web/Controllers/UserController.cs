@@ -186,11 +186,10 @@
                 return View(userModel);
             }
 
-
-            
-
             try
             {
+                await imageService.DownloadImageAsync(user.Image!);
+
                 await userService.EditProfileAsync(userId!, userModel);
             }
             catch (Exception)

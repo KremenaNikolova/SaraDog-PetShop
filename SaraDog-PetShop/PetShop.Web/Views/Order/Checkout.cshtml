@@ -1,4 +1,11 @@
 ﻿@model OrderFormViewModel
+@inject IImageService imageService
+
+@{
+    await imageService.DownloadImageAsync("FrenchBuldogTop.png");
+    await imageService.DownloadImageAsync("Pawns.png");
+}
+
 
 @{
     ViewBag.Title = "Order Shipping Information";
