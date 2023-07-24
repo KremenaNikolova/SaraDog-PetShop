@@ -4,7 +4,9 @@
     ViewBag.Title = "All Users";
 }
 
-
+@{
+    var isAdmin = this.User.IsInRole("Admin");
+}
 
 <partial name="_AdministrationPartial" />
 
@@ -66,16 +68,31 @@
                         <td>@user.UserName</td>
                         <td>@user.Email </td>
                         <td>
-                            <form method="post" asp-action="SetRole" asp-area="Admin" asp-controller="Admin" class="toggle-moderator-form">
-                                <input type="hidden" name="userId" value="@user.Id" />
-                                <input type="hidden" name="isModerator" value="@user.IsModerator" />
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-user-id="@user.Id" @(user.IsModerator ? "checked" : "") />
-                                </div>
-                            </form>
+                            @if (isAdmin)
+                            {
+                                <form method="post" asp-action="SetRole" asp-area="Admin" asp-controller="Admin" class="toggle-moderator-form">
+                                    <input type="hidden" name="userId" value="@user.Id" />
+                                    <input type="hidden" name="isModerator" value="@user.IsModerator" />
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" data-user-id="@user.Id" @(user.IsModerator ? "checked" : "") />
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <form method="post" asp-action="SetRole" asp-area="Admin" asp-controller="Admin" class="toggle-moderator-form">
+                                    <input type="hidden" name="userId" value="@user.Id" />
+                                    <input type="hidden" name="isModerator" value="@user.IsModerator" />
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" data-user-id="@user.Id" disabled @(user.IsModerator ? "checked" : "") />
+                                    </div>
+                                </form>
+                            }
+
                             
                         </td>
                         <td>
+
                             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModel_@user.Id">Delete</a>
 
                             <div class="modal fade" id="deleteModel_@user.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -94,9 +111,18 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <form asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="@user.Id" method="post">
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            @if (isAdmin)
+                                            {
+                                                <form asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="@user.Id" method="post">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <form asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="@user.Id" method="post">
+                                                    <button type="submit" class="btn btn-danger" disabled>Delete</button>
+                                                </form>
+                                            }
                                         </div>
                                     </div>
                                 </div>

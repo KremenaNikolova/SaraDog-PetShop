@@ -130,11 +130,11 @@
 
             try
             {
-                if (!isModerator && !isChecked)
+                if (!isChecked)
                 {
                     await userManager.AddToRoleAsync(user, "Moderator");
                 }
-                else if (isModerator && isChecked)
+                else if (isChecked)
                 {
                     await userManager.RemoveFromRoleAsync(user, "Moderator");
                 }

@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Moderator")]
     public class BaseController : Controller
     {
     }
