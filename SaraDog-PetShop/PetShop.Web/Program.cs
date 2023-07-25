@@ -9,6 +9,7 @@ namespace PetShop.Web
     using PetShop.Web.Infrastructure.ModelBinder;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Authentication.Cookies;
 
     public class Program
     {
@@ -31,6 +32,9 @@ namespace PetShop.Web
             })
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<PetShopDbContext>();
+
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
 
             builder.Services.AddApplicationServices(typeof(IItemService));
 

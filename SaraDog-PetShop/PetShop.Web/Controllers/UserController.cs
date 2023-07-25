@@ -118,8 +118,7 @@
                 return View(registerModel);
             }
 
-            //TODO: Add role to the user "userManager.AddToRoleAsync(user, UserRole.ROLE);
-
+            await userManager.AddToRoleAsync(user, "User");
             await signInManager.SignInAsync(user, false);
 
             return RedirectToAction("All", "Item");
@@ -167,6 +166,13 @@
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserProfileViewModel userModel)
         {
+            var users = await userService.GetAllUsersExceptCurrOneAsync(userModel.Id);
+
+            if(!users.Any(u => u.Email == userModel.Email))
+            {
+                ModelState.AddModelError("", "This email address is already used");
+            }
+
             if (userModel.FormImage != null)
             {
                 var fileResult = await imageService.SaveImage(userModel.FormImage);

@@ -30,7 +30,7 @@
             try
             {
                 var allItems = await itemService.AllActiveItemsQueryAsync(queryModel);
-
+                
                 queryModel.Items = allItems.Items;
                 queryModel.TotalItems = allItems.TotalItemsCount;
                 queryModel.Categories = await categoryService.AllCategoriesNameAsync();
@@ -102,7 +102,7 @@
 
                 return RedirectToAction("All", "Item");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return GeneralErrorMessage();
             }

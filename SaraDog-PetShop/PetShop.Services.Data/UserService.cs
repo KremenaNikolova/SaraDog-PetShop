@@ -40,6 +40,24 @@
 
         }
 
+        public async Task<IEnumerable<UserViewModel>> GetAllUsersExceptCurrOneAsync(string userId)
+        {
+            var allUsers = await dbContext
+                .Users
+                .Where(u=>u.Id.ToString() != userId)
+                .Select(u => new UserViewModel()
+                {
+                    Id = u.Id.ToString(),
+                    UserName = u.UserName,
+                    Email = u.Email,
+                    IsModerator = u.IsModerator,
+                    CreatedOn = u.CreatedOn,
+                })
+                .ToArrayAsync();
+
+            return allUsers;
+        }
+
         public async Task<AllUsersFilteredAndPagedServiceModel> AllUsersQueryAsync(AllUsersQueryModel queryModel)
         {
             IQueryable<ApplicationUser> userQuery = dbContext

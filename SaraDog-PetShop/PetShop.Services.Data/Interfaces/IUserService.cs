@@ -6,6 +6,9 @@
     public interface IUserService
     {
         Task<IEnumerable<UserViewModel>> GetAllUsersAsync();
+
+        Task<IEnumerable<UserViewModel>> GetAllUsersExceptCurrOneAsync(string userId);
+
         Task<AllUsersFilteredAndPagedServiceModel> AllUsersQueryAsync(AllUsersQueryModel queryModel);
 
         Task<EditUserProfileViewModel> GetUserByIdAsync(string userId);
