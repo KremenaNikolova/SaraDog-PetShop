@@ -9,7 +9,6 @@ namespace PetShop.Web
     using PetShop.Web.Infrastructure.ModelBinder;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Authentication.Cookies;
 
     public class Program
     {
@@ -25,10 +24,14 @@ namespace PetShop.Web
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = builder.Configuration.GetValue<bool>("Idetity:SignIn:RequireConfirmedAccount");
+
                 options.Password.RequireLowercase = builder.Configuration.GetValue<bool>("Idetity:Password:RequireLowercase");
                 options.Password.RequireUppercase = builder.Configuration.GetValue<bool>("Idetity:Password:RequireUppercase");
                 options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Idetity:Password:RequireNonAlphanumeric");
                 options.Password.RequiredLength = builder.Configuration.GetValue<int>("Idetity:Password:RequiredLength");
+
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);
+                options.Lockout.MaxFailedAccessAttempts = 3;
             })
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<PetShopDbContext>();

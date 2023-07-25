@@ -8,7 +8,7 @@
     using PetShop.Web.Infrastructure.Extensions;
     using PetShop.Web.ViewModels.Account;
     using PetShop.Web.ViewModels.User;
-    
+
     using static PetShop.Common.NotificationMessagesConstants;
 
     [Authorize]
@@ -19,7 +19,7 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
-        public UserController(IUserService userService,IImageService imageService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UserController(IUserService userService, IImageService imageService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             this.userService = userService;
             this.imageService = imageService;
@@ -52,16 +52,15 @@
                     return View(loginModel);
                 }
 
-                var isValidPassword = await userManager.CheckPasswordAsync(user, loginModel.Password);
-
-                if (isValidPassword)
+                var result = await signInManager.PasswordSignInAsync(user, loginModel.Password, loginModel.RememberMe, lockoutOnFailure: true);
+                if (result.IsLockedOut)
                 {
-                    var result = await signInManager.PasswordSignInAsync(user, loginModel.Password, loginModel.RememberMe, false);
+                    ModelState.AddModelError(string.Empty, "The account is locked. Too many attempts! Try again later");
+                }
 
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("All", "Item");
-                    }
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("All", "Item");
                 }
             }
 
@@ -160,7 +159,7 @@
             {
                 return GeneralErrorMessage();
             }
-            
+
         }
 
         [HttpPost]
@@ -168,9 +167,9 @@
         {
             var users = await userService.GetAllUsersExceptCurrOneAsync(userModel.Id);
 
-            if(!users.Any(u => u.Email == userModel.Email))
+            if (users.Any(u => u.Email == userModel.Email))
             {
-                ModelState.AddModelError("", "This email address is already used");
+                ModelState.AddModelError("Email", "This email address is already used");
             }
 
             if (userModel.FormImage != null)
