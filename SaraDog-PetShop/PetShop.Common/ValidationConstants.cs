@@ -51,8 +51,8 @@
             public const int CountryMinLength = 4;
             public const int CountryMaxLength = 56;
 
-            public const int CityMinLenght = 2;
-            public const int CityMaxLenght = 49;
+            public const int CityMinLength = 2;
+            public const int CityMaxLength = 49;
 
             public const int AddressMinLength = 4;
             public const int AddressMaxLength = 150;

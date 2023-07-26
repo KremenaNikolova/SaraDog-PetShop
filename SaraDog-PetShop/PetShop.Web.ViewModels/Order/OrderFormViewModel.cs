@@ -24,7 +24,7 @@
         public string Country { get; set; } = null!;
 
         [Required]
-        [StringLength(CityMaxLenght, MinimumLength = CityMinLenght, ErrorMessage = InvalidCountry)]
+        [StringLength(CityMaxLength, MinimumLength = CityMinLength, ErrorMessage = InvalidCountry)]
         public string City { get; set; } = null!;
 
         [Required]

@@ -26,7 +26,7 @@
         [MaxLength(CountryMaxLength)]
         public string? Country { get; set; }
 
-        [MaxLength(CityMaxLenght)]
+        [MaxLength(CityMaxLength)]
         public string? City { get; set; }
 
         [MaxLength(AddressMaxLength)]
