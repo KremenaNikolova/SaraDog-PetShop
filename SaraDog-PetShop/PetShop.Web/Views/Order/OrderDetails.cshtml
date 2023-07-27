@@ -38,8 +38,12 @@
                     }
                 </tbody>
             </table>
+        <div class="mt-5">
+            <a asp-controller="Order" asp-action="OrderHistory" class="btn btn-primary profile-button" type="button">Back</a>
+        </div>
         </div>
     </div>
+
 
 @foreach (var item in @Model.Items)
 {
