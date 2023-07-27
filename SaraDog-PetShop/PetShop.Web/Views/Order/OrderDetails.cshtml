@@ -1,0 +1,58 @@
+﻿@model CartFormViewModel
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<div class="d-flex justify-content-center">
+    <h2>@ViewBag.Title</h2>
+</div>
+<hr />
+
+<div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-@item.ItemId">
+                                    @item.Image
+                                </a>
+                            </td>
+                            <td>$@item.Price.ToString("f2")</td>
+                            <td>@item.Quantity</td>
+                            <td>$@item.TotalPrice.ToString("f2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+@foreach (var item in @Model.Items)
+{
+    <div class="modal fade" id="imageModal-@item.ItemId" tabindex="-1" aria-labelledby="imageModalLabel-@item.ItemId" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="~/Images/@item.Image" alt="Item Image" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

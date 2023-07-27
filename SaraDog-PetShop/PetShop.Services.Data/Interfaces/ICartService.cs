@@ -6,6 +6,8 @@
     {
         Task<CartFormViewModel?> GetCurrCartByUserIdAsync(string userId);
 
+        Task<CartFormViewModel> GetCartByOrderIdAsync(string orderId);
+
         Task CreateCartAsync(string userId);
 
         Task AddItemToCartAsync(int itemId, string cartId, string userId);

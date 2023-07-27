@@ -38,7 +38,7 @@ else
                 <tr>
                     <td>
                         <button type="button" class="btn btn-link btn-product" data-bs-toggle="modal" data-bs-target="#modal-@item.ItemId">@item.Title</button>
-                        <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="modal-@item.Id-label" aria-hidden="true">
+                        <div class="modal fade" id="modal-@item.ItemId" tabindex="-1" aria-labelledby="modal-@item.ItemId-label" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-body text-center">
@@ -55,7 +55,7 @@ else
                     <td class="align-middle">
                         @if (item.Quantity <= 1)
                         {
-                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.Id" method="post" class="d-inline-block">
+                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.ItemId" method="post" class="d-inline-block">
                                 <button type="submit" class="btn btn-sm" disabled>
                                     <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
                                 </button>
@@ -63,14 +63,14 @@ else
                         }
                         else
                         {
-                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.Id" method="post" class="d-inline-block">
+                            <form asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.ItemId" method="post" class="d-inline-block">
                                 <button type="submit" class="btn btn-sm">
                                     <i class="fas fa-chevron-left fa-lg" style="color: #0771a6;"></i>
                                 </button>
                             </form>
                         }
                         <span>@item.Quantity</span>
-                        <form asp-controller="Cart" asp-action="Increase" asp-route-id="@item.Id" method="post" class="d-inline-block">
+                        <form asp-controller="Cart" asp-action="Increase" asp-route-id="@item.ItemId" method="post" class="d-inline-block">
                             <button type="submit" class="btn btn-sm">
                                 <i class="fas fa-chevron-right fa-lg" style="color: #0771a6;"></i>
                             </button>
@@ -78,7 +78,7 @@ else
                         
                     </td>
                     <td>
-                        <form asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Id" method="post" class="me-2 mb-2">
+                        <form asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ItemId" method="post" class="me-2 mb-2">
                             <button type="submit" class="btn btn-sm ms-2">
                                 <i class="far fa-times-circle fa-lg" style="color: #700000;"></i>
                             </button>

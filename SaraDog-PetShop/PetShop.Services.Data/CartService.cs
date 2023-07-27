@@ -27,7 +27,6 @@
                     Items = c.CartItems
                     .Select(ci => new CartItemViewModel()
                     {
-                        Id = ci.ItemId,
                         ItemId = ci.ItemId,
                         Title = ci.Item.Title,
                         Image = ci.Item.TitleImage,
@@ -48,6 +47,32 @@
             }
             
             return lastCart;
+        }
+
+        public async Task<CartFormViewModel> GetCartByOrderIdAsync(string orderId)
+        {
+            var currCart = await dbContext
+                .Orders
+                .Where(o => o.Id.ToString() == orderId)
+                .Select (o => new CartFormViewModel()
+                {
+                    Id = o.CartId.ToString(),
+                    Items = o.Cart.CartItems
+                    .Select(ci => new CartItemViewModel()
+                    {
+                        ItemId = ci.ItemId,
+                        Title = ci.Item.Title,
+                        Image = ci.Item.TitleImage,
+                        Price = ci.Item.Price,
+                        Quantity = ci.Quantity,
+                        TotalPrice = ci.Quantity * ci.Item.Price
+                    })
+                    .ToArray()
+                })
+                .FirstAsync();
+
+            return currCart;
+
         }
 
         public async Task CreateCartAsync(string userId)

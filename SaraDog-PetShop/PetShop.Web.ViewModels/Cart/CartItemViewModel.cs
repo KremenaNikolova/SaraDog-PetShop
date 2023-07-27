@@ -10,8 +10,6 @@
             Quantity = 0;
             TotalPrice = Price * Quantity;
         }
-        public int Id { get; set; }
-
         public int ItemId { get; set; }
 
         public string Title { get; set; } = null!;

@@ -52,7 +52,6 @@ namespace PetShop.Services.Data
                     TotalPrice = o.TotalPrice,
                     CartItems = o.Cart.CartItems.Select(ci=> new CartItemViewModel()
                     {
-                        Id = ci.ItemId,
                         ItemId = ci.ItemId,
                         Title = ci.Item.Title,
                         Image = ci.Item.TitleImage,

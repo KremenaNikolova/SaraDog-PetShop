@@ -102,5 +102,20 @@
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> OrderDetails(string id)
+        {
+            try
+            {
+                var cart = await cartService.GetCartByOrderIdAsync(id);
+
+                return View(cart);
+            }
+            catch
+            {
+                TempData[ErrorMessage] = "Something get wrong! Please try again later!";
+                return RedirectToAction("OrderHistory", "Order");
+            }
+        }
     }
 }

@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a class="btn btn-secondary">Order Details</a>
+                    <a class="btn btn-secondary" asp-controller="Order" asp-action="OrderDetails" asp-route-id="@order.Id">Order Details</a>
                 </div>
             </div>
         }
