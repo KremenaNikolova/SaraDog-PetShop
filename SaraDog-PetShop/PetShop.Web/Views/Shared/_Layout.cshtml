@@ -29,7 +29,7 @@
                 <div class="container-fluid">
                     @if (this.User.Identity?.IsAuthenticated ?? false)
                     {
-                        <a class="navbar-brand" asp-area="" asp-controller="Item" asp-action="All">Hello @User.Identity.Name</a>
+                        <a class="navbar-brand" asp-area="" asp-controller="Item" asp-action="All">Hello @User.Identity.Name!</a>
                     }
                     else
                     {

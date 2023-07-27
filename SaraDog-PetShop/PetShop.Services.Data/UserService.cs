@@ -136,7 +136,7 @@
 
             if(string.IsNullOrWhiteSpace(userModel.Image))
             {
-                userModel.Image = "avatar.png";
+                userModel.Image = "catAvatar.jpg";
             }
 
             return userModel;
@@ -160,6 +160,7 @@
                 user.PostCode = model.PostCode;
                 user.Image = model.Image;
                 user.Email = model.Email;
+                user.UserName = model.UserName;
 
                 await dbContext.SaveChangesAsync();
             }

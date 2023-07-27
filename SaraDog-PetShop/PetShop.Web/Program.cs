@@ -44,7 +44,6 @@ namespace PetShop.Web
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
                 cfg.LoginPath = "/User/Login";
-                cfg.LogoutPath = "/User/Logout";
             });
 
             builder.Services.AddControllersWithViews()

@@ -1,17 +1,20 @@
 ﻿@using PetShop.Services.Data.Interfaces;
-@using PetShop.Web.Infrastructure.Extensions;
+@using PetShop.Web.Infrastructure.Extensions
 
 @model ItemIndexViewModel
-
 
 @inject IItemService ItemService
 @{
     bool isAlreadyAdded = ItemService.IsAlreadyAddedAsync(this.User.GetId()!, Model.Id);
 }
 
-<div class="col-md-3">
-    <div class="card mb-3">
-        <img class="card-img-top" src="~/Images/@Model.Image" alt="Item Image">
+<link rel="stylesheet" href="~/css/cards.css" asp-append-version="true" />
+
+<div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+    <div class="card h-100">
+        <div class="card-img-container">
+            <img class="card-img-top" src="~/Images/@Model.Image" alt="Item Image">
+        </div>
         <div class="card-body text-center">
             <h4>@Model.Title</h4>
             <p class="mb-3 h5">Price: $@Model.Price</p>

@@ -171,8 +171,12 @@
             {
                 ModelState.AddModelError("Email", "This email address is already used");
             }
+            if (users.Any(u => u.UserName!.ToLower() == userModel.UserName.ToLower()))
+            {
+                ModelState.AddModelError("UserName", "This Username is already used");
+            }
 
-            if (userModel.FormImage != null)
+                if (userModel.FormImage != null)
             {
                 var fileResult = await imageService.SaveImage(userModel.FormImage);
                 if (fileResult.Item1 == 1)

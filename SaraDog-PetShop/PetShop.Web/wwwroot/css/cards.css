@@ -1,0 +1,23 @@
+﻿.card-img-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: calc(345 / 259 * 100%); 
+    overflow: hidden;
+}
+
+    .card-img-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.card-body {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
