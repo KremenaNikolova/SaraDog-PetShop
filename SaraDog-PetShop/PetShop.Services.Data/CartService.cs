@@ -16,7 +16,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<CartFormViewModel?> GetCartByUserIdAsync(string userId)
+        public async Task<CartFormViewModel?> GetCurrCartByUserIdAsync(string userId)
         {
             var cart = await dbContext
                 .Carts

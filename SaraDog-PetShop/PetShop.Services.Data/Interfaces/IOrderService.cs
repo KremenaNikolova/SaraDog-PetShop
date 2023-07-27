@@ -6,6 +6,8 @@
     {
         Task<OrderFormViewModel?> GetOrderDetailsAsync(string cartId);
 
+        Task<IEnumerable<OrderHistoryViewModel>> GetAllOrdersByUserIdAsync(string userId);
+
         Task CreateOrderAsync(OrderFormViewModel orderModel);
 
         Task<OrderFormViewModel?> GetOrderListByUserIdAsync(string userId);

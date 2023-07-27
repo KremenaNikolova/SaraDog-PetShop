@@ -1,0 +1,42 @@
+﻿@model IEnumerable<OrderHistoryViewModel>
+
+@{
+    ViewBag.Title = "Order History";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="d-flex justify-content-center">
+    <div class="col-md-8">
+        @foreach (var order in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="order-info d-flex justify-content-between">
+                        <p style="font-weight: 800;"><i class="fas fa-print fa-lg me-1"></i>Order number</p>
+                        <p class="order-info-info">@order.Id</p>
+                    </div>
+                    <div class="order-info d-flex justify-content-between">
+                        <p style="font-weight: 800;"><i class="far fa-clock fa-lg me-1"></i>Date of registration</p>
+                        <p class="order-info-info">@order.CreatedOn.ToString()</p>
+                    </div>
+                    <div class="order-info d-flex justify-content-between">
+                        <p style="font-weight: 800;"><i class="far fa-money-bill-alt fa-lg me-1"></i>Due amount</p>
+                        <p class="order-info-info">$@order.TotalPrice</p>
+                    </div>
+                    <div class="order-info d-flex justify-content-between">
+                        <p style="font-weight: 800;"><i class="fas fa-exclamation-circle fa-lg me-1"></i>Status</p>
+                        <p class="order-info-info limited-txt">Delivered</p>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a class="btn btn-secondary">Order Details</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

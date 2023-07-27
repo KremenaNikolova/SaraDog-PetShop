@@ -25,7 +25,7 @@
             {
                 var userId = User.GetId();
 
-                var cart = await cartService.GetCartByUserIdAsync(userId!);
+                var cart = await cartService.GetCurrCartByUserIdAsync(userId!);
 
                 return View(cart);
             }
@@ -42,13 +42,13 @@
             {
                 var userId = User.GetId();
 
-                var cart = await cartService.GetCartByUserIdAsync(userId!);
+                var cart = await cartService.GetCurrCartByUserIdAsync(userId!);
 
                 if (cart == null)
                 {
                     await cartService.CreateCartAsync(userId!);
 
-                    cart = await cartService.GetCartByUserIdAsync(userId!);
+                    cart = await cartService.GetCurrCartByUserIdAsync(userId!);
                 }
 
                 var cartId = cart!.Id;

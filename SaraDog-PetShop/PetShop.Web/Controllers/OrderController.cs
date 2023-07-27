@@ -28,7 +28,7 @@
             {
                 var userId = User.GetId();
 
-                var currCart = await cartService.GetCartByUserIdAsync(userId!);
+                var currCart = await cartService.GetCurrCartByUserIdAsync(userId!);
 
                 var order = new OrderFormViewModel()
                 {
@@ -43,12 +43,18 @@
             }
         }
 
+        [HttpGet]
+        public IActionResult Confirmed()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Checkout(OrderFormViewModel order)
         {
             var userId = User.GetId()!;
 
-            var model = await cartService.GetCartByUserIdAsync(userId);
+            var model = await cartService.GetCurrCartByUserIdAsync(userId);
 
             order.UserId = userId;
             order.CartId = model!.Id;
@@ -76,6 +82,24 @@
             }
 
             return RedirectToAction("Confirmed", "Order");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OrderHistory()
+        {
+            string userId = User.GetId()!;
+
+            try
+            {
+                var userOrders = await orderService.GetAllOrdersByUserIdAsync(userId);
+
+                return View(userOrders);
+            }
+            catch
+            {
+                TempData[ErrorMessage] = "Something get wrong! Please try again later!";
+                return RedirectToAction("All", "Items");
+            }
         }
 
     }
