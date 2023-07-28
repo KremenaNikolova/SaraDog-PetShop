@@ -16,7 +16,7 @@
     }
 
 .card-body {
-    height: 180px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: center;
