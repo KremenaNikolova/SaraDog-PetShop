@@ -69,7 +69,7 @@
             }
             else if (statusCode == 404)
             {
-                var imgName = "error404.jpg";
+                var imgName = "error404.png";
                 await imageService.DownloadImageAsync(imgName);
 
                 return View("Error404");
