@@ -43,12 +43,6 @@
             }
         }
 
-        [HttpGet]
-        public IActionResult Confirmed()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Checkout(OrderFormViewModel order)
         {
@@ -82,6 +76,12 @@
             }
 
             return RedirectToAction("Confirmed", "Order");
+        }
+
+        [HttpGet]
+        public IActionResult Confirmed()
+        {
+            return View();
         }
 
         [HttpGet]

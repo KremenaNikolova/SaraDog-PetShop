@@ -20,6 +20,7 @@
         {
             var cart = await dbContext
                 .Carts
+                .OrderByDescending(c => c.CreatedOn)
                 .Where(c => c.UserId.ToString() == userId)
                 .Select(c => new CartFormViewModel()
                 {
@@ -37,16 +38,11 @@
                     .ToArray()
 
                 })
-                .ToListAsync();
+                .FirstAsync();
 
-            var lastCart = cart.LastOrDefault();
+            cart.TotalPrice += cart.Items.Select(i => i.TotalPrice).Sum();
 
-            if (lastCart != null)
-            {
-                lastCart.TotalPrice += lastCart.Items.Select(i => i.TotalPrice).Sum();
-            }
-            
-            return lastCart;
+            return cart;
         }
 
         public async Task<CartFormViewModel> GetCartByOrderIdAsync(string orderId)
@@ -54,7 +50,7 @@
             var currCart = await dbContext
                 .Orders
                 .Where(o => o.Id.ToString() == orderId)
-                .Select (o => new CartFormViewModel()
+                .Select(o => new CartFormViewModel()
                 {
                     Id = o.CartId.ToString(),
                     Items = o.Cart.CartItems
@@ -143,11 +139,11 @@
 
         }
 
-        public async Task RemoveItemFromCartAsync(int itemId)
+        public async Task RemoveItemFromCartAsync(int itemId, string cartId)
         {
             var cartItem = await dbContext
                 .CartItems
-                .Where (ci => ci.ItemId == itemId)
+                .Where(ci => ci.ItemId == itemId && ci.CartId.ToString() == cartId)
                 .FirstAsync();
 
             if (cartItem != null)
@@ -157,11 +153,11 @@
             }
         }
 
-        public async Task IncreaseItemCountAsync(int itemId)
+        public async Task IncreaseItemCountAsync(int itemId, string cartId)
         {
             var cartItem = await dbContext
                 .CartItems
-                .Where(ci => ci.ItemId == itemId)
+                .Where(ci => ci.ItemId == itemId && ci.CartId.ToString() == cartId)
                 .FirstAsync();
 
             cartItem.Quantity++;
@@ -169,11 +165,11 @@
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task DecreaseItemCountAsync(int itemId)
+        public async Task DecreaseItemCountAsync(int itemId, string cartId)
         {
             var cartItem = await dbContext
                 .CartItems
-                .Where(ci => ci.ItemId == itemId)
+                .Where(ci => ci.ItemId == itemId && ci.CartId.ToString() == cartId)
                 .FirstAsync();
 
             cartItem.Quantity--;

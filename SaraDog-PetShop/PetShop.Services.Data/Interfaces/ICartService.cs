@@ -12,10 +12,10 @@
 
         Task AddItemToCartAsync(int itemId, string cartId, string userId);
 
-        Task RemoveItemFromCartAsync(int cartItemId);
+        Task RemoveItemFromCartAsync(int cartItemId, string cartId);
 
-        Task IncreaseItemCountAsync(int itemId);
+        Task IncreaseItemCountAsync(int itemId, string cartId);
 
-        Task DecreaseItemCountAsync(int itemId);
+        Task DecreaseItemCountAsync(int itemId, string cartId);
     }
 }

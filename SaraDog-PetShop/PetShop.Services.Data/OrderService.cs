@@ -45,6 +45,7 @@ namespace PetShop.Services.Data
             var orders = await dbContext
                 .Orders
                 .Where(o => o.UserId.ToString() == userId)
+                .OrderByDescending(o=>o.CreatedOn)
                 .Select(o => new OrderHistoryViewModel() 
                 { 
                     Id = o.Id.ToString(),

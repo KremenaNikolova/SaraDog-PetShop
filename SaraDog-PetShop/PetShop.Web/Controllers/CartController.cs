@@ -69,7 +69,11 @@
         {
             try
             {
-                await cartService.RemoveItemFromCartAsync(id);
+                var userId = User.GetId();
+
+                var cart = await cartService.GetCurrCartByUserIdAsync(userId!);
+
+                await cartService.RemoveItemFromCartAsync(id, cart!.Id);
 
                 TempData[SuccessMessage] = "You have successfully removed the item from the cart!";
 
@@ -87,7 +91,11 @@
         {
             try
             {
-                await cartService.IncreaseItemCountAsync(id);
+                var userId = User.GetId();
+
+                var cart = await cartService.GetCurrCartByUserIdAsync(userId!);
+
+                await cartService.IncreaseItemCountAsync(id, cart!.Id);
             }
             catch
             {
@@ -105,7 +113,11 @@
         {
             try
             {
-                await cartService.DecreaseItemCountAsync(id);
+                var userId = User.GetId();
+
+                var cart = await cartService.GetCurrCartByUserIdAsync(userId!);
+
+                await cartService.DecreaseItemCountAsync(id, cart!.Id);
             }
             catch
             {
