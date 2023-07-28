@@ -9,8 +9,20 @@
     {
         @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
         {
-            <li class="nav-item me-2">
+            @*<li class="nav-item me-2">
                 <a class="nav-link btn btn-outline-warning text-black" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+            </li>*@
+            <li>
+                <div class="dropdown">
+                    <button class="nav-link btn btn-outline-warning text-black" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin Panel
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Admin" asp-action="Items">Products</a></li>
+                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Admin" asp-action="Categories">Categories</a></li>
+                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Admin" asp-action="Users">Users</a></li>
+                    </ul>
+                </div>
             </li>
         }
         <li>
