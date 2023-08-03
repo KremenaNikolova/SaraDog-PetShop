@@ -14,12 +14,10 @@
     public class UserService : IUserService
     {
         private readonly PetShopDbContext dbContext;
-        private readonly UserManager<ApplicationUser> userManager;
 
-        public UserService(PetShopDbContext dbContext, UserManager<ApplicationUser> userManager)
+        public UserService(PetShopDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.userManager = userManager;
         }
 
         public async Task<IEnumerable<UserViewModel>> GetAllUsersAsync()
@@ -188,7 +186,12 @@
 
         public async Task ReverseIsModeratorAsync(string userId)
         {
-            var user = await userManager.FindByIdAsync(userId);
+            var user = await dbContext
+                .Users
+                .Where(u => u.Id.ToString() == userId
+                       && u.IsDeleted == false)
+                .FirstAsync();
+
             user.IsModerator = !user.IsModerator;
 
             await dbContext.SaveChangesAsync();
