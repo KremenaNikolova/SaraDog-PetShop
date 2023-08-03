@@ -8,8 +8,6 @@ For your shopping convenience, have a special **"Favorites"** section where you 
 
 In the **"Profile Settings"**, you have the freedom to personalize your experience. Choose an **avatar** that resonates with you and **add important details** such as your Address, First Name, Last Name, and more.
 
-<hr/>
-
 ## :construction_worker: Admin Panel
 
 Saradog PetShop boasts a robust Admin Panel, granting on administrators and moderators extensive control. Through this panel, authorized personnel can effortlessly manage products and categories. Administrator possess special privileges, allowing them to elevate users to moderators or revoke such permissions as needed.

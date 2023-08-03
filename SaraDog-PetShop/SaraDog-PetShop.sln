@@ -23,7 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.Services.Data", "Pe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.Web.Infrastructure", "PetShop.Web.Infrastructure\PetShop.Web.Infrastructure.csproj", "{98EF9E24-1C87-48F6-9351-87D8A7DE4188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Services.Data.Models", "PetShop.Services.Data.Models\PetShop.Services.Data.Models.csproj", "{16AEB54C-7443-44B0-9643-1FC5C9AFD4B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShop.Services.Data.Models", "PetShop.Services.Data.Models\PetShop.Services.Data.Models.csproj", "{16AEB54C-7443-44B0-9643-1FC5C9AFD4B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Services.Tests", "PetShop.Services.Tests\PetShop.Services.Tests.csproj", "{3088EFDA-4FAC-4386-A1D7-FB9E316C33A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89BA440E-857F-47A8-99C4-1AFBF427B4A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{16AEB54C-7443-44B0-9643-1FC5C9AFD4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16AEB54C-7443-44B0-9643-1FC5C9AFD4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16AEB54C-7443-44B0-9643-1FC5C9AFD4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3088EFDA-4FAC-4386-A1D7-FB9E316C33A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3088EFDA-4FAC-4386-A1D7-FB9E316C33A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3088EFDA-4FAC-4386-A1D7-FB9E316C33A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3088EFDA-4FAC-4386-A1D7-FB9E316C33A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +83,7 @@ Global
 		{4B126299-ADC2-424B-91BC-638E95D19A7F} = {B80DEA7D-CECB-41AB-B0A2-B4AB10A0F377}
 		{98EF9E24-1C87-48F6-9351-87D8A7DE4188} = {09D36063-8D34-4AB4-B714-57390BFDF105}
 		{16AEB54C-7443-44B0-9643-1FC5C9AFD4B4} = {B80DEA7D-CECB-41AB-B0A2-B4AB10A0F377}
+		{3088EFDA-4FAC-4386-A1D7-FB9E316C33A3} = {89BA440E-857F-47A8-99C4-1AFBF427B4A3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FAB62C49-9655-4E24-BCA4-A25BE03CE929}
