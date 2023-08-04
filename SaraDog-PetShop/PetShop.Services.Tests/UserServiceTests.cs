@@ -1,13 +1,12 @@
 namespace PetShop.Services.Tests
 {
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
-    using Moq;
-    using PetShop.Data.Models;
+
     using PetShop.Services.Data;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Data;
     using PetShop.Web.ViewModels.User;
+
     using static DatabaseSeeder;
 
     public class UserServiceTests
@@ -54,7 +53,7 @@ namespace PetShop.Services.Tests
         [Test]
         public async Task GetUserByIdAsync_ShouldReturnNotNull()
         {
-            var userId = User.Id;
+            var userId = User!.Id;
 
             var user = await userService.GetUserByIdAsync(userId.ToString());
             Assert.Multiple(() =>
@@ -75,7 +74,7 @@ namespace PetShop.Services.Tests
             var currUser = User;
 
             var allUsers = dbContext.Users.Count();
-            var users = await userService.GetAllUsersExceptCurrOneAsync(currUser.Id.ToString());
+            var users = await userService.GetAllUsersExceptCurrOneAsync(currUser!.Id.ToString());
 
             Assert.That(users.Count(), Is.EqualTo(allUsers - 1));
         }
@@ -119,7 +118,7 @@ namespace PetShop.Services.Tests
         [Test]
         public async Task SoftDeleteUserAsync_ShouldIsDeleteGoTrue()
         {
-            string userId = User.Id.ToString();
+            string userId = User!.Id.ToString();
 
             await userService.SoftDeleteUserAsync(userId);
 
@@ -140,7 +139,7 @@ namespace PetShop.Services.Tests
         [Test]
         public async Task ReverseIsModeratorAsync_ShouldReturnOposite()
         {
-            string userId = User.Id.ToString();
+            string userId = User!.Id.ToString();
 
             bool isModeratorBefore = User.IsModerator;
 
@@ -149,18 +148,5 @@ namespace PetShop.Services.Tests
             Assert.That(User.IsModerator, Is.Not.EqualTo(isModeratorBefore));
         }
 
-
-
-        //Id = Guid.Parse("e48319dd-7b81-4af4-af33-a60dd1142fc9"),
-        //UserName = "Admin",
-        //NormalizedUserName = "ADMIN",
-        //Email = "administrator@abv.bg@renters.com",
-        //NormalizedEmail = "ADMINISTRATOR@ABV.BG",
-        //PasswordHash = "AQAAAAEAACcQAAAAEIc+k1oo/tc5Z8HNA5in13x2OqTb69TIOidRPdSq0nB8qd/D9uZjUhV2Orz2SS4nFg==",
-        //ConcurrencyStamp = "b05030f5-bc0e-4d04-89e5-636c4991c781",
-        //SecurityStamp = "P7DFJ32ALZG3YM6YHURCKFO4CHMIEXMU",
-        //FirstName = "Kremena",
-        //LastName = "Nikolova",
-        //Image = "LazyBum.jpg"
     }
 }
