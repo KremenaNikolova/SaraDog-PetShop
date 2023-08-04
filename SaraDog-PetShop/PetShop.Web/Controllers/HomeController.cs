@@ -22,7 +22,7 @@
         public async Task<IActionResult> Index()
         {
             var landingImage = imageService
-                .GetLandingPageImageAsync();
+                .GetLandingPageImage();
 
             await imageService.DownloadImageAsync(landingImage.LandingImage);
 

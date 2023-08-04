@@ -9,7 +9,7 @@
 
         Task<Stream> GetImageStreamAsync(string imageName);
 
-        LandingPageModel GetLandingPageImageAsync();
+        LandingPageModel GetLandingPageImage();
 
         Task<string> DownloadImageAsync(string imageName);
     }

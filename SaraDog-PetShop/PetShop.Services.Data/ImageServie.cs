@@ -89,7 +89,7 @@
             }
         }
 
-        public LandingPageModel GetLandingPageImageAsync()
+        public LandingPageModel GetLandingPageImage()
         {
             var landingImageModel = new LandingPageModel()
             {

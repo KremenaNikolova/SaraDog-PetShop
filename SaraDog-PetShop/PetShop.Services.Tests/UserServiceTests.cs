@@ -18,7 +18,7 @@ namespace PetShop.Services.Tests
 
 
         [SetUp]
-        public void OneTimeSetUp()
+        public void SetUp()
         {
             dbOptions = new DbContextOptionsBuilder<PetShopDbContext>()
                 .UseInMemoryDatabase("PetShopInMemory" + Guid.NewGuid().ToString())

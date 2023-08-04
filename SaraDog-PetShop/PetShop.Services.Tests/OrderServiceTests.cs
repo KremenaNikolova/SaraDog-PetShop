@@ -17,7 +17,7 @@
         private IOrderService orderService;
 
         [SetUp]
-        public void OneTimeSetUp()
+        public void SetUp()
         {
             dbOptions = new DbContextOptionsBuilder<PetShopDbContext>()
                 .UseInMemoryDatabase("PetShopInMemory" + Guid.NewGuid().ToString())
@@ -111,7 +111,7 @@
         }
 
         [Test]
-        public async Task GetLastOrderListByUserIdAsync_ShouldWorkPropertly()
+        public async Task GetLastOrderListByUserIdAsync_ShouldReturnLastOrder()
         {
             var userId = User!.Id;
 
