@@ -10,7 +10,7 @@
 
         Task CreateOrderAsync(OrderFormViewModel orderModel);
 
-        Task<OrderFormViewModel?> GetOrderListByUserIdAsync(string userId);
+        Task<OrderFormViewModel?> GetLastOrderListByUserIdAsync(string userId);
         
     }
 }

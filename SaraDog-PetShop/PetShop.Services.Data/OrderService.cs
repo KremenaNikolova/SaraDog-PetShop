@@ -96,7 +96,7 @@ namespace PetShop.Services.Data
 
         }
 
-        public async Task<OrderFormViewModel?> GetOrderListByUserIdAsync(string userId)
+        public async Task<OrderFormViewModel?> GetLastOrderListByUserIdAsync(string userId)
         {
             var orderList = await dbContext
                 .Orders
