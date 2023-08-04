@@ -40,7 +40,7 @@
         {
             try
             {
-                var allCategories = await categoryService.AllCteagoriesAsync();
+                var allCategories = await categoryService.AllCateagoriesAsync();
                 var allItems = await itemService.GetAllIActivetemsAsync();
                 var allUsers = await userService.GetAllUsersAsync();
 

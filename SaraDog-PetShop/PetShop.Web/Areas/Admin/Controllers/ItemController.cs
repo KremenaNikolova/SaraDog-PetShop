@@ -28,7 +28,7 @@
             {
                 var itemModel = new ItemFormViewModel()
                 {
-                    Categories = await this.categoryService.AllCteagoriesAsync()
+                    Categories = await this.categoryService.AllCateagoriesAsync()
                 };
 
                 return View(itemModel);
@@ -67,7 +67,7 @@
 
             if (!ModelState.IsValid || string.IsNullOrWhiteSpace(itemModel.UploadPicture))
             {
-                itemModel.Categories = await categoryService.AllCteagoriesAsync();
+                itemModel.Categories = await categoryService.AllCateagoriesAsync();
 
                 TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
@@ -126,7 +126,7 @@
 
             if (!ModelState.IsValid)
             {
-                itemModel.Categories = await categoryService.AllCteagoriesAsync();
+                itemModel.Categories = await categoryService.AllCateagoriesAsync();
                 TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
                 return View(itemModel);
             }

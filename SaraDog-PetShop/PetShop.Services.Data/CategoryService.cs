@@ -23,7 +23,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<ICollection<CategoryViewModel>> AllCteagoriesAsync()
+        public async Task<ICollection<CategoryViewModel>> AllCateagoriesAsync()
         {
             var allCategories = await dbContext
                 .Categories
@@ -59,26 +59,6 @@
                 .ToArrayAsync();
 
             return allNames;
-        }
-
-        public async Task<IEnumerable<ItemIndexViewModel>> AllItemsByChooseCateryAsync(int categoryId)
-        {
-            var allItems = await dbContext
-                .Items
-                .Where(i => i.CategoryId == categoryId && i.IsActive && i.Category.IsDeleted == false)
-                .Select(i => new ItemIndexViewModel()
-                {
-                    Id = i.Id,
-                    Title = i.Title,
-                    Image = i.TitleImage,
-                    Description = i.Description,
-                    Price = i.Price,
-                    IsActive = i.IsActive,
-                    Category = i.Category.Name
-                })
-                .ToArrayAsync();
-
-            return allItems;
         }
 
         public async Task<bool> IsCategoryExistByNameAsync(string categoryName)

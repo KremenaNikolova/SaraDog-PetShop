@@ -345,5 +345,26 @@
             await dbContext.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<ItemIndexViewModel>> AllItemsByChoosenCategoryAsync(int categoryId)
+        {
+            var allItems = await dbContext
+                .Items
+                .Where(i => i.CategoryId == categoryId && i.IsActive && i.Category.IsDeleted == false)
+                .Select(i => new ItemIndexViewModel()
+                {
+                    Id = i.Id,
+                    Title = i.Title,
+                    Image = i.TitleImage,
+                    Description = i.Description,
+                    Price = i.Price,
+                    IsActive = i.IsActive,
+                    Category = i.Category.Name
+                })
+                .ToArrayAsync();
+
+            return allItems;
+        }
+
     }
+
 }

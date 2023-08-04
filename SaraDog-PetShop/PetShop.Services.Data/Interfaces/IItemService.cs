@@ -28,5 +28,7 @@
         Task SoftDeleteItemAsync(int itemId);
         
         Task TurnActivityAsync(int itemId);
+
+        Task<IEnumerable<ItemIndexViewModel>> AllItemsByChoosenCategoryAsync(int categoryId);
     }
 }

@@ -10,11 +10,13 @@
     {
         private readonly ICategoryService categoryService;
         private readonly IImageService imageService;
+        private readonly IItemService itemService;
 
-        public CategoryController(ICategoryService categoryService, IImageService imageService)
+        public CategoryController(ICategoryService categoryService, IImageService imageService, IItemService itemService)
         {
             this.categoryService = categoryService;
             this.imageService = imageService;
+            this.itemService = itemService;
 
         }
 
@@ -22,7 +24,7 @@
         {
             try
             {
-                var allCategories = await categoryService.AllCteagoriesAsync();
+                var allCategories = await categoryService.AllCateagoriesAsync();
                 foreach (var category in allCategories)
                 {
                     await imageService.DownloadImageAsync(category.Image!);
@@ -40,7 +42,7 @@
         {
             try
             {
-                var items = await categoryService.AllItemsByChooseCateryAsync(id);
+                var items = await itemService.AllItemsByChoosenCategoryAsync(id);
 
                 foreach (var item in items)
                 {

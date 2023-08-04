@@ -110,18 +110,14 @@
         [Test]
         public async Task EditProductAsync_ShouldReturnModifiedItem()
         {
-            var before = await dbContext
-                .Items
-                .Where(i => i.Id == itemId)
-                .FirstAsync();
-
             var model = new ItemFormViewModel()
             {
                 Title = "Edited Test",
                 Description = "Edited Description",
                 Price = 202.45M,
                 UploadPicture = "EditedImage.jpg",
-                CategoryId = categoryId
+                CategoryId = categoryId,
+                IsActive = true
             };
 
             await itemService.EditProductAsync(itemId, model);
@@ -135,14 +131,12 @@
             {
                 Assert.That(result, Is.Not.Null);
 
-                Assert.That(before.Id, Is.EqualTo(result.Id));
-                Assert.That(before.Title, Is.EqualTo(result.Title));
-                Assert.That(before.Description, Is.EqualTo(result.Description));
-                Assert.That(before.Price, Is.EqualTo(result.Price));
-                Assert.That(before.TitleImage, Is.EqualTo(result.TitleImage));
-                Assert.That(before.CategoryId, Is.EqualTo(result.CategoryId));
-                Assert.That(before.IsActive, Is.EqualTo(result.IsActive));
-                Assert.That(before.LastEdit, Is.EqualTo(result.LastEdit));
+                Assert.That(result.Title, Is.EqualTo(model.Title));
+                Assert.That(result.Description, Is.EqualTo(model.Description));
+                Assert.That(result.Price, Is.EqualTo(model.Price));
+                Assert.That(result.TitleImage, Is.EqualTo(model.UploadPicture));
+                Assert.That(result.CategoryId, Is.EqualTo(model.CategoryId));
+                Assert.That(result.IsActive, Is.EqualTo(model.IsActive));
             });
 
         }
@@ -247,6 +241,19 @@
             await itemService.TurnActivityAsync(itemId);
 
             Assert.That(item.IsActive, Is.True);
+        }
+
+        [Test]
+        public async Task AllItemsByChoosenCategoryAsync_ShouldReturnArrayOfItems()
+        {
+            var expected = await dbContext
+                .Items
+                .Where(i => i.CategoryId == categoryId)
+                .ToListAsync();
+
+            var result = await itemService.AllItemsByChoosenCategoryAsync(categoryId);
+
+            Assert.That(expected, Has.Count.EqualTo(result.Count()));
         }
     }
 }

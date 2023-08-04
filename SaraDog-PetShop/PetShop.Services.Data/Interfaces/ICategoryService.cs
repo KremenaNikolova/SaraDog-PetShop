@@ -6,14 +6,12 @@
 
     public interface ICategoryService
     {
-        Task<ICollection<CategoryViewModel>> AllCteagoriesAsync();
+        Task<ICollection<CategoryViewModel>> AllCateagoriesAsync();
 
         Task<bool> IsCategoryExistAsync(int id);
 
         Task<IEnumerable<string>> AllCategoriesNameAsync();
-
-        Task<IEnumerable<ItemIndexViewModel>> AllItemsByChooseCateryAsync(int categoryId);
-
+        
         Task<bool> IsCategoryExistByNameAsync(string categoryName);
 
         Task CreateNewCategoryAsync(NewCategoryViewModel categoryModel);
