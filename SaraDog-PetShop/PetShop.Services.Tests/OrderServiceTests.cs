@@ -1,12 +1,12 @@
 ﻿namespace PetShop.Services.Tests
 {
     using Microsoft.EntityFrameworkCore;
-    using PetShop.Data.Models;
+
     using PetShop.Services.Data;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Data;
     using PetShop.Web.ViewModels.Order;
-    using System.Runtime.InteropServices;
+
     using static DatabaseSeeder;
 
     public class OrderServiceTests

@@ -3,8 +3,6 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
 
-    using Moq;
-    
     using PetShop.Services.Data.Interfaces;
     using PetShop.Services.Data;
     using PetShop.Web.Data;
