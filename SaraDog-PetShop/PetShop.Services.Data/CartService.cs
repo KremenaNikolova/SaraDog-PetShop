@@ -16,7 +16,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<CartFormViewModel?> GetCurrCartByUserIdAsync(string userId)
+        public async Task<CartFormViewModel> GetCurrCartByUserIdAsync(string userId)
         {
             var cart = await dbContext
                 .Carts
@@ -92,7 +92,10 @@
 
         public async Task AddItemToCartAsync(int itemId, string cartId, string userId)
         {
-            bool isItemExistInCart = await dbContext.CartItems.AnyAsync(ci => ci.ItemId == itemId && ci.CartId.ToString() == cartId);
+            bool isItemExistInCart = await dbContext
+                .CartItems
+                .AnyAsync(ci => ci.ItemId == itemId 
+                             && ci.CartId.ToString() == cartId);
 
             Item currItem = await dbContext
                 .Items
@@ -117,8 +120,8 @@
                 {
                     currCartItem = new CartItem()
                     {
-                        Item = currItem,
-                        Cart = cart,
+                        ItemId = currItem.Id,
+                        CartId = cart.Id
                     };
                 }
 
