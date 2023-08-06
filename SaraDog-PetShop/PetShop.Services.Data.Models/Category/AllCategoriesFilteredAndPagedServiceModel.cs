@@ -1,7 +1,7 @@
-﻿using PetShop.Web.ViewModels.Category;
-
-namespace PetShop.Services.Data.Models.Category
+﻿namespace PetShop.Services.Data.Models.Category
 {
+    using PetShop.Web.ViewModels.Category;
+
     public class AllCategoriesFilteredAndPagedServiceModel
     {
         public AllCategoriesFilteredAndPagedServiceModel()

@@ -1,13 +1,11 @@
 ﻿namespace PetShop.Services.Data
 {
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     
     using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Services.Data.Models.User;
     using PetShop.Web.Data;
-
     using PetShop.Web.ViewModels.User;
     using PetShop.Web.ViewModels.User.Enums;
 

@@ -12,5 +12,7 @@
         public const string AdministratorPassword = "Admin1234";
         public const string AdministratorRole = "Admin";
 
+        public const string LandingPageImageTitle = "CroppedWorkout.jpg";
+
     }
 }

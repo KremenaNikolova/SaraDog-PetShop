@@ -1,7 +1,8 @@
 ﻿namespace PetShop.Web.ViewModels.Order
 {
-    using PetShop.Web.ViewModels.Cart;
     using System.ComponentModel.DataAnnotations;
+    
+    using PetShop.Web.ViewModels.Cart;
 
     public class OrderHistoryViewModel
     {

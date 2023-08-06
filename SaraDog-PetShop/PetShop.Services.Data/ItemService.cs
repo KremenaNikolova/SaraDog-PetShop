@@ -4,9 +4,9 @@
 
     using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
+    using PetShop.Services.Data.Models.Item;
     using PetShop.Web.Data;
     using PetShop.Web.ViewModels.Item;
-    using PetShop.Services.Data.Models.Item;
     using PetShop.Web.ViewModels.Item.Enums;
     using PetShop.Web.ViewModels.Category;
 

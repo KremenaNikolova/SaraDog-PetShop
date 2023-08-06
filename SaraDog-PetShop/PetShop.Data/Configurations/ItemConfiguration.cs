@@ -4,7 +4,6 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using PetShop.Data.Models;
-    using System.Reflection;
 
     public class ItemConfiguration : IEntityTypeConfiguration<Item>
     {

@@ -2,7 +2,6 @@
 {
     using PetShop.Services.Data.Models.Category;
     using PetShop.Web.ViewModels.Category;
-    using PetShop.Web.ViewModels.Item;
 
     public interface ICategoryService
     {

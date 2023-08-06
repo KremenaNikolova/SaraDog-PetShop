@@ -13,15 +13,15 @@
 <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
     <div class="card h-100">
         <a asp-controller="Item" asp-action="Details" asp-route-id="@Model.Id" class="card-link">
-        <div class="card-img-container">
-            <img class="card-img-top" src="~/Images/@Model.Image" alt="Item Image">
-        </div>
+            <div class="card-img-container">
+                <img class="card-img-top" src="~/Images/@Model.Image" alt="Item Image">
+            </div>
         </a>
         <div class="card-body text-center">
             <h4>@Model.Title</h4>
             <p class="mb-3 h5">Price: $@Model.Price</p>
             <div class="d-flex justify-content-end">
-                <form asp-controller="Item" asp-action="Favourites" asp-route-id="@Model.Id" method="post" class="mb-2">
+                <form asp-area="" asp-controller="Item" asp-action="Favourites" asp-route-id="@Model.Id" method="post" class="mb-2">
                     @if (!isAlreadyAdded)
                     {
                         <button type="submit" class="btn btn-sm ms-2">

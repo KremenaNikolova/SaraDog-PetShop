@@ -1,6 +1,7 @@
 ﻿namespace PetShop.Services.Data.Interfaces
 {
     using Microsoft.AspNetCore.Http;
+    
     using PetShop.Web.ViewModels.Home;
 
     public interface IImageService

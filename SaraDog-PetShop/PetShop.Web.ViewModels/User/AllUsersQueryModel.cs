@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     
     using PetShop.Web.ViewModels.User.Enums;
+    
     using static PetShop.Common.ApplicationConstants;
 
     public class AllUsersQueryModel

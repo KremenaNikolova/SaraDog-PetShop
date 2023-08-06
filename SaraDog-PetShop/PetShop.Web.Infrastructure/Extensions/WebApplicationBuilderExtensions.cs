@@ -1,10 +1,14 @@
 ﻿namespace PetShop.Web.Infrastructure.Extensions
 {
+    using System.Reflection;
+    
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    
     using PetShop.Data.Models;
-    using System.Reflection;
+
+    using static PetShop.Common.ApplicationConstants;
 
     public static class WebApplicationBuilderExtensions
     {
@@ -73,10 +77,10 @@
 
             var userManager = scopedServices.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            string username = "Admin";
-            string email = "administrator@abv.bg";
-            string password = "Admin1234,";
-            string role = "Admin";
+            string username = AdministratorUsername;
+            string email = AdministratorEmail;
+            string password = AdministratorPassword;
+            string role = AdministratorRole;
 
             Task.Run(async () =>
             {

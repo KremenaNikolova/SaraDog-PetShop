@@ -1,7 +1,8 @@
 ﻿namespace PetShop.Web.ViewModels.User
 {
-    using Microsoft.AspNetCore.Http;
     using System.ComponentModel.DataAnnotations;
+    
+    using Microsoft.AspNetCore.Http;
 
     using static PetShop.Common.ValidationConstants.UserValidations;
     using static PetShop.Common.ErrorMessages.UserErrorMessage;

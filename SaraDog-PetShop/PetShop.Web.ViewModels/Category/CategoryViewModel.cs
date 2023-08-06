@@ -1,6 +1,5 @@
 ﻿namespace PetShop.Web.ViewModels.Category
 {
-    using Microsoft.AspNetCore.Http;
 
     public class CategoryViewModel
     {

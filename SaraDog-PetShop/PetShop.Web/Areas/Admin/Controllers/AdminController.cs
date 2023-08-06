@@ -1,17 +1,15 @@
 ﻿namespace PetShop.Web.Areas.Admin.Controllers
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.ViewModels.User;
     using PetShop.Web.ViewModels.Category;
     using PetShop.Web.ViewModels.Item;
 
     using static PetShop.Common.NotificationMessagesConstants;
-    using Microsoft.AspNetCore.Identity;
-    using PetShop.Data.Models;
-    using PetShop.Web.Infrastructure.Extensions;
-    using PetShop.Web.Data;
 
     public class AdminController : BaseController
     {

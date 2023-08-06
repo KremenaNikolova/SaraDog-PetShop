@@ -11,6 +11,8 @@
     using PetShop.Web.Data;
     using PetShop.Web.ViewModels.Home;
 
+    using static PetShop.Common.ApplicationConstants;
+
     public class ImageService : IImageService
     {
         private readonly PetShopDbContext dbContext;
@@ -93,7 +95,7 @@
         {
             var landingImageModel = new LandingPageModel()
             {
-                LandingImage = "CroppedWorkout.jpg"
+                LandingImage = LandingPageImageTitle
             };
 
             return landingImageModel;

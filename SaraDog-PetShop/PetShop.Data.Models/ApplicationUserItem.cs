@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace PetShop.Data.Models
+﻿namespace PetShop.Data.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class ApplicationUserItem
     {
         [ForeignKey(nameof(User))]

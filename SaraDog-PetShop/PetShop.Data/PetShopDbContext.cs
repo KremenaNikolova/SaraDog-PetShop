@@ -1,11 +1,12 @@
 ﻿namespace PetShop.Web.Data
 {
+    using System.Reflection;
+    
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     
     using PetShop.Data.Models;
-    using System.Reflection;
 
     public class PetShopDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {

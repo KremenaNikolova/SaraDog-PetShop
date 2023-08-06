@@ -2,6 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     using PetShop.Data.Models;
 
     public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>

@@ -1,7 +1,5 @@
 ﻿namespace PetShop.Data.Configurations
 {
-    using System;
-    using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     

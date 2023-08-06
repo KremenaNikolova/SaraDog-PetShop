@@ -1,6 +1,7 @@
 ﻿namespace PetShop.Web.ViewModels.Cart
 {
     using System.ComponentModel.DataAnnotations;
+    
     using static PetShop.Common.ValidationConstants.CartValidations;
 
     public class CartItemViewModel
