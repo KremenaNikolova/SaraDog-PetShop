@@ -29,6 +29,6 @@
         
         Task TurnActivityAsync(int itemId);
 
-        Task<IEnumerable<ItemIndexViewModel>> AllItemsByChoosenCategoryAsync(int categoryId);
+        Task<IEnumerable<ItemIndexViewModel>> AllItemsByChoosenCategoryAsync(string name);
     }
 }

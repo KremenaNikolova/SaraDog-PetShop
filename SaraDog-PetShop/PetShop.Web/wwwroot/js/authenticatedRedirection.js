@@ -1,1 +1,0 @@
-﻿window.location.href = '@Url.Action("Index", "Home")';

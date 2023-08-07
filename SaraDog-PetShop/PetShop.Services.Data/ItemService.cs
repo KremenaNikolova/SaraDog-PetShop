@@ -345,11 +345,11 @@
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ItemIndexViewModel>> AllItemsByChoosenCategoryAsync(int categoryId)
+        public async Task<IEnumerable<ItemIndexViewModel>> AllItemsByChoosenCategoryAsync(string name)
         {
             var allItems = await dbContext
                 .Items
-                .Where(i => i.CategoryId == categoryId && i.IsActive && i.Category.IsDeleted == false)
+                .Where(i => i.Category.Name == name && i.IsActive && i.Category.IsDeleted == false)
                 .Select(i => new ItemIndexViewModel()
                 {
                     Id = i.Id,

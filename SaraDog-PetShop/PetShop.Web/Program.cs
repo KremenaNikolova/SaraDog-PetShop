@@ -2,13 +2,14 @@ namespace PetShop.Web
 {
     using Microsoft.EntityFrameworkCore;
 
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
+    
     using Data;
     using PetShop.Data.Models;
     using PetShop.Web.Infrastructure.Extensions;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.ModelBinder;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Identity;
 
     public class Program
     {

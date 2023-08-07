@@ -1,0 +1,53 @@
+﻿@using PetShop.Services.Data.Interfaces;
+@using PetShop.Web.Infrastructure.Extensions
+
+@model IEnumerable<ItemIndexViewModel>
+@inject IItemService ItemService
+
+@{
+    ViewBag.Title = "Items";
+}
+
+<link rel="stylesheet" href="~/css/cards.css" asp-append-version="true" />
+@if (!Model.Any())
+{
+    <h2 class="text-center">No products in this category yet!</h2>
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+            <div class="card h-100">
+                <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id" class="card-link">
+                    <div class="card-img-container">
+                        <img class="card-img-top" src="~/Images/@item.Image" alt="Item Image">
+                    </div>
+                </a>
+                <div class="card-body text-center">
+                    <h4>@item.Title</h4>
+                    <p class="mb-3 h5">Price: $@item.Price</p>
+                    <div class="d-flex justify-content-end">
+                        <form asp-area="" asp-controller="Category" asp-action="Favourites" asp-route-id="@item.Id" method="post" class="mb-2">
+                            @if (!ItemService.IsAlreadyAddedAsync(this.User.GetId()!, item.Id))
+                            {
+                                <button type="submit" class="btn btn-sm ms-2">
+                                    <i class="far fa-heart custom-icon" style="color: #ff0000;"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-sm ms-2">
+                                    <i class="fas fa-heart custom-icon" style="color: #ff0000;"></i>
+                                </button>
+                            }
+                        </form>
+
+                        <form asp-controller="Cart" asp-action="Add" asp-route-id="@item.Id" method="post" class="mb-2">
+                            <button type="submit" class="btn btn-sm"><i class="fas fa-cart-plus custom-icon" style="color: #234476"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
