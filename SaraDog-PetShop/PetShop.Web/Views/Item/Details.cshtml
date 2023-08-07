@@ -9,7 +9,7 @@
 <div class="container" style="display:inline">
         <a asp-area="" asp-controller="Item" asp-action="All" class="btn btn-primary profile-button mb-2 col-1" type="button">Back</a>
     
-    <div class="row">
+        <div class="row">
         <div class="col-5">
             <img class="card-img-top" style="width: 30rem;"
                  src="~/Images/@Model.Image" alt="House Image">
@@ -22,6 +22,9 @@
             </p>
             <p>@Model.Description</p>
             <p>Category: <b>@Model.Category</b></p>
+            <form asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" method="post" class="mb-2">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
         </div>
     </div>
 </div>
