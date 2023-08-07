@@ -100,7 +100,9 @@
 
                 await itemService.AddToFavouritesAsync(userId!, id);
 
-                return RedirectToAction("All", "Item");
+                var previousUrl = Request.Headers["Referer"].ToString();
+
+                return Redirect(previousUrl);
             }
             catch (Exception)
             {
@@ -112,7 +114,9 @@
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
-            return RedirectToAction("All", "Item");
+            var previousUrl = Request.Headers["Referer"].ToString();
+
+            return Redirect(previousUrl);
         }
 
     }

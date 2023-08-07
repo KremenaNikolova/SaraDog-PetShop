@@ -234,7 +234,9 @@
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
-            return RedirectToAction("Details", "User");
+            var previousUrl = Request.Headers["Referer"].ToString();
+
+            return Redirect(previousUrl);
         }
     }
 }

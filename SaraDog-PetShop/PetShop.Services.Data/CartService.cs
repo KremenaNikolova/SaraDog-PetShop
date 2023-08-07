@@ -16,7 +16,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<CartFormViewModel> GetCurrCartByUserIdAsync(string userId)
+        public async Task<CartFormViewModel?> GetCurrCartByUserIdAsync(string userId)
         {
             var cart = await dbContext
                 .Carts
@@ -38,9 +38,13 @@
                     .ToArray()
 
                 })
-                .FirstAsync();
+                .FirstOrDefaultAsync();
 
-            cart.TotalPrice += cart.Items.Select(i => i.TotalPrice).Sum();
+            if(cart != null)
+            {
+                cart!.TotalPrice += cart.Items.Select(i => i.TotalPrice).Sum();
+                
+            }
 
             return cart;
         }

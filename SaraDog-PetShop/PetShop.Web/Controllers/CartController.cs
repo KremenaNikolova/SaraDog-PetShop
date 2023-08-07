@@ -55,7 +55,9 @@
 
                 await cartService.AddItemToCartAsync(id, cartId, userId!);
 
-                return RedirectToAction("All", "Item");
+                var previousUrl = Request.Headers["Referer"].ToString();
+
+                return Redirect(previousUrl);
             }
             catch (Exception)
             {
@@ -133,7 +135,9 @@
         {
             TempData[ErrorMessage] = "An unexpected error occurred with cart! Please, try again.";
 
-            return RedirectToAction("All", "Item");
+            var previousUrl = Request.Headers["Referer"].ToString();
+
+            return Redirect(previousUrl);
         }
     }
 }

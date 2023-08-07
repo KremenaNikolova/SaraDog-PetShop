@@ -80,7 +80,10 @@
         private IActionResult GenerealCategoryError()
         {
             TempData[ErrorMessage] = "Something get wrong! Please try again later";
-            return RedirectToAction("All", "Category");
+
+            var previousUrl = Request.Headers["Referer"].ToString();
+
+            return Redirect(previousUrl);
         }
 
     }
