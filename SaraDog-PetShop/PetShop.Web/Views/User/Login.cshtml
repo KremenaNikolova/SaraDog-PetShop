@@ -18,6 +18,7 @@
     <div class="col-md-4 offset-md-4">
         <section>
             <form id="account" method="post">
+                @Html.AntiForgeryToken()
                 <h2 class="text-center">Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

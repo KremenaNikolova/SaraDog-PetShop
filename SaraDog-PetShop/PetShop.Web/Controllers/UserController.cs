@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    
+
     using PetShop.Data.Models;
     using PetShop.Services.Data.Interfaces;
     using PetShop.Web.Infrastructure.Extensions;
@@ -172,12 +172,12 @@
             {
                 ModelState.AddModelError("Email", "This email address is already used");
             }
-            if (userModel.UserName!=null && users.Any(u => u.UserName!.ToLower() == userModel.UserName.ToLower()))
+            if (userModel.UserName != null && users.Any(u => u.UserName!.ToLower() == userModel.UserName.ToLower()))
             {
                 ModelState.AddModelError("UserName", "This Username is already used");
             }
 
-                if (userModel.FormImage != null)
+            if (userModel.FormImage != null)
             {
                 var fileResult = await imageService.SaveImage(userModel.FormImage);
                 if (fileResult.Item1 == 1)
@@ -230,6 +230,57 @@
             }
         }
 
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(UserChangePasswordViewModel model)
+        {
+            try
+            {
+                if(model.NewPassword != model.ConfirmPassword) 
+                {
+                    ModelState.AddModelError(string.Empty, "Confirm Password doesn't match!");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var user = await userManager.GetUserAsync(User);
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                var changePasswordResult = await userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+
+                if (!changePasswordResult.Succeeded)
+                {
+                    foreach (var error in changePasswordResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View(model);
+                }
+
+                await signInManager.SignOutAsync();
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return GeneralErrorMessage();
+            }
+
+        }
+
         private IActionResult GeneralErrorMessage()
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
@@ -238,5 +289,6 @@
 
             return Redirect(previousUrl);
         }
+
     }
 }

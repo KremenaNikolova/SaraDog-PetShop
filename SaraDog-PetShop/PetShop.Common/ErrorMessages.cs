@@ -38,5 +38,10 @@
             public const string InvalidUsername = "{0} must be between {2} and {1} characters.";
         }
 
+        public static class GeneralError
+        {
+            public const string GeneralRequiredErrorMessage = "The field is required!";
+        }
+
     }
 }
