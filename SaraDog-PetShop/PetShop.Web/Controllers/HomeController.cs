@@ -50,7 +50,6 @@
 
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Error(int statusCode)
         {
             if (statusCode == 400)
@@ -82,7 +81,7 @@
                 return View("Error500");
             }
 
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View("Error");
         }
     }
 }

@@ -45,6 +45,8 @@ namespace PetShop.Web
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
                 cfg.LoginPath = "/User/Login";
+                cfg.LogoutPath = "/User/Logout";
+                cfg.AccessDeniedPath = "/Home/Error?statusCode=401";
             });
 
             builder.Services.AddControllersWithViews()
@@ -64,7 +66,7 @@ namespace PetShop.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error?statusCode=500");
 
                 app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
 
