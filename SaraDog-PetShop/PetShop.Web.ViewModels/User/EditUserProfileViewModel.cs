@@ -13,6 +13,7 @@
         public string Id { get; set; } = null!;
 
         [Required]
+        [Display(Name = "Username")]
         [StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength, ErrorMessage = InvalidUsername)]
         public string UserName { get; set; } = null!;
 

@@ -246,12 +246,13 @@
         [Test]
         public async Task AllItemsByChoosenCategoryAsync_ShouldReturnArrayOfItems()
         {
+            var categoryName = "Leads and Collars";
             var expected = await dbContext
                 .Items
-                .Where(i => i.CategoryId == categoryId)
+                .Where(i => i.Category.Name == categoryName)
                 .ToListAsync();
 
-            var result = await itemService.AllItemsByChoosenCategoryAsync(categoryId);
+            var result = await itemService.AllItemsByChoosenCategoryAsync(categoryName);
 
             Assert.That(expected, Has.Count.EqualTo(result.Count()));
         }

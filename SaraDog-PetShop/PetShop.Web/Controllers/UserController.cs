@@ -172,7 +172,7 @@
             {
                 ModelState.AddModelError("Email", "This email address is already used");
             }
-            if (users.Any(u => u.UserName!.ToLower() == userModel.UserName.ToLower()))
+            if (userModel.UserName!=null && users.Any(u => u.UserName!.ToLower() == userModel.UserName.ToLower()))
             {
                 ModelState.AddModelError("UserName", "This Username is already used");
             }
