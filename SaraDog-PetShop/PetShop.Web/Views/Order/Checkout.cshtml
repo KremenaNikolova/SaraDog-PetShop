@@ -18,7 +18,7 @@
 
 <br />
 <br />
-<h1 class="text-center">@ViewBag.Title</h1>
+<h1 class="text-center text-primary">@ViewBag.Title</h1>
 <br />
 <br />
 
@@ -38,11 +38,11 @@
                 <form asp-action="Checkout" method="post" enctype="multipart/form-data">
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            <input asp-for="@Model.FirstName" class="form-control" type="text" placeholder="First Name" aria-required="true" />
+                            <input asp-for="@Model.FirstName" class="form-control mt-2" type="text" placeholder="First Name" aria-required="true" />
                             <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                         </div>
                         <div class="col-md-6">
-                            <input asp-for="@Model.LastName" class="form-control" type="text" placeholder="Last Name" aria-required="true" />
+                            <input asp-for="@Model.LastName" class="form-control mt-2" type="text" placeholder="Last Name" aria-required="true" />
                             <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                         </div>
                     </div>
