@@ -17,6 +17,8 @@ Saradog PetShop boasts a robust **Admin Panel**, granting on administrators and 
 
 The Admin Panel also offers the convenience of an **"Enable/Disable"** button for products. In the event of a product being out of stock, moderators can simply click this button to make it temporarily unavailable for users.
 
+![Screenshot 2023-08-11 004028](https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/8fc4bba4-ff54-401b-b9b8-8c2758148a3e)
+
 ## :hammer: Built With
 * ASP.NET Core 6.0 MVC
 * Bootstrap
@@ -33,6 +35,31 @@ The Admin Panel also offers the convenience of an **"Enable/Disable"** button fo
 
 ## :wrench: DB Diagram
 ![diagram](https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/11e9b2e0-92de-4a6c-a578-7b538b3681fa)
+
+## :star2: Responsible Design
+
+<p align="center">
+  <img src="https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/40d7e422-e920-4122-bd05-859c4c98bebc" width="30%" alt="IndexPage">
+  <img src="https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/a071b1df-4f44-42d5-829a-fd7c4212e80b" width="30%" alt="LogIn">
+  <img src="https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/0bfd48d0-e360-4ed1-af00-3ecb9eaadc64" width="30%" alt="AllProducts">
+</p>
+
+<p align="center">
+  <img src="https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/0be45131-01fa-4a5e-85f7-8fc63b370f47" width="30%" alt="OrderHistory">
+  <img src="https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/128fb8f3-6dc7-4081-b0c2-fcb96066ccf7" width="30%" alt="ProfileEdit">
+  <img src="https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/b70991e7-d922-4d1e-83ea-34e8703c76db" width="30%" alt="EmptyCart">
+</p>
+
+## :fire: Custom Exception Pages
+
+![Screenshot 2023-08-11 005509](https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/bf9a8db3-f17a-436e-a553-a39926ea3e7f)
+
+<hr/>
+
+![Screenshot 2023-08-11 005429](https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/6dc7f292-4497-40ea-86bf-070d6a2c07dd)
+
+
+
 
 
 
