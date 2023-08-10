@@ -1,5 +1,6 @@
 ﻿namespace PetShop.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using PetShop.Services.Data.Interfaces;
@@ -58,6 +59,7 @@
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Favourites(int id)
         {

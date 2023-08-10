@@ -1,12 +1,10 @@
 ﻿namespace PetShop.Web.Controllers
 {
-    using System.Diagnostics;
-    
     using Microsoft.AspNetCore.Mvc;
 
-    using ViewModels.Home;
     using PetShop.Services.Data.Interfaces;
-
+    using PetShop.Web.ViewModels.Home;
+    using System.Diagnostics;
     using static PetShop.Common.NotificationMessagesConstants;
 
     public class HomeController : Controller
@@ -50,6 +48,7 @@
 
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Error(int statusCode)
         {
             if (statusCode == 400)

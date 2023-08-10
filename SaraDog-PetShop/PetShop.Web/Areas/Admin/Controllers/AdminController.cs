@@ -138,7 +138,10 @@
                 }
 
                 await userService.ReverseIsModeratorAsync(userId);
-                return RedirectToAction("Users", "Admin");
+
+                var previousUrl = Request.Headers["Referer"].ToString();
+
+                return Redirect(previousUrl);
             }
             catch (Exception)
             {
@@ -156,7 +159,9 @@
 
                 TempData[SuccessMessage] = currItem.IsActive ? "You Deactivated the product successfully." : "You Actived the product successfully.";
 
-                return RedirectToAction("Items", "Admin");
+                var previousUrl = Request.Headers["Referer"].ToString();
+
+                return Redirect(previousUrl);
             }
             catch (Exception)
             {
@@ -168,7 +173,9 @@
         {
             TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
 
-            return RedirectToAction("Index", "Admin");
+            var previousUrl = Request.Headers["Referer"].ToString();
+
+            return Redirect(previousUrl);
         }
     }
 }
