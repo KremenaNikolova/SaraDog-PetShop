@@ -43,8 +43,8 @@ namespace PetShop.Web
 
             builder.Services.AddControllersWithViews();
 
-            //builder.Services.AddMemoryCache();
-            //builder.Services.AddSession();
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
 
             builder.Services.AddApplicationServices(typeof(IItemService));
 
@@ -59,7 +59,7 @@ namespace PetShop.Web
                 .AddMvcOptions(options =>
                 {
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
-                    //options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
 
             var app = builder.Build();
