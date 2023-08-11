@@ -36,7 +36,7 @@ The Admin Panel also offers the convenience of an **"Enable/Disable"** button fo
 ## :wrench: DB Diagram
 ![diagram](https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/11e9b2e0-92de-4a6c-a578-7b538b3681fa)
 
-## :star2: Responsible Design
+## :star2: Responsive Design
 
 <p align="center">
   <img src="https://github.com/KremenaNikolova/SaraDog-PetShop/assets/106489962/40d7e422-e920-4122-bd05-859c4c98bebc" width="30%" alt="IndexPage">
