@@ -58,7 +58,6 @@
         {
             IQueryable<ApplicationUser> userQuery = dbContext
                 .Users
-                .Where(u => u.IsDeleted == false)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
@@ -87,7 +86,6 @@
             };
 
             IEnumerable<UserViewModel> searchedUsers = await userQuery
-                .Where(u => u.IsDeleted == false)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.UsersPerPage)
                 .Take(queryModel.UsersPerPage)
                 .Select(u => new UserViewModel()
@@ -162,6 +160,19 @@
             }
         }
 
+        public async Task ResumeUser(string userId)
+        {
+            var user = await dbContext
+                .Users
+                .Where(u => u.Id.ToString() == userId
+                        && u.IsDeleted == true)
+                .FirstAsync();
+
+            user.IsDeleted = false;
+            await dbContext.SaveChangesAsync();
+
+        }
+
         public async Task SoftDeleteUserAsync(string userId)
         {
             var user = await dbContext
@@ -193,6 +204,16 @@
             user.IsModerator = !user.IsModerator;
 
             await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsUserDeleted(string userId)
+        {
+            var user = await dbContext
+               .Users
+               .Where(u => u.Id.ToString() == userId)
+               .FirstAsync();
+
+            return user.IsDeleted;
         }
     }
 }

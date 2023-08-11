@@ -22,13 +22,33 @@
         }
 
         [HttpPost]
+        public async Task<IActionResult> Resume(string id)
+        {
+            try
+            {
+                await userService.ResumeUser(id);
+
+                var previousUrl = Request.Headers["Referer"].ToString();
+
+                return Redirect(previousUrl);
+            }
+            catch (Exception)
+            {
+                TempData[ErrorMessage] = "An unexpected error occurred! Please, try again.";
+
+                var previousUrl = Request.Headers["Referer"].ToString();
+
+                return Redirect(previousUrl);
+            }
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             try
             {
                 await userService.SoftDeleteUserAsync(id);
 
-                await signInManager.SignOutAsync();
                 var previousUrl = Request.Headers["Referer"].ToString();
 
                 return Redirect(previousUrl);
