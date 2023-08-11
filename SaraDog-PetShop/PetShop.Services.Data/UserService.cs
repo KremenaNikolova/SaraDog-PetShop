@@ -160,7 +160,7 @@
             }
         }
 
-        public async Task ResumeUser(string userId)
+        public async Task ResumeUserAsync(string userId)
         {
             var user = await dbContext
                 .Users
@@ -206,7 +206,7 @@
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> IsUserDeleted(string userId)
+        public async Task<bool> IsUserDeletedAsync(string userId)
         {
             var user = await dbContext
                .Users

@@ -26,7 +26,7 @@
         {
             try
             {
-                await userService.ResumeUser(id);
+                await userService.ResumeUserAsync(id);
 
                 var previousUrl = Request.Headers["Referer"].ToString();
 

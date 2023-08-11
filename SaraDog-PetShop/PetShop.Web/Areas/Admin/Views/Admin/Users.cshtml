@@ -66,7 +66,7 @@
             <tbody>
                 @foreach (var user in Model.Users)
                 {
-                    var isUserDeleted = await userService.IsUserDeleted(user.Id);
+                    var isUserDeleted = await userService.IsUserDeletedAsync(user.Id);
 
                     <tr>
                         <td>@user.Id</td>

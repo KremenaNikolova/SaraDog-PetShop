@@ -15,12 +15,12 @@
 
         Task EditProfileAsync(string userId, EditUserProfileViewModel model);
 
-        Task ResumeUser(string userId);
+        Task ResumeUserAsync(string userId);
 
         Task SoftDeleteUserAsync(string userId);
 
         Task ReverseIsModeratorAsync(string userId);
 
-        Task<bool> IsUserDeleted(string userId);
+        Task<bool> IsUserDeletedAsync(string userId);
     }
 }

@@ -148,5 +148,23 @@ namespace PetShop.Services.Tests
             Assert.That(User.IsModerator, Is.Not.EqualTo(isModeratorBefore));
         }
 
+        [Test]
+        public async Task IsUserDeletedAsync_ShouldReturnTrue()
+        {
+            User!.IsDeleted = true;
+
+            var isDeleted = await userService.IsUserDeletedAsync(User.Id.ToString());
+
+            Assert.That(isDeleted, Is.True);
+        }
+
+        [Test]
+        public async Task IsUserDeletedAsync_ShouldReturnFalse()
+        {
+            var isDeleted = await userService.IsUserDeletedAsync(User!.Id.ToString());
+
+            Assert.That(isDeleted, Is.False);
+        }
+
     }
 }
